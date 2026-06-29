@@ -3,6 +3,7 @@ import ProjectsSection from "@/components/Project";
 import IndustrySection from "@/components/Industry";
 import Warehouse from "@/components/Warehouse";
 import CompletedProjects from "@/components/CompletedProject";
+import DelayCtaSection from "@/components/DelayCtaSection";
 import ComparisonSection from "@/components/Contract";
 import WhyChooseUs from "@/components/Whyus";
 import FacilitySection from "@/components/FacilitySection";
@@ -18,6 +19,7 @@ export default function Home() {
       <IndustrySection />
       <Warehouse />
       <CompletedProjects />
+      <DelayCtaSection />
       <ComparisonSection />
       <WhyChooseUs />
       <FacilitySection />

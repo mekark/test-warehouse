@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUp, ArrowRight } from "lucide-react";
 import CountUp from "react-countup";
+import EnquiryFormButton from "@/components/EnquiryFormButton";
 
 const REASONS = [
   {
@@ -33,7 +34,7 @@ const REASONS = [
 
 const STATS = [
   {
-    value: "4.9/5",
+    value: "4.7/5",
     text: "Client Satisfaction & Trust Score",
     dark: false,
     wide: false,
@@ -252,11 +253,7 @@ font-semibold                leading-[92%]
           </motion.div>
 
           {/* Bottom CTA */}
-          <motion.button
-            whileHover={{
-              x: 6,
-            }}
-            whileTap={{ scale: 0.98 }}
+          <EnquiryFormButton
             className="
               mt-8
               inline-flex
@@ -276,7 +273,7 @@ font-semibold                leading-[92%]
           >
             Engineering Industrial Growth
             <ArrowRight className="h-4 w-4" />
-          </motion.button>
+          </EnquiryFormButton>
         </motion.div>
 
         {/* RIGHT */}

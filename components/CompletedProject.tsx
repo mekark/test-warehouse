@@ -1,8 +1,8 @@
 "use client";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { useRef } from "react";
-import Link from "next/link";
 
 const projects = [
   {
@@ -50,10 +50,10 @@ export default function CompletedProjects() {
       className="
         overflow-hidden
         bg-black
-        py-[70px]
+        py-12
 
-        md:py-[90px]
-        lg:py-[110px]
+        md:py-16
+        lg:py-20
       "
     >
       <div
@@ -69,13 +69,13 @@ export default function CompletedProjects() {
         {/* Top Section */}
         <div
           className="
-            mb-12
+            mb-8
 
             flex
             flex-col
-            gap-8
+            gap-6
 
-            lg:mb-16
+            lg:mb-10
             lg:flex-row
             lg:items-end
             lg:justify-between
@@ -95,7 +95,7 @@ export default function CompletedProjects() {
                 className="
                   h-[2px]
                   w-[22px]
-                  bg-[#FF1E1E]
+                  bg-white
                 "
               />
 
@@ -106,7 +106,7 @@ export default function CompletedProjects() {
                   font-semibold
                   uppercase
                   tracking-[4px]
-                  text-[#FF1E1E]
+                  text-white
                 "
               >
                 Completed Projects
@@ -116,14 +116,14 @@ export default function CompletedProjects() {
             <h2
               className="
                 font-manrope
-                text-[42px]
+                text-[34px]
                 font-bold
                 leading-[1.05]
                 tracking-[-2px]
                 text-white
 
-                md:text-[62px]
-                lg:text-[78px]
+                md:text-[48px]
+                lg:text-[56px]
               "
             >
               Built for performance.
@@ -134,14 +134,14 @@ export default function CompletedProjects() {
                 mt-1
 
                 font-manrope
-                text-[38px]
+                text-[30px]
                 font-light
                 leading-[1.05]
                 tracking-[-2px]
-                text-[#FF1E1E]
+                text-white/90
 
-                md:text-[56px]
-                lg:text-[72px]
+                md:text-[42px]
+                lg:text-[52px]
               "
             >
               Proven on ground.
@@ -158,49 +158,61 @@ export default function CompletedProjects() {
               lg:flex
             "
           >
-            <button
+            <motion.button
               onClick={() => scroll("left")}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="
+                group
                 flex
-                h-[64px]
-                w-[64px]
+                h-[52px]
+                w-[52px]
                 items-center
                 justify-center
 
                 border
-                border-white/20
+                border-white/40
 
                 transition-all
                 duration-300
 
-                hover:border-[#FF1E1E]
-                hover:bg-[#FF1E1E]
+                hover:border-white
+                hover:bg-white
               "
             >
-              <ArrowLeft size={22} className="text-white" />
-            </button>
+              <ArrowLeft
+                size={20}
+                className="text-white transition-colors group-hover:text-[#ED2024]"
+              />
+            </motion.button>
 
-            <button
+            <motion.button
               onClick={() => scroll("right")}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="
+                group
                 flex
-                h-[64px]
-                w-[64px]
+                h-[52px]
+                w-[52px]
                 items-center
                 justify-center
 
                 border
-                border-white/20
+                border-white/40
 
                 transition-all
                 duration-300
 
-                hover:border-[#FF1E1E]
-                hover:bg-[#FF1E1E]
+                hover:border-white
+                hover:bg-white
               "
             >
-              <ArrowRight size={22} className="text-white" />
-            </button>
+              <ArrowRight
+                size={20}
+                className="text-white transition-colors group-hover:text-[#ED2024]"
+              />
+            </motion.button>
           </div>
         </div>
 
@@ -246,7 +258,7 @@ export default function CompletedProjects() {
                   src={project.image}
                   alt={project.title}
                   className="
-                    h-[460px]
+                    h-[320px]
                     w-full
                     object-cover
 
@@ -255,8 +267,8 @@ export default function CompletedProjects() {
 
                     group-hover:scale-105
 
-                    md:h-[560px]
-                    lg:h-[680px]
+                    md:h-[400px]
+                    lg:h-[460px]
                   "
                 />
 
@@ -377,7 +389,7 @@ export default function CompletedProjects() {
         {/* Mobile Arrows */}
         <div
           className="
-            mt-10
+            mt-6
             flex
             items-center
             justify-center
@@ -386,173 +398,63 @@ export default function CompletedProjects() {
             lg:hidden
           "
         >
-          <button
+          <motion.button
             onClick={() => scroll("left")}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className="
+              group
               flex
-              h-[54px]
-              w-[54px]
+              h-[48px]
+              w-[48px]
               items-center
               justify-center
 
               border
-              border-white/20
+              border-white/40
 
               transition-all
               duration-300
 
-              hover:border-[#FF1E1E]
-              hover:bg-[#FF1E1E]
+              hover:border-white
+              hover:bg-white
             "
           >
-            <ArrowLeft size={20} className="text-white" />
-          </button>
+            <ArrowLeft
+              size={18}
+              className="text-white transition-colors group-hover:text-[#ED2024]"
+            />
+          </motion.button>
 
-          <button
+          <motion.button
             onClick={() => scroll("right")}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className="
+              group
               flex
-              h-[54px]
-              w-[54px]
+              h-[48px]
+              w-[48px]
               items-center
               justify-center
 
               border
-              border-white/20
+              border-white/40
 
               transition-all
               duration-300
 
-              hover:border-[#FF1E1E]
-              hover:bg-[#FF1E1E]
+              hover:border-white
+              hover:bg-white
             "
           >
-            <ArrowRight size={20} className="text-white" />
-          </button>
+            <ArrowRight
+              size={18}
+              className="text-white transition-colors group-hover:text-[#ED2024]"
+            />
+          </motion.button>
         </div>
       </div>
-      <section
-        className="
-    relative
-    overflow-hidden
-    bg-black
-    py-[70px]
-
-    md:py-[90px]
-    lg:py-[110px]
-  "
-      >
-        {/* Red Glow */}
-        <div
-          className="
-      absolute
-      left-[-200px]
-      top-[-120px]
-
-      h-[500px]
-      w-[500px]
-
-      rounded-full
-      bg-[#FF1E1E]/20
-      blur-[140px]
-    "
-        />
-
-        <div
-          className="
-      relative
-      z-10
-      mx-auto
-      flex
-      max-w-[1440px]
-      flex-col
-      items-start
-      justify-between
-      gap-10
-
-      px-5
-
-      sm:px-8
-
-      lg:flex-row
-      lg:items-center
-      lg:px-16
-    "
-        >
-          {/* Left Content */}
-          <div className="max-w-[820px]">
-            <h2
-              className="
-          font-manrope
-          text-[38px]
-          font-bold
-          leading-[1.08]
-          tracking-[0px]
-          text-white
-
-          md:text-[50px]
-          md:leading-[48px]
-        "
-            >
-              Every month of delay ={" "}
-              <span className="text-[#FF1E1E]">lost revenue</span>
-              <br />
-              <span className="text-[#FF1E1E]">& higher costs.</span>
-            </h2>
-
-            <p
-              className="
-          mt-8
-          max-w-[760px]
-
-          font-manrope
-          text-[18px]
-          font-light
-          leading-[28px]
-          tracking-[0%]
-          text-white/70
-        "
-            >
-              Lock your execution timeline with a trusted warehouse building
-              contractor in Chennai.
-            </p>
-          </div>
-
-          {/* CTA Button */}
-          <Link href="#enquiry-form">
-            <button
-              className="
-      flex
-      h-[76px]
-      items-center
-      justify-center
-
-      rounded-[14px]
-      bg-white
-
-      px-8
-
-      font-manrope
-      text-[20px]
-      font-bold
-      text-[#D51919]
-
-      transition-all
-      duration-300
-
-      hover:scale-[1.03]
-      hover:bg-[#FF1E1E]
-      hover:text-white
-
-      md:min-w-[440px]
-    "
-            >
-              Get Cost & Timeline Blueprint
-              <span className="ml-4 text-[28px]">→</span>
-            </button>
-          </Link>
-        </div>
-      </section>
     </section>
   );
 }

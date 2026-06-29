@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Clock3,} from "lucide-react";
-import Link from "next/link";
+import EnquiryFormButton from "@/components/EnquiryFormButton";
 
 const projects = [
   {
@@ -44,7 +44,7 @@ export default function ProjectsSection() {
 
         w-full
 
-        bg-[#F5F5F5]
+        bg-[#FAFAFA]
 
         px-6
         py-[90px]
@@ -330,21 +330,20 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* BUTTON */}
-        <Link href="#enquiry-form">
-          <div
-            className="
+        <div
+          className="
       mt-[60px]
       flex
       justify-center
     "
-          >
-            <motion.button
-              whileHover={{
-                scale: 1.03,
-                y: -2,
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="
+        >
+          <EnquiryFormButton
+            showArrow
+            className="
+        flex
+        items-center
+        justify-center
+
         rounded-[14px]
         border
         border-black
@@ -366,11 +365,10 @@ export default function ProjectsSection() {
         hover:bg-black
         hover:text-white
       "
-            >
-              Start Your Warehouse Project →
-            </motion.button>
-          </div>
-        </Link>
+          >
+            Start Your Warehouse Project
+          </EnquiryFormButton>
+        </div>
       </div>
     </motion.section>
   );

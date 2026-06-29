@@ -2,6 +2,7 @@
 
 import { Check, Phone, Mail, MapPin } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
+import MotionSubmitButton from "@/components/MotionSubmitButton";
 
 const FEATURES = [
   "Layout recommendation for your industry",
@@ -186,14 +187,14 @@ export default function BlueprintSection() {
     }
   };
   const inputClass = (error?: string) => `
-    h-[62px]
+    h-[48px]
     w-full
-    rounded-[12px]
+    rounded-[10px]
     border
     ${error ? "border-[#C4161C] bg-[#FFF5F5]" : "border-[#E3E3E3] bg-[#F3F3F3]"}
-    px-5
+    px-4
     font-manrope
-    text-[16px]
+    text-[15px]
     text-black
     outline-none
     transition-all
@@ -202,14 +203,31 @@ export default function BlueprintSection() {
     focus:bg-white
   `;
 
+  const labelClass =
+    "mb-1.5 block font-manrope text-[14px] font-semibold text-[#555555]";
+
   return (
     <section
       className="
         relative
         overflow-hidden
-        bg-black
+        bg-[#0C0E14]
       "
     >
+      {/* Background */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/Images/blueprint-section-bg.jpg"
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-cover object-center opacity-60"
+        />
+
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/40 to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0C0E14]/80 via-transparent to-[#ED2024]/5" />
+      </div>
+
       <div
         className="
           relative
@@ -532,93 +550,80 @@ export default function BlueprintSection() {
           className="
     w-full
     max-w-[600px]
-    rounded-[30px]
+    rounded-[24px]
     bg-white
-    p-6
+    p-5
     shadow-[0_20px_60px_rgba(0,0,0,0.35)]
 
-    sm:p-10
-    lg:p-12
+    sm:p-7
+    lg:p-8
   "
         >
           <h3
             className="
               font-manrope
-              text-[30px]
+              text-[24px]
               font-extrabold
-              leading-[38px]
+              leading-[30px]
               text-[#111111]
+
+              sm:text-[26px]
             "
           >
             Request Your Project Blueprint
           </h3>
 
-          <form className="mt-8 space-y-5" onSubmit={handleSubmit} noValidate>
-            {/* NAME */}
-            <div>
-              <label className="mb-2 block font-manrope text-[15px] font-semibold text-[#555555]">
-                Name*
-              </label>
+          <form className="mt-5 space-y-3.5" onSubmit={handleSubmit} noValidate>
+            <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
+              {/* NAME */}
+              <div>
+                <label className={labelClass}>
+                  Name*
+                </label>
 
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter Your Name"
-                value={formValues.name}
-                onChange={handleInputChange}
-                className={inputClass(formErrors.name)}
-              />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter Your Name"
+                  value={formValues.name}
+                  onChange={handleInputChange}
+                  className={inputClass(formErrors.name)}
+                />
 
-              {formErrors.name && (
-                <p className="mt-2 text-[13px] text-[#C4161C]">
-                  {formErrors.name}
-                </p>
-              )}
+                {formErrors.name && (
+                  <p className="mt-1 text-[12px] text-[#C4161C]">
+                    {formErrors.name}
+                  </p>
+                )}
+              </div>
+
+              {/* EMAIL */}
+              <div>
+                <label className={labelClass}>
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter Your Email"
+                  value={formValues.email}
+                  onChange={handleInputChange}
+                  className={inputClass(formErrors.email)}
+                />
+
+                {formErrors.email && (
+                  <p className="mt-1 text-[12px] text-[#C4161C]">
+                    {formErrors.email}
+                  </p>
+                )}
+              </div>
             </div>
 
-            {/* EMAIL */}
-            <div>
-              <label className="mb-2 block font-manrope text-[15px] font-semibold text-[#555555]">
-                Email
-              </label>
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter Your Email"
-                value={formValues.email}
-                onChange={handleInputChange}
-                className={inputClass(formErrors.email)}
-              />
-
-              {formErrors.email && (
-                <p className="mt-2 text-[13px] text-[#C4161C]">
-                  {formErrors.email}
-                </p>
-              )}
-            </div>
-
-            <div
-              className="
-    grid
-    gap-5
-
-    md:grid-cols-2
-  "
-            >
+            <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
               {/* PHONE */}
               <div>
-                <label
-                  className="
-        mb-2
-        block
-
-        font-manrope
-        text-[15px]
-        font-semibold
-        text-[#555555]
-      "
-                >
+                <label className={labelClass}>
                   Phone Number*
                 </label>
 
@@ -633,7 +638,7 @@ export default function BlueprintSection() {
                 />
 
                 {formErrors.phoneNumber && (
-                  <p className="mt-2 text-[13px] text-[#C4161C]">
+                  <p className="mt-1 text-[12px] text-[#C4161C]">
                     {formErrors.phoneNumber}
                   </p>
                 )}
@@ -641,17 +646,7 @@ export default function BlueprintSection() {
 
               {/* COMPANY */}
               <div>
-                <label
-                  className="
-        mb-2
-        block
-
-        font-manrope
-        text-[15px]
-        font-semibold
-        text-[#555555]
-      "
-                >
+                <label className={labelClass}>
                   Company Name
                 </label>
 
@@ -665,17 +660,17 @@ export default function BlueprintSection() {
                 />
 
                 {formErrors.companyName && (
-                  <p className="mt-2 text-[13px] text-[#C4161C]">
+                  <p className="mt-1 text-[12px] text-[#C4161C]">
                     {formErrors.companyName}
                   </p>
                 )}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
               {/* LOCATION */}
               <div>
-                <label className="mb-2 block font-manrope text-[15px] font-semibold text-[#555555]">
+                <label className={labelClass}>
                   Location
                 </label>
 
@@ -689,7 +684,7 @@ export default function BlueprintSection() {
                 />
 
                 {formErrors.location && (
-                  <p className="mt-2 text-[13px] text-[#C4161C]">
+                  <p className="mt-1 text-[12px] text-[#C4161C]">
                     {formErrors.location}
                   </p>
                 )}
@@ -697,7 +692,7 @@ export default function BlueprintSection() {
 
               {/* SQFT */}
               <div>
-                <label className="mb-2 block font-manrope text-[15px] font-semibold text-[#555555]">
+                <label className={labelClass}>
                   Square Feet*
                 </label>
 
@@ -715,17 +710,17 @@ export default function BlueprintSection() {
                 </select>
 
                 {formErrors.sqft && (
-                  <p className="mt-2 text-[13px] text-[#C4161C]">
+                  <p className="mt-1 text-[12px] text-[#C4161C]">
                     {formErrors.sqft}
                   </p>
                 )}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
               {/* START TIMELINE */}
               <div>
-                <label className="mb-2 block font-manrope text-[15px] font-semibold text-[#555555]">
+                <label className={labelClass}>
                   Project Start Timeline *
                 </label>
 
@@ -744,7 +739,7 @@ export default function BlueprintSection() {
                 </select>
 
                 {formErrors.startTimeline && (
-                  <p className="mt-2 text-[13px] text-[#C4161C]">
+                  <p className="mt-1 text-[12px] text-[#C4161C]">
                     {formErrors.startTimeline}
                   </p>
                 )}
@@ -752,7 +747,7 @@ export default function BlueprintSection() {
 
               {/* BUDGET */}
               <div>
-                <label className="mb-2 block font-manrope text-[15px] font-semibold text-[#555555]">
+                <label className={labelClass}>
                   Project Budget *
                 </label>
 
@@ -771,7 +766,7 @@ export default function BlueprintSection() {
                 </select>
 
                 {formErrors.budget && (
-                  <p className="mt-2 text-[13px] text-[#C4161C]">
+                  <p className="mt-1 text-[12px] text-[#C4161C]">
                     {formErrors.budget}
                   </p>
                 )}
@@ -780,27 +775,27 @@ export default function BlueprintSection() {
 
             {/* PROJECT DETAILS */}
             <div>
-              <label className="mb-2 block font-manrope text-[15px] font-semibold text-[#555555]">
+              <label className={labelClass}>
                 Project Details
               </label>
 
               <textarea
                 name="projectDetails"
-                rows={5}
+                rows={3}
                 placeholder="Enter Project Details"
                 value={formValues.projectDetails}
                 onChange={handleInputChange}
                 className="
-                  min-h-[140px]
+                  min-h-[88px]
                   w-full
-                  rounded-[12px]
+                  rounded-[10px]
                   border
                   border-[#E3E3E3]
                   bg-[#F3F3F3]
-                  px-5
-                  py-4
+                  px-4
+                  py-3
                   font-manrope
-                  text-[16px]
+                  text-[15px]
                   text-black
                   outline-none
                   transition-all
@@ -833,21 +828,21 @@ export default function BlueprintSection() {
             )}
 
             {/* BUTTON */}
-            <button
+            <MotionSubmitButton
               type="submit"
-              disabled={isSubmitting}
+              isSubmitting={isSubmitting}
               className="
-                mt-4
+                mt-2
                 flex
-                h-[64px]
+                h-[52px]
                 w-full
                 items-center
                 justify-center
                 gap-3
-                rounded-[12px]
+                rounded-[10px]
                 bg-[#D7141A]
                 font-manrope
-                text-[22px]
+                text-[18px]
                 font-bold
                 text-white
                 shadow-[0_10px_30px_rgba(215,20,26,0.35)]
@@ -860,7 +855,7 @@ export default function BlueprintSection() {
               "
             >
               {isSubmitting ? "Submitting..." : "Submit →"}
-            </button>
+            </MotionSubmitButton>
           </form>
         </div>
       </div>

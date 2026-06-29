@@ -73,7 +73,7 @@ export default function Warehouse() {
       className="
         relative
         overflow-hidden
-        bg-[#F5F5F5]
+        bg-white
         py-[70px]
 
         md:py-[90px]

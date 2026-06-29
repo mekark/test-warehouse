@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { ChangeEvent, FormEvent, useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import EnquiryFormButton from "@/components/EnquiryFormButton";
+import MotionLinkButton from "@/components/MotionLinkButton";
+import MotionSubmitButton from "@/components/MotionSubmitButton";
 
 const stats = [
   {
@@ -274,7 +276,7 @@ export default function HeroSection() {
         </div>
 
         {/* BUTTON */}
-        <button
+        <EnquiryFormButton
           className="
       inline-flex
       items-center
@@ -305,10 +307,8 @@ export default function HeroSection() {
       sm:text-[15px]
     "
         >
-          <Link href="#enquiry-form">
-            <span className="whitespace-nowrap">Get Free Quote</span>
-          </Link>{" "}
-        </button>
+          <span className="whitespace-nowrap">Get Free Quote</span>
+        </EnquiryFormButton>
       </header>
       <div className="w-full">
         <div
@@ -485,7 +485,8 @@ lg:min-h-[850px]
         sm:tracking-[2px]
       "
                   >
-                    INDIA’S NO.1 WAREHOUSE DESIGN & BUILD TURNKEY COMPANY
+                    India's No.1 Warehouse Construction Company | PEB Warehouse
+                    Design & Build Experts
                   </span>
                 </div>
               </motion.div>
@@ -509,7 +510,7 @@ lg:min-h-[850px]
       lg:text-[65px]
     "
                 >
-                  Build Your Warehouse & Go Operational in
+                  Build Your PEB Industrial Warehouse in
                 </h1>
 
                 <div className="mt-3 flex flex-wrap items-end gap-4">
@@ -565,10 +566,31 @@ lg:min-h-[850px]
       text-[#5F5F5F]
     "
               >
-                From concept to operational warehouse, Mekark is a leading
-                warehouse construction company delivering industrial warehouse
-                construction, turnkey warehouse design and build company
-                solutions, and PEB warehouse construction.
+                From planning to handover, Mekark is a leading{" "}
+                <span className="font-bold text-[#2A2A2A]">
+                  warehouse construction company
+                </span>{" "}
+                specializing in{" "}
+                <span className="font-bold text-[#2A2A2A]">
+                  PEB warehouse construction
+                </span>
+                ,{" "}
+                <span className="font-bold text-[#2A2A2A]">
+                  industrial steel warehouse buildings
+                </span>
+                ,{" "}
+                <span className="font-bold text-[#2A2A2A]">
+                  warehouse design and build
+                </span>
+                ,{" "}
+                <span className="font-bold text-[#2A2A2A]">
+                  turnkey warehouse construction
+                </span>
+                , and{" "}
+                <span className="font-bold text-[#2A2A2A]">
+                  prefabricated warehouse construction
+                </span>{" "}
+                across India.
               </motion.p>
 
               <motion.div
@@ -582,10 +604,10 @@ lg:min-h-[850px]
   "
               >
                 {[
-                  "Automation-Ready Warehouse Infrastructure",
-                  "Turnkey Warehouse Construction Services",
-                  "PEB Warehouse Construction Experts",
-                  "End-to-End Warehouse Design & Build",
+                  "Advanced In-House Manufacturing for Faster Project Execution",
+                  "Integrated Design, Engineering & Construction Under One Roof",
+                  "Stringent Quality Control at Every Stage of Construction",
+                  "Dedicated Project Management for On-Time Delivery",
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -1047,9 +1069,9 @@ lg:min-h-[850px]
                     )}
 
                     {/* BUTTON */}
-                    <button
+                    <MotionSubmitButton
                       type="submit"
-                      disabled={isSubmitting}
+                      isSubmitting={isSubmitting}
                       className="
           mt-3
           h-[48px]
@@ -1070,7 +1092,7 @@ lg:min-h-[850px]
                       {isSubmitting
                         ? "Submitting..."
                         : "Discuss Your Warehouse Project →"}
-                    </button>
+                    </MotionSubmitButton>
 
                     <p
                       className="
@@ -1108,9 +1130,12 @@ lg:min-h-[850px]
   "
               >
                 {/* CALL US */}
-                <a href={`tel:${PHONE_NUMBER}`} className="w-full sm:w-auto">
-                  <button
-                    className="
+                <MotionLinkButton
+                  href={`tel:${PHONE_NUMBER}`}
+                  className="
+        w-full
+        sm:w-auto
+
         inline-flex
         h-[58px]
         w-full
@@ -1141,22 +1166,21 @@ lg:min-h-[850px]
 
         sm:w-[260px]
       "
-                  >
-                    Call Us →
-                  </button>
-                </a>
+                >
+                  Call Us →
+                </MotionLinkButton>
 
                 {/* WHATSAPP */}
-                <a
+                <MotionLinkButton
                   href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
                     WHATSAPP_MESSAGE,
                   )}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-full sm:w-auto"
-                >
-                  <button
-                    className="
+                  className="
+        w-full
+        sm:w-auto
+
         inline-flex
         h-[58px]
         w-full
@@ -1183,10 +1207,9 @@ lg:min-h-[850px]
 
         sm:w-[260px]
       "
-                  >
-                    WhatsApp Us →
-                  </button>
-                </a>
+                >
+                  WhatsApp Us →
+                </MotionLinkButton>
               </motion.div>
 
               {/* DIVIDER */}
@@ -1655,9 +1678,9 @@ lg:min-h-[680px]
                 )}
 
                 {/* BUTTON */}
-                <button
+                <MotionSubmitButton
                   type="submit"
-                  disabled={isSubmitting}
+                  isSubmitting={isSubmitting}
                   className="
       mt-3
       h-[48px]
@@ -1678,7 +1701,7 @@ lg:min-h-[680px]
                   {isSubmitting
                     ? "Submitting..."
                     : "Discuss Your Warehouse Project →"}
-                </button>
+                </MotionSubmitButton>
                 <p
                   className="
     mt-2

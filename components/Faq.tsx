@@ -9,44 +9,74 @@ const FAQS = [
     question:
       "What makes Mekark a trusted warehouse construction company?",
     answer:
-      "Mekark delivers end-to-end warehouse construction services including warehouse design & build, PEB warehouse construction, steel warehouse construction, civil execution, MEP, and turnkey project delivery under one roof.",
+      "Mekark is a leading warehouse construction company offering end-to-end warehouse design and build services, advanced in-house manufacturing, strict quality control, and on-time project delivery in as little as 120 days.",
   },
 
   {
     question:
       "Do you provide turnkey warehouse construction solutions?",
     answer:
-      "Yes. Mekark specializes in turnkey warehouse construction solutions covering planning, design, engineering, PEB manufacturing, civil works, structural execution, and final handover.",
+      "Yes. We provide complete turnkey warehouse construction and industrial warehouse turnkey solutions, covering design, engineering, manufacturing, civil works, erection, roofing, and project handover.",
   },
 
   {
     question:
       "What industries do you serve for industrial warehouse construction?",
     answer:
-      "We provide industrial warehouse construction solutions for logistics, e-commerce, manufacturing, FMCG, cold storage, automotive, engineering, and industrial sectors.",
+      "We deliver industrial warehouse construction for logistics, e-commerce, manufacturing, FMCG, cold storage, automotive, engineering, pharmaceuticals, and other industrial sectors.",
   },
 
   {
     question:
-      "What is included in your warehouse design & build solutions?",
+      "What is included in your warehouse design and build solutions?",
     answer:
-      "Our warehouse design & build solutions include layout planning, structural engineering, PEB warehouse construction, civil execution, utility planning, ventilation, docking integration, and future-ready warehouse infrastructure.",
+      "Our warehouse design and build company provides structural design, PEB manufacturing, civil construction, roofing, flooring, MEP coordination, and complete project execution under one contract.",
   },
 
   {
     question:
       "Why choose PEB warehouse construction for industrial projects?",
     answer:
-      "PEB warehouse construction offers faster execution, cost efficiency, large-span layouts, scalability, durability, and reduced maintenance compared to conventional construction methods.",
+      "PEB warehouse construction offers faster execution, cost efficiency, superior structural strength, and flexibility for future expansion, making it ideal for modern industrial warehouses.",
   },
 
   {
     question:
       "Do you provide steel warehouse construction services?",
     answer:
-      "Yes. Mekark delivers steel warehouse construction solutions using high-quality structural steel systems designed for heavy-duty industrial and logistics operations.",
+      "Yes. We specialize in steel warehouse construction, industrial steel warehouse buildings, and pre-engineered warehouse buildings designed for durability, speed, and long-term performance.",
+  },
+
+  {
+    question:
+      "Are you PEB warehouse builders and contractors?",
+    answer:
+      "Yes. Mekark is one of India's experienced PEB warehouse builders and PEB warehouse contractors, delivering customized warehouse solutions from concept to commissioning.",
+  },
+
+  {
+    question:
+      "Do you build prefabricated warehouses?",
+    answer:
+      "Yes. We offer prefabricated warehouse construction using high-quality PEB systems, helping businesses reduce construction time while maintaining superior quality and structural reliability.",
+  },
+
+  {
+    question:
+      "Do you provide warehouse construction services across India?",
+    answer:
+      "Yes. Our warehouse construction services are available across India, delivering customized warehouses for manufacturing, logistics, retail, e-commerce, and industrial businesses.",
+  },
+
+  {
+    question:
+      "Can you build warehouses for manufacturing and factory operations?",
+    answer:
+      "Absolutely. We specialize in manufacturing warehouse construction, factory warehouse construction, and warehouse shed construction tailored to production, storage, and distribution requirements.",
   },
 ];
+
+const VISIBLE_FAQS = FAQS.slice(0, 6);
 
 const testimonials = [
   {
@@ -76,7 +106,7 @@ const testimonials = [
         that could handle everything under one roof.
         <br />
         Mekark’s{" "}
-        <span className="font-light text-[#8F8F8F]">
+        <span className="font-light text-[#A8A8A8]">
           turnkey warehouse construction services
         </span>{" "}
         and in-house manufacturing capabilities were exactly what we needed.”
@@ -123,11 +153,12 @@ const testimonials = [
 ];
 
 export default function FAQSection() {
-  const [active, setActive] = useState(0);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % testimonials.length);
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -141,7 +172,9 @@ export default function FAQSection() {
       transition={{ duration: 0.8 }}
       className="
         overflow-hidden
-        bg-[#F5F5F5]
+        border-y
+        border-[#E8E8E8]
+        bg-[#FAFAFA]
       "
     >
       {/* TESTIMONIAL */}
@@ -149,7 +182,8 @@ export default function FAQSection() {
         className="
           relative
           border-b
-          border-[#E4E4E4]
+          border-white/10
+          bg-black
         "
       >
         <div
@@ -181,7 +215,7 @@ export default function FAQSection() {
               text-[180px]
               font-extrabold
               leading-none
-              text-[#F0DCDC]
+              text-[#ED2024]/15
 
               lg:text-[240px]
             "
@@ -235,7 +269,7 @@ export default function FAQSection() {
               <div className="mx-auto max-w-7xl px-6 lg:px-10">
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={active}
+                    key={activeTestimonial}
                     initial={{ opacity: 0, y: 60 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -40 }}
@@ -254,7 +288,7 @@ export default function FAQSection() {
                 font-bold
                 leading-[40px]
                 tracking-[-1px]
-                text-black
+                text-white
 
                 sm:text-[42px]
                 sm:leading-[54px]
@@ -264,7 +298,7 @@ export default function FAQSection() {
                 lg:tracking-[-2px]
               "
                     >
-                      {testimonials[active].quote}
+                      {testimonials[activeTestimonial].quote}
                     </motion.h2>
 
                     {/* AUTHOR */}
@@ -301,7 +335,7 @@ export default function FAQSection() {
                   text-white
                 "
                       >
-                        {testimonials[active].initials}
+                        {testimonials[activeTestimonial].initials}
                       </motion.div>
 
                       {/* DETAILS */}
@@ -311,10 +345,10 @@ export default function FAQSection() {
                     font-manrope
                     text-[16px]
                     font-bold
-                    text-black
+                    text-white
                   "
                         >
-                          {testimonials[active].role}
+                          {testimonials[activeTestimonial].role}
                         </p>
 
                         <p
@@ -324,10 +358,10 @@ export default function FAQSection() {
                     font-manrope
                     text-[14px]
                     font-normal
-                    text-[#8B8B8B]
+                    text-[#A8A8A8]
                   "
                         >
-                          {testimonials[active].company}
+                          {testimonials[activeTestimonial].company}
                         </p>
                       </div>
                     </motion.div>
@@ -339,14 +373,14 @@ export default function FAQSection() {
                   {testimonials.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setActive(index)}
+                      onClick={() => setActiveTestimonial(index)}
                       className={`
                 transition-all duration-300
 
                 ${
-                  active === index
+                  activeTestimonial === index
                     ? "h-[10px] w-[42px] bg-[#ED2024]"
-                    : "h-[10px] w-[10px] bg-[#D0D0D0]"
+                    : "h-[10px] w-[10px] bg-white/25"
                 }
 
                 rounded-full
@@ -375,7 +409,7 @@ export default function FAQSection() {
               text-[180px]
               font-extrabold
               leading-none
-              text-[#F0DCDC]
+              text-[#ED2024]/15
 
               lg:block
             "
@@ -468,33 +502,55 @@ export default function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="
-                mb-6
-                flex
-                items-center
-                gap-2
-              "
+              className="mb-10"
             >
               <div
                 className="
-                  h-[2px]
-                  w-[26px]
-                  bg-[#ED2024]
-                "
-              />
-
-              <span
-                className="
-                  font-manrope
-                  text-[11px]
-                  font-bold
-                  uppercase
-                  tracking-[3px]
-                  text-[#ED2024]
+                  mb-5
+                  flex
+                  items-center
+                  gap-2
                 "
               >
-                FAQ
-              </span>
+                <div
+                  className="
+                    h-[2px]
+                    w-[26px]
+                    bg-[#ED2024]
+                  "
+                />
+
+                <span
+                  className="
+                    font-manrope
+                    text-[11px]
+                    font-bold
+                    uppercase
+                    tracking-[3px]
+                    text-[#ED2024]
+                  "
+                >
+                  FAQ
+                </span>
+              </div>
+
+              <h2
+                className="
+                  font-manrope
+                  text-[32px]
+                  font-bold
+                  leading-[1.1]
+                  tracking-[-1px]
+                  text-black
+
+                  sm:text-[40px]
+
+                  lg:text-[48px]
+                  lg:tracking-[-2px]
+                "
+              >
+                Frequently Asked Questions
+              </h2>
             </motion.div>
 
             {/* FAQ ITEMS */}
@@ -512,8 +568,8 @@ export default function FAQSection() {
               }}
               className="space-y-1"
             >
-              {FAQS.map((faq, index) => {
-                const isActive = active === index;
+              {VISIBLE_FAQS.map((faq, index) => {
+                const isActive = openFaqIndex === index;
 
                 return (
                   <motion.div
@@ -533,12 +589,12 @@ export default function FAQSection() {
                     }}
                     className="
                       border-b
-                      border-[#E3E3E3]
+                      border-[#E8E8E8]
                     "
                   >
                     {/* BUTTON */}
                     <button
-                      onClick={() => setActive(isActive ? -1 : index)}
+                      onClick={() => setOpenFaqIndex(index)}
                       className="
                         flex
                         w-full

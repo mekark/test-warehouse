@@ -1,5 +1,14 @@
 "use client";
 
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useRef } from "react";
+
 const STEPS = [
   {
     number: "01",
@@ -33,17 +42,121 @@ const STEPS = [
   },
 ];
 
+const EASE_OUT = [0.22, 1, 0.36, 1] as const;
+
+const headingContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.05 },
+  },
+};
+
+const headingItem = {
+  hidden: { opacity: 0, y: 36, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: EASE_OUT },
+  },
+};
+
+const stepsContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.35 },
+  },
+};
+
+const stepItem = {
+  hidden: { opacity: 0, y: 48, scale: 0.88 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring" as const, stiffness: 110, damping: 16 },
+  },
+};
+
+const mobileContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.15 },
+  },
+};
+
+const mobileItem = {
+  hidden: { opacity: 0, x: -28 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.65, ease: EASE_OUT },
+  },
+};
+
 export default function OperationTimeline() {
+  const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const mobileTimelineRef = useRef<HTMLDivElement>(null);
+
+  const isTimelineInView = useInView(timelineRef, {
+    once: true,
+    amount: 0.25,
+  });
+
+  const isMobileTimelineInView = useInView(mobileTimelineRef, {
+    once: true,
+    amount: 0.15,
+  });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const backgroundShift = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? ["0%", "0%"] : ["-4%", "4%"],
+  );
+
+  const glowOpacity = useTransform(
+    scrollYProgress,
+    [0.15, 0.45, 0.75],
+    prefersReducedMotion ? [1, 1, 1] : [0.4, 1, 0.6],
+  );
+
   return (
-    <section
+    <motion.section
+      ref={sectionRef}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
       className="
         relative
         overflow-hidden
-        bg-[#F5F5F5]
+        border-y
+        border-[#E8E8E8]
+        bg-white
       "
     >
+      <motion.div
+        aria-hidden="true"
+        style={{ y: backgroundShift }}
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-[radial-gradient(circle_at_20%_20%,rgba(237,32,36,0.06),transparent_42%),radial-gradient(circle_at_80%_80%,rgba(237,32,36,0.04),transparent_38%)]
+        "
+      />
+
       <div
         className="
+          relative
+          z-10
           mx-auto
           max-w-[1440px]
 
@@ -57,9 +170,15 @@ export default function OperationTimeline() {
           lg:py-24
         "
       >
-        {/* HEADING */}
-        <div className="text-center">
-          <h2
+        <motion.div
+          className="text-center"
+          variants={headingContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+        >
+          <motion.h2
+            variants={headingItem}
             className="
               font-manrope
               text-[42px]
@@ -76,9 +195,10 @@ export default function OperationTimeline() {
             "
           >
             From Idea to Operation
-          </h2>
+          </motion.h2>
 
-          <p
+          <motion.p
+            variants={headingItem}
             className="
               mt-2
 
@@ -94,11 +214,11 @@ export default function OperationTimeline() {
             "
           >
             Fully Managed
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* DESKTOP TIMELINE */}
         <div
+          ref={timelineRef}
           className="
             relative
             mt-24
@@ -108,7 +228,6 @@ export default function OperationTimeline() {
             lg:block
           "
         >
-          {/* LINE */}
           <div
             className="
               absolute
@@ -120,45 +239,66 @@ export default function OperationTimeline() {
             "
           />
 
-          {/* MOVING ACTIVE LINE */}
-          <div
+          <motion.div
             className="
-    absolute
-    left-0
-    right-0
-    top-[44px]
-    z-20
-    overflow-hidden
-  "
+              absolute
+              left-0
+              top-[52px]
+              z-10
+              h-[2px]
+              origin-left
+              bg-[#ED2024]
+            "
+            initial={{ scaleX: 0 }}
+            animate={isTimelineInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{
+              duration: prefersReducedMotion ? 0.01 : 1.6,
+              ease: EASE_OUT,
+              delay: 0.2,
+            }}
+            style={{ width: "100%" }}
+          />
+
+          <motion.div
+            className="
+              absolute
+              left-0
+              right-0
+              top-[44px]
+              z-20
+              overflow-hidden
+            "
+            style={{ opacity: glowOpacity }}
           >
             <div
-              className="
-      timeline-glow
-
-      h-[14px]
-      w-[50px]
-
-      rounded-full
-
-      bg-[#ED2024]
-
-      blur-[12px]
-    "
+              className={`
+                h-[14px]
+                w-[50px]
+                rounded-full
+                bg-[#ED2024]
+                blur-[12px]
+                ${prefersReducedMotion ? "" : "timeline-glow"}
+              `}
             />
-          </div>
+          </motion.div>
 
-          {/* STEPS */}
-          <div
+          <motion.div
+            variants={stepsContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
             className="
               grid
               grid-cols-6
               gap-4
             "
           >
-            {STEPS.map((step) => (
-              <div
+            {STEPS.map((step, index) => (
+              <motion.div
                 key={step.number}
+                variants={stepItem}
                 className="
+                  group
                   relative
                   flex
                   flex-col
@@ -166,8 +306,11 @@ export default function OperationTimeline() {
                   text-center
                 "
               >
-                {/* CIRCLE */}
-                <div
+                <motion.div
+                  whileHover={
+                    prefersReducedMotion ? undefined : { scale: 1.07, y: -4 }
+                  }
+                  transition={{ type: "spring", stiffness: 380, damping: 22 }}
                   className="
                     relative
                     z-10
@@ -183,26 +326,74 @@ export default function OperationTimeline() {
                     border-[#D9D9D9]
 
                     bg-[#F5F5F5]
+
+                    transition-colors
+                    duration-300
+
+                    group-hover:border-[#ED2024]
+                    group-hover:bg-white
+                    group-hover:shadow-[0_12px_40px_rgba(237,32,36,0.18)]
                   "
                 >
-                  <span
-                    className="
-    text-center
+                  {!prefersReducedMotion && (
+                    <motion.span
+                      className="
+                        pointer-events-none
+                        absolute
+                        inset-0
+                        rounded-full
+                        border-2
+                        border-[#ED2024]
+                      "
+                      initial={{ scale: 0.95, opacity: 0 }}
+                      whileInView={{ scale: 1.45, opacity: [0, 0.45, 0] }}
+                      viewport={{ once: true }}
+                      transition={{
+                        delay: 0.45 + index * 0.12,
+                        duration: 1.1,
+                        ease: "easeOut",
+                      }}
+                    />
+                  )}
 
-    font-manrope
-    text-[22px]
-    font-extrabold
-    leading-[100%]
-    tracking-[0px]
-    text-[#8F8F8F]
-  "
+                  <motion.span
+                    className="
+                      text-center
+                      font-manrope
+                      text-[22px]
+                      font-extrabold
+                      leading-[100%]
+                      tracking-[0px]
+                      text-[#8F8F8F]
+                      transition-colors
+                      duration-300
+                      group-hover:text-[#ED2024]
+                    "
+                    initial={
+                      prefersReducedMotion
+                        ? false
+                        : { opacity: 0, scale: 0.6 }
+                    }
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      delay: 0.25 + index * 0.1,
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 18,
+                    }}
                   >
                     {step.number}
-                  </span>
-                </div>
+                  </motion.span>
+                </motion.div>
 
-                {/* TITLE */}
-                <h3
+                <motion.h3
+                  initial={
+                    prefersReducedMotion ? false : { opacity: 0, y: 12 }
+                  }
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.35 + index * 0.1, duration: 0.5 }}
                   className="
                     mt-8
 
@@ -214,10 +405,15 @@ export default function OperationTimeline() {
                   "
                 >
                   {step.title}
-                </h3>
+                </motion.h3>
 
-                {/* DESC */}
-                <p
+                <motion.p
+                  initial={
+                    prefersReducedMotion ? false : { opacity: 0, y: 10 }
+                  }
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.42 + index * 0.1, duration: 0.5 }}
                   className="
                     mt-3
                     max-w-[220px]
@@ -230,14 +426,18 @@ export default function OperationTimeline() {
                   "
                 >
                   {step.description}
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* MOBILE TIMELINE */}
-        <div
+        <motion.div
+          ref={mobileTimelineRef}
+          variants={mobileContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
           className="
             mt-14
 
@@ -249,15 +449,15 @@ export default function OperationTimeline() {
           "
         >
           {STEPS.map((step, index) => (
-            <div
+            <motion.div
               key={step.number}
+              variants={mobileItem}
               className="
                 relative
                 flex
                 gap-5
               "
             >
-              {/* LEFT */}
               <div
                 className="
                   relative
@@ -266,7 +466,6 @@ export default function OperationTimeline() {
                   items-center
                 "
               >
-                {/* LINE */}
                 {index !== STEPS.length - 1 && (
                   <div
                     className="
@@ -274,13 +473,34 @@ export default function OperationTimeline() {
                       top-[72px]
                       h-full
                       w-[2px]
+                      overflow-hidden
                       bg-[#E79A9C]
                     "
-                  />
+                  >
+                    <motion.div
+                      className="
+                        h-full
+                        w-full
+                        origin-top
+                        bg-[#ED2024]
+                      "
+                      initial={{ scaleY: 0 }}
+                      animate={
+                        isMobileTimelineInView ? { scaleY: 1 } : { scaleY: 0 }
+                      }
+                      transition={{
+                        duration: prefersReducedMotion ? 0.01 : 0.55,
+                        delay: 0.2 + index * 0.12,
+                        ease: EASE_OUT,
+                      }}
+                    />
+                  </div>
                 )}
 
-                {/* CIRCLE */}
-                <div
+                <motion.div
+                  whileTap={
+                    prefersReducedMotion ? undefined : { scale: 0.96 }
+                  }
                   className="
                     relative
                     z-10
@@ -296,8 +516,29 @@ export default function OperationTimeline() {
                     border-[#D9D9D9]
 
                     bg-white
+                    shadow-[0_8px_24px_rgba(0,0,0,0.06)]
                   "
                 >
+                  {!prefersReducedMotion && (
+                    <motion.span
+                      className="
+                        pointer-events-none
+                        absolute
+                        inset-0
+                        rounded-full
+                        border
+                        border-[#ED2024]
+                      "
+                      initial={{ scale: 1, opacity: 0 }}
+                      animate={{ scale: 1.3, opacity: [0, 0.35, 0] }}
+                      transition={{
+                        delay: 0.15 + index * 0.12,
+                        duration: 1,
+                        ease: "easeOut",
+                      }}
+                    />
+                  )}
+
                   <span
                     className="
                       font-manrope
@@ -308,10 +549,9 @@ export default function OperationTimeline() {
                   >
                     {step.number}
                   </span>
-                </div>
+                </motion.div>
               </div>
 
-              {/* CONTENT */}
               <div className="pt-3">
                 <h3
                   className="
@@ -340,12 +580,19 @@ export default function OperationTimeline() {
                   {step.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* BOTTOM TEXT */}
-        <div
+        <motion.div
+          initial={
+            prefersReducedMotion
+              ? false
+              : { opacity: 0, y: 36, filter: "blur(6px)" }
+          }
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.15 }}
           className="
             mt-20
             text-center
@@ -367,11 +614,32 @@ export default function OperationTimeline() {
               lg:leading-[64px]
             "
           >
-            No follow-ups. No uncertainty.{" "}
-            <span className="text-black">Just results.</span>
+            <motion.span
+              initial={prefersReducedMotion ? false : { opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              No follow-ups. No uncertainty.{" "}
+            </motion.span>
+            <motion.span
+              className="text-black"
+              initial={
+                prefersReducedMotion ? false : { opacity: 0, x: -12 }
+              }
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.65,
+                delay: 0.45,
+                ease: EASE_OUT,
+              }}
+            >
+              Just results.
+            </motion.span>
           </p>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
