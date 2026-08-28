@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 import MotionLinkButton from "@/components/MotionLinkButton";
 import MotionSubmitButton from "@/components/MotionSubmitButton";
+import { getPageSourceUrl } from "@/lib/sourceUrl";
 
 const stats = [
   {
@@ -183,8 +184,8 @@ export default function HeroSection() {
           message: formValues.projectDetails.trim(),
           sourceName,
           sourceDomain,
-          sourceUrl: window.location.href,
-          pageUrl: window.location.href,
+          sourceUrl: getPageSourceUrl(),
+          pageUrl: getPageSourceUrl(),
         }),
       });
 

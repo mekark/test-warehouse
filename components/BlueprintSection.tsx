@@ -3,6 +3,7 @@
 import { Check, Phone, Mail, MapPin } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import MotionSubmitButton from "@/components/MotionSubmitButton";
+import { getPageSourceUrl } from "@/lib/sourceUrl";
 
 const FEATURES = [
   "Layout recommendation for your industry",
@@ -165,8 +166,8 @@ export default function BlueprintSection() {
           message: formValues.projectDetails.trim(),
           sourceName,
           sourceDomain,
-          sourceUrl: window.location.href,
-          pageUrl: window.location.href,
+          sourceUrl: getPageSourceUrl(),
+          pageUrl: getPageSourceUrl(),
         }),
       });
 
