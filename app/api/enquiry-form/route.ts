@@ -24,6 +24,8 @@ function resolveUpstreamOrigin(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const origin = request.headers.get("origin");
+    const referer = request.headers.get("referer");
 
     if (!body.name || !body.phone) {
       return NextResponse.json(
@@ -38,15 +40,30 @@ export async function POST(request: NextRequest) {
 
     const upstreamOrigin = resolveUpstreamOrigin(request);
 
+    const payload = {
+      ...body,
+      sourceDomain:
+        body.sourceDomain ||
+        (origin ? new URL(origin).hostname : undefined) ||
+        (referer ? new URL(referer).hostname : undefined),
+      sourceUrl:
+        body.sourceUrl ||
+        body.pageUrl ||
+        referer ||
+        origin ||
+        undefined,
+    };
+
     // FIRE & FORGET
     const response = await fetch(UPSTREAM_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Origin: upstreamOrigin,
+        Origin: origin || upstreamOrigin,
+        ...(referer ? { Referer: referer } : {}),
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(payload),
       cache: "no-store",
     });
 

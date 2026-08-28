@@ -183,6 +183,8 @@ export default function HeroSection() {
           message: formValues.projectDetails.trim(),
           sourceName,
           sourceDomain,
+          sourceUrl: window.location.href,
+          pageUrl: window.location.href,
         }),
       });
 

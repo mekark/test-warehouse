@@ -165,6 +165,8 @@ export default function BlueprintSection() {
           message: formValues.projectDetails.trim(),
           sourceName,
           sourceDomain,
+          sourceUrl: window.location.href,
+          pageUrl: window.location.href,
         }),
       });
 
