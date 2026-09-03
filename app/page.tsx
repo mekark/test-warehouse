@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       <HeroSection />
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
       <IndustrySection />
       <Warehouse />
       <CompletedProjects />

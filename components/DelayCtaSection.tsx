@@ -10,10 +10,10 @@ export default function DelayCtaSection() {
         relative
         overflow-hidden
         bg-[#ED2024]
-        py-12
+        py-6
 
-        md:py-16
-        lg:py-20
+        md:py-8
+        lg:py-10
       "
     >
       <div
@@ -26,7 +26,7 @@ export default function DelayCtaSection() {
           flex-col
           items-start
           justify-between
-          gap-8
+          gap-5
 
           px-5
 
@@ -65,7 +65,7 @@ export default function DelayCtaSection() {
 
           <p
             className="
-              mt-5
+              mt-3
               max-w-[760px]
 
               font-manrope

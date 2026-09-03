@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Phone } from "lucide-react";
 import MotionLinkButton from "@/components/MotionLinkButton";
 
@@ -8,11 +9,46 @@ const WHATSAPP_NUMBER = "919790924754";
 const WHATSAPP_MESSAGE =
   "Hello Mekark, I would like to discuss about my warehouse construction project.";
 const PHONE_NUMBER = "9790924754";
+const SHOW_ARROW_AFTER_PX = 400;
+
+function ArrowUpIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden
+      className="shrink-0"
+    >
+      <path
+        d="M8 3L8 13M8 3L4 7M8 3L12 7"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function FloatingWhatsApp() {
+  const [showArrow, setShowArrow] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowArrow(window.scrollY > SHOW_ARROW_AFTER_PX);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     WHATSAPP_MESSAGE,
   )}`;
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div
@@ -22,6 +58,7 @@ export default function FloatingWhatsApp() {
 
     flex
     flex-col
+    items-center
     gap-3
 
     bottom-[100px]
@@ -34,6 +71,37 @@ export default function FloatingWhatsApp() {
     lg:right-6
   "
     >
+      {/* SCROLL TO TOP */}
+      <AnimatePresence>
+        {showArrow && (
+          <motion.button
+            type="button"
+            aria-label="Scroll to top"
+            initial={{ opacity: 0, y: 12, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 12, scale: 0.9 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            onClick={scrollToTop}
+            className="
+              inline-flex
+              h-14
+              w-14
+              items-center
+              justify-center
+              rounded-full
+              bg-[#C4161C]
+              text-white
+              shadow-[0_20px_42px_-20px_rgba(196,22,28,0.72)]
+              transition-transform
+              hover:scale-105
+              active:scale-95
+            "
+          >
+            <ArrowUpIcon />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       {/* CALL BUTTON */}
       <MotionLinkButton
         href={`tel:${PHONE_NUMBER}`}

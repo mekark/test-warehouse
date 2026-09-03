@@ -2,81 +2,99 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Plus, X } from "lucide-react";
+import { Plus, Settings, Trophy, Wrench, X } from "lucide-react";
 
-const FAQS = [
+const FAQ_GROUPS = [
   {
-    question:
-      "What makes Mekark a trusted warehouse construction company?",
-    answer:
-      "Mekark is a leading warehouse construction company offering end-to-end warehouse design and build services, advanced in-house manufacturing, strict quality control, and on-time project delivery in as little as 120 days.",
+    title: "Technical Questions",
+    icon: Wrench,
+    items: [
+      {
+        question:
+          "What is PEB warehouse construction and how is it different from conventional construction?",
+        answer:
+          "PEB warehouse construction (pre-engineered warehouse building) uses factory-fabricated steel components assembled on-site, unlike conventional construction that builds structure piece-by-piece on location. This is why a pre engineered warehouse building can be delivered in a fraction of the time of RCC construction.",
+      },
+      {
+        question:
+          "What is the warehouse construction cost per sq ft in India?",
+        answer:
+          "Warehouse construction cost per sq ft varies based on span width, load-bearing requirements, flooring specification, and site conditions — typically ranging across a wide band depending on whether it's a basic storage shed or a high-spec manufacturing facility. We provide a detailed, itemized quote after a technical site assessment rather than a flat number that changes later.",
+      },
+      {
+        question:
+          "Can PEB structures support heavy machinery and multi-level operations?",
+        answer:
+          "Yes. Our steel warehouse construction and industrial steel warehouse structures are engineered for heavy load-bearing use, including cranes, mezzanine floors, and continuous manufacturing operations — not just static storage.",
+      },
+      {
+        question:
+          "Do you handle both warehouse and shed construction under PEB technology?",
+        answer:
+          "Yes. As an industrial shed construction company and factory shed construction company, we deliver both warehouse shed construction and full-scale warehouse facilities using the same PEB manufacturing process — one technology, multiple building types.",
+      },
+      {
+        question:
+          "How long does a typical PEB warehouse project take from planning to handover?",
+        answer:
+          "With fast track warehouse construction, most projects are delivered in 120 days — compared to the industry-standard 9–12 months for conventional builds — because manufacturing happens in-house in parallel with site preparation.",
+      },
+    ],
   },
-
   {
-    question:
-      "Do you provide turnkey warehouse construction solutions?",
-    answer:
-      "Yes. We provide complete turnkey warehouse construction and industrial warehouse turnkey solutions, covering design, engineering, manufacturing, civil works, erection, roofing, and project handover.",
+    title: "Advantage Questions",
+    icon: Settings,
+    items: [
+      {
+        question:
+          "What's the advantage of choosing PEB over RCC for industrial warehouses?",
+        answer:
+          "PEB structures offer faster execution, lower long-term maintenance, better resale/relocation flexibility, and greater design flexibility for manufacturing warehouse construction and factory warehouse construction compared to traditional RCC buildings.",
+      },
+      {
+        question:
+          "Why does in-house manufacturing matter when selecting a contractor?",
+        answer:
+          "Working with PEB warehouse contractors who manufacture in-house — rather than outsourcing fabrication — removes the biggest bottleneck in industrial warehouse construction, giving you tighter quality control and a firm delivery date instead of a shifting one.",
+      },
+      {
+        question:
+          "Is turnkey warehouse construction more cost-effective than hiring multiple vendors?",
+        answer:
+          "Yes. Turnkey warehouse construction consolidates design, fabrication, civil work, and project management under one contract — eliminating the coordination delays and cost overruns common when multiple vendors handle different phases separately.",
+      },
+    ],
   },
-
   {
-    question:
-      "What industries do you serve for industrial warehouse construction?",
-    answer:
-      "We deliver industrial warehouse construction for logistics, e-commerce, manufacturing, FMCG, cold storage, automotive, engineering, pharmaceuticals, and other industrial sectors.",
-  },
-
-  {
-    question:
-      "What is included in your warehouse design and build solutions?",
-    answer:
-      "Our warehouse design and build company provides structural design, PEB manufacturing, civil construction, roofing, flooring, MEP coordination, and complete project execution under one contract.",
-  },
-
-  {
-    question:
-      "Why choose PEB warehouse construction for industrial projects?",
-    answer:
-      "PEB warehouse construction offers faster execution, cost efficiency, superior structural strength, and flexibility for future expansion, making it ideal for modern industrial warehouses.",
-  },
-
-  {
-    question:
-      "Do you provide steel warehouse construction services?",
-    answer:
-      "Yes. We specialize in steel warehouse construction, industrial steel warehouse buildings, and pre-engineered warehouse buildings designed for durability, speed, and long-term performance.",
-  },
-
-  {
-    question:
-      "Are you PEB warehouse builders and contractors?",
-    answer:
-      "Yes. Mekark is one of India's experienced PEB warehouse builders and PEB warehouse contractors, delivering customized warehouse solutions from concept to commissioning.",
-  },
-
-  {
-    question:
-      "Do you build prefabricated warehouses?",
-    answer:
-      "Yes. We offer prefabricated warehouse construction using high-quality PEB systems, helping businesses reduce construction time while maintaining superior quality and structural reliability.",
-  },
-
-  {
-    question:
-      "Do you provide warehouse construction services across India?",
-    answer:
-      "Yes. Our warehouse construction services are available across India, delivering customized warehouses for manufacturing, logistics, retail, e-commerce, and industrial businesses.",
-  },
-
-  {
-    question:
-      "Can you build warehouses for manufacturing and factory operations?",
-    answer:
-      "Absolutely. We specialize in manufacturing warehouse construction, factory warehouse construction, and warehouse shed construction tailored to production, storage, and distribution requirements.",
+    title: "Why Choose Mekark",
+    icon: Trophy,
+    items: [
+      {
+        question:
+          "Why should we choose Mekark over other warehouse construction contractors?",
+        answer:
+          "Mekark is a warehouse construction company offering integrated design, in-house manufacturing, and dedicated project management — not just construction, but single-point accountability from planning to handover.",
+      },
+      {
+        question:
+          "What makes Mekark a trusted industrial warehouse construction company?",
+        answer:
+          "As an industrial warehouse construction company and established PEB warehouse construction company, Mekark has delivered projects for manufacturing, logistics, FMCG, and automotive clients across India, backed by consistent quality control at every stage.",
+      },
+      {
+        question: "Do you serve businesses outside Chennai?",
+        answer:
+          "Yes. While we're recognized as a leading warehouse construction company in Chennai, we operate as warehouse construction contractors on projects across India, not limited to one region.",
+      },
+      {
+        question:
+          "What warehouse construction services does Mekark provide end-to-end?",
+        answer:
+          "Our warehouse construction services cover site assessment, PEB design, in-house steel manufacturing, civil and structural execution, and final handover — with one team accountable for the entire project, not fragmented subcontractors.",
+      },
+    ],
   },
 ];
-
-const VISIBLE_FAQS = FAQS.slice(0, 6);
 
 const testimonials = [
   {
@@ -154,7 +172,10 @@ const testimonials = [
 
 export default function FAQSection() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const [activeGroupIndex, setActiveGroupIndex] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  const activeGroup = FAQ_GROUPS[activeGroupIndex];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -163,6 +184,12 @@ export default function FAQSection() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleGroupChange = (index: number) => {
+    if (index === activeGroupIndex) return;
+    setActiveGroupIndex(index);
+    setOpenFaqIndex(0);
+  };
 
   return (
     <motion.section
@@ -452,6 +479,7 @@ export default function FAQSection() {
             transition={{ duration: 0.8 }}
             className="
               relative
+              z-0
 
               hidden
 
@@ -465,6 +493,7 @@ export default function FAQSection() {
                 scale: 1.02,
               }}
               className="
+                pointer-events-none
                 absolute
                 left-[-520px]
                 top-[-140px]
@@ -495,6 +524,7 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="relative z-10"
           >
             {/* LABEL */}
             <motion.div
@@ -553,142 +583,218 @@ export default function FAQSection() {
               </h2>
             </motion.div>
 
-            {/* FAQ ITEMS */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.08,
-                  },
-                },
-              }}
-              className="space-y-1"
-            >
-              {VISIBLE_FAQS.map((faq, index) => {
-                const isActive = openFaqIndex === index;
+            {/* FAQ TABS + ITEMS */}
+            <div className="space-y-8">
+              <div
+                className="
+                  -mx-1
+                  flex
+                  gap-2
+                  overflow-x-auto
+                  overscroll-x-contain
+                  px-1
+                  pb-1
+                  [-ms-overflow-style:none]
+                  [scrollbar-width:none]
 
-                return (
-                  <motion.div
-                    key={faq.question}
-                    variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 20,
-                      },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                      },
-                    }}
-                    transition={{
-                      duration: 0.5,
-                    }}
-                    className="
-                      border-b
-                      border-[#E8E8E8]
-                    "
-                  >
-                    {/* BUTTON */}
+                  sm:flex-wrap
+                  sm:overflow-visible
+                  sm:gap-3
+                  sm:pb-0
+
+                  [&::-webkit-scrollbar]:hidden
+                "
+              >
+                {FAQ_GROUPS.map((group, index) => {
+                  const GroupIcon = group.icon;
+                  const isActive = activeGroupIndex === index;
+                  const shortTitle =
+                    group.title === "Why Choose Mekark"
+                      ? "Why Mekark"
+                      : group.title.replace(" Questions", "");
+
+                  return (
                     <button
-                      onClick={() => setOpenFaqIndex(index)}
-                      className="
+                      key={group.title}
+                      type="button"
+                      onClick={() => handleGroupChange(index)}
+                      className={`
                         flex
-                        w-full
+                        shrink-0
                         items-center
-                        justify-between
-                        gap-5
+                        gap-2
+                        rounded-full
+                        px-3.5
+                        py-2.5
 
-                        py-7
-                        text-left
-                      "
+                        font-manrope
+                        text-[12px]
+                        font-semibold
+                        transition-all
+                        duration-300
+
+                        sm:px-5
+                        sm:text-[14px]
+
+                        ${
+                          isActive
+                            ? "bg-[#ED2024] text-white shadow-[0_8px_24px_rgba(237,32,36,0.25)]"
+                            : "bg-[#EFEFEF] text-[#5F5F5F] hover:bg-[#E5E5E5]"
+                        }
+                      `}
                     >
-                      <span
-                        className={`
-                          font-manrope
-                          text-[18px]
-                          leading-[30px]
-
-                          ${
-                            isActive
-                              ? "font-bold text-[#ED2024]"
-                              : "font-semibold text-black"
-                          }
-                        `}
-                      >
-                        {faq.question}
+                      <GroupIcon
+                        className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4"
+                        strokeWidth={2.4}
+                      />
+                      <span className="whitespace-nowrap sm:hidden">
+                        {shortTitle}
                       </span>
-
-                      <motion.div
-                        animate={{
-                          rotate: isActive ? 180 : 0,
-                        }}
-                        transition={{
-                          duration: 0.3,
-                        }}
-                        className={`
-                          flex
-                          h-[34px]
-                          w-[34px]
-                          shrink-0
-                          items-center
-                          justify-center
-
-                          rounded-full
-
-                          transition-all
-                          duration-300
-
-                          ${
-                            isActive
-                              ? "bg-[#ED2024] text-white"
-                              : "bg-[#EFEFEF] text-[#8F8F8F]"
-                          }
-                        `}
-                      >
-                        {isActive ? (
-                          <X className="h-4 w-4" />
-                        ) : (
-                          <Plus className="h-4 w-4" />
-                        )}
-                      </motion.div>
+                      <span className="hidden whitespace-nowrap sm:inline">
+                        {group.title}
+                      </span>
                     </button>
+                  );
+                })}
+              </div>
 
-                    {/* CONTENT */}
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        height: isActive ? "auto" : 0,
-                        opacity: isActive ? 1 : 0,
-                      }}
-                      transition={{
-                        duration: 0.4,
-                      }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pb-8">
-                        <p
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={activeGroup.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  className="space-y-1"
+                >
+                  {activeGroup.items.map((faq, faqIndex) => {
+                    const isActive = openFaqIndex === faqIndex;
+
+                    return (
+                      <div
+                        key={`${activeGroup.title}-${faq.question}`}
+                        className="
+                          border-b
+                          border-[#E8E8E8]
+                        "
+                      >
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setOpenFaqIndex(isActive ? null : faqIndex)
+                          }
                           className="
-                            max-w-[720px]
+                            flex
+                            w-full
+                            items-start
+                            justify-between
+                            gap-4
 
-                            font-manrope
-                            text-[16px]
-                            font-normal
-                            leading-[30px]
-                            text-[#707070]
+                            py-6
+                            text-left
+
+                            sm:items-center
+                            sm:gap-5
+                            sm:py-7
                           "
                         >
-                          {faq.answer}
-                        </p>
+                          <span
+                            className={`
+                              min-w-0
+                              flex-1
+
+                              font-manrope
+                              text-[15px]
+                              leading-[24px]
+                              transition-colors
+                              duration-300
+
+                              sm:text-[18px]
+                              sm:leading-[30px]
+
+                              ${
+                                isActive
+                                  ? "font-bold text-[#ED2024]"
+                                  : "font-semibold text-black"
+                              }
+                            `}
+                          >
+                            {faq.question}
+                          </span>
+
+                          <div
+                            className={`
+                              mt-0.5
+                              flex
+                              h-[34px]
+                              w-[34px]
+                              shrink-0
+                              items-center
+                              justify-center
+
+                              rounded-full
+
+                              transition-all
+                              duration-300
+
+                              sm:mt-0
+
+                              ${
+                                isActive
+                                  ? "rotate-180 bg-[#ED2024] text-white"
+                                  : "rotate-0 bg-[#EFEFEF] text-[#8F8F8F]"
+                              }
+                            `}
+                          >
+                            {isActive ? (
+                              <X className="h-4 w-4" />
+                            ) : (
+                              <Plus className="h-4 w-4" />
+                            )}
+                          </div>
+                        </button>
+
+                        <div
+                          className={`
+                            grid
+                            transition-[grid-template-rows]
+                            duration-300
+                            ease-out
+
+                            ${
+                              isActive
+                                ? "grid-rows-[1fr]"
+                                : "grid-rows-[0fr]"
+                            }
+                          `}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="pb-8">
+                              <p
+                                className="
+                                  max-w-[720px]
+
+                                  font-manrope
+                                  text-[15px]
+                                  font-normal
+                                  leading-[26px]
+                                  text-[#707070]
+
+                                  sm:text-[16px]
+                                  sm:leading-[30px]
+                                "
+                              >
+                                {faq.answer}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                    );
+                  })}
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </motion.div>
         </div>
       </div>

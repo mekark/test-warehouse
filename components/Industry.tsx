@@ -15,20 +15,20 @@ const industries = [
     icon: Truck,
     title: "Logistics & 3PL",
     description:
-      "Automation-ready logistics warehouses built for fast-moving supply chain operations.",
+      "Fast track warehouse construction built for high-throughput logistics and supply chain operations.",
     glow: true,
   },
   {
     icon: Package,
     title: "E-Commerce & Retail",
     description:
-      "Warehouse design & build solutions for rapid fulfillment, sorting, and dispatch operations.",
+      "Turnkey warehouse construction solutions for rapid fulfillment, sorting, and dispatch operations.",
   },
   {
     icon: Factory,
     title: "Manufacturing & Industrial",
     description:
-      "Industrial warehouse construction solutions for manufacturing, machinery, and production facilities.",
+      "Manufacturing warehouse construction and industrial shed construction for production and machinery-heavy facilities.",
   },
   {
     icon: ShoppingCart,
@@ -40,13 +40,13 @@ const industries = [
     icon: Snowflake,
     title: "Cold Storage & Food",
     description:
-      "Temperature-controlled warehouse design & build solutions with insulation-ready PEB structures",
+      "Steel warehouse construction with insulation-ready PEB structures for temperature-controlled storage.",
   },
   {
     icon: Car,
     title: "Automotive & Engineering",
     description:
-      "Steel warehouse construction solutions for heavy equipment and industrial operations.",
+      "Steel warehouse construction and factory warehouse construction for heavy equipment and industrial operations.",
   },
 ];
 
@@ -142,8 +142,8 @@ export default function Industry() {
             "
           >
             Mekark delivers turnkey warehouse construction, PEB warehouse
-            construction, and industrial warehouse design & build solutions for
-            diverse industries
+            construction, and industrial warehouse construction solutions for
+            diverse industries across India.
           </p>
         </motion.div>
 

@@ -17,49 +17,49 @@ const services = [
     icon: Building2,
     title: "Turnkey Warehouse Construction",
     description:
-      "Single-point responsibility for industrial warehouse construction from design to final delivery.",
+      "Single-point responsibility for turnkey warehouse construction — from design to final delivery, under one accountable contractor.",
   },
   {
     icon: Layers3,
     title: "PEB Warehouse Construction",
     description:
-      "Fast, durable pre-engineered warehouse buildings for modern industrial warehouse operations.",
+      "Fast, durable pre engineered warehouse buildings for modern industrial warehouse construction operations.",
   },
   {
     icon: Ruler,
     title: "Custom Design & Build",
     description:
-      "Warehouse design & build solutions tailored for logistics, manufacturing, and industrial operations.",
+      "Warehouse construction services tailored for logistics, manufacturing, and industrial operations.",
   },
   {
     icon: ShieldCheck,
-    title: "Industrial Steel Warehouse Structures",
+    title: "Steel Warehouse Construction",
     description:
       "Heavy-duty steel warehouse construction for demanding industrial environments.",
   },
   {
     icon: Factory,
-    title: "In-House PEB Manufacturing",
+    title: "PEB Warehouse Manufacturing",
     description:
-      "Complete control over pre-engineered steel warehouse manufacturing with consistent quality delivery.",
+      "Complete control over PEB warehouse construction manufacturing with consistent quality delivery — as PEB warehouse contractors who own the full production process.",
   },
   {
     icon: Hammer,
-    title: "Civil & Structural Execution",
+    title: "Factory Warehouse Construction",
     description:
-      "End-to-end warehouse construction services including foundations, flooring, and structural execution.",
+      "End-to-end factory warehouse construction services including foundations, flooring, and structural execution.",
   },
   {
     icon: Boxes,
-    title: "Multi-Level & Mezzanine Solutions",
+    title: "Manufacturing Warehouse Construction",
     description:
-      "Scalable warehouse infrastructure solutions designed to maximize industrial storage capacity.",
+      "Scalable manufacturing warehouse construction infrastructure designed to maximize industrial storage capacity.",
   },
   {
     icon: Truck,
-    title: "Warehouse Racking Solutions",
+    title: "Industrial Warehouse Construction Company",
     description:
-      "Smart warehouse racking solutions designed for high-density storage, inventory management, and efficient warehouse operations.",
+      "Smart racking and storage solutions from an industrial warehouse construction company built for high-density operations and inventory efficiency.",
   },
 ];
 
@@ -174,8 +174,9 @@ export default function Warehouse() {
               lg:text-[20px]
             "
           >
-            As a leading warehouse construction company in Chennai, Mekark
-            delivers fully integrated warehouse construction services.
+            As a leading warehouse construction company in South India, Mekark
+            delivers warehouse construction services as a full-scope warehouse
+            construction contractor — from design to handover..
           </p>
         </motion.div>
 

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 import MotionLinkButton from "@/components/MotionLinkButton";
 import MotionSubmitButton from "@/components/MotionSubmitButton";
@@ -488,8 +489,7 @@ lg:min-h-[850px]
         sm:tracking-[2px]
       "
                   >
-                    India's No.1 Warehouse Construction Company | PEB Warehouse
-                    Design & Build Experts
+                    FROM DESIGN TO HANDOVER | ONE TEAM | 120 DAYS
                   </span>
                 </div>
               </motion.div>
@@ -569,31 +569,11 @@ lg:min-h-[850px]
       text-[#5F5F5F]
     "
               >
-                From planning to handover, Mekark is a leading{" "}
-                <span className="font-bold text-[#2A2A2A]">
-                  warehouse construction company
-                </span>{" "}
-                specializing in{" "}
-                <span className="font-bold text-[#2A2A2A]">
-                  PEB warehouse construction
-                </span>
-                ,{" "}
-                <span className="font-bold text-[#2A2A2A]">
-                  industrial steel warehouse buildings
-                </span>
-                ,{" "}
-                <span className="font-bold text-[#2A2A2A]">
-                  warehouse design and build
-                </span>
-                ,{" "}
-                <span className="font-bold text-[#2A2A2A]">
-                  turnkey warehouse construction
-                </span>
-                , and{" "}
-                <span className="font-bold text-[#2A2A2A]">
-                  prefabricated warehouse construction
-                </span>{" "}
-                across India.
+                From planning to handover, Mekark is a leading warehouse
+                construction company specializing in PEB warehouse construction,
+                steel warehouse construction, industrial warehouse construction,
+                turnkey warehouse construction, and pre-engineered warehouse
+                buildings across South India.
               </motion.p>
 
               <motion.div
@@ -607,10 +587,10 @@ lg:min-h-[850px]
   "
               >
                 {[
-                  "Advanced In-House Manufacturing for Faster Project Execution",
-                  "Integrated Design, Engineering & Construction Under One Roof",
-                  "Stringent Quality Control at Every Stage of Construction",
-                  "Dedicated Project Management for On-Time Delivery",
+                  "On-Time Delivery Rate: 98%",
+                  "8+ States served across India",
+                  "In-House PEB Manufacturing",
+                  "Single-Point Contract Accountability",
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -620,15 +600,15 @@ lg:min-h-[850px]
         gap-3
       "
                   >
-                    <span
+                    <Check
                       className="
-          text-[15px]
-          font-bold
+          h-4
+          w-4
+          shrink-0
           text-[#ED2024]
         "
-                    >
-                      ✔
-                    </span>
+                      strokeWidth={3}
+                    />
 
                     <p
                       className="
@@ -696,9 +676,9 @@ lg:min-h-[850px]
                 {/* LOGOS */}
                 <div className="flex items-center">
                   {[
-                    "/Images/bosch.webp",
+                    "/Images/bosch.png",
                     "/Images/reliance.webp",
-                    "/Images/tata.webp",
+                    "/Images/tata.png",
                     "/Images/tvs.webp",
                   ].map((logo, index) => (
                     <div
@@ -1881,28 +1861,29 @@ lg:min-h-[680px]
     bg-[#F5F5F5]
 
     px-5
-    py-[48px]
+    py-[28px]
 
     sm:px-8
-    sm:py-[60px]
+    sm:py-[36px]
 
     lg:px-[120px]
-    lg:py-[80px]
+    lg:py-[44px]
   "
         >
           <div
             className="
       mx-auto
       flex
+      w-full
       max-w-[1440px]
       flex-col
       items-center
-      justify-between
-      gap-10
+      gap-8
 
       lg:flex-row
-      lg:items-start
-      lg:gap-16
+      lg:items-center
+      lg:justify-between
+      lg:gap-12
     "
           >
             {/* LEFT CONTENT */}
@@ -1910,9 +1891,11 @@ lg:min-h-[680px]
               className="
         w-full
         max-w-[420px]
+        shrink-0
 
         text-center
 
+        lg:w-[420px]
         lg:text-left
       "
             >
@@ -1942,145 +1925,99 @@ lg:min-h-[680px]
               </h2>
             </div>
 
-            {/* RIGHT LOGOS */}
+            {/* RIGHT: LOGOS + CAPTION */}
             <div
               className="
-        grid
+        flex
         w-full
-        grid-cols-2
+        flex-col
         items-center
-        justify-items-center
-        gap-x-6
-        gap-y-8
+        gap-5
 
-        sm:grid-cols-3
-
-        lg:flex
         lg:w-auto
-        lg:flex-nowrap
-        lg:gap-14
+        lg:min-w-0
+        lg:flex-1
+        lg:items-end
       "
             >
-              <img
-                src="Images/agile.webp"
-                alt="Anna University"
+              <div
                 className="
-          h-[70px]
-          w-auto
-          object-contain
+          grid
+          w-full
+          grid-cols-2
+          items-center
+          justify-items-center
+          gap-x-6
+          gap-y-6
 
-          sm:h-[85px]
+          sm:grid-cols-3
 
-          lg:h-[110px]
+          lg:flex
+          lg:w-auto
+          lg:flex-nowrap
+          lg:items-center
+          lg:justify-end
+          lg:gap-8
+          xl:gap-10
         "
-              />
+              >
+                <img
+                  src="Images/agile.webp"
+                  alt="Agile"
+                  className="h-[44px] w-auto object-contain sm:h-[52px] lg:h-[64px]"
+                />
+                <img
+                  src="Images/bosch.png"
+                  alt="Bosch"
+                  className="h-[40px] w-auto object-contain sm:h-[48px] lg:h-[60px]"
+                />
+                <img
+                  src="Images/tata.png"
+                  alt="Tata"
+                  className="h-[44px] w-auto object-contain sm:h-[52px] lg:h-[64px]"
+                />
+                <img
+                  src="Images/reliance.webp"
+                  alt="Reliance"
+                  className="h-[44px] w-auto object-contain sm:h-[52px] lg:h-[64px]"
+                />
+                <img
+                  src="Images/tvs.webp"
+                  alt="TVS"
+                  className="h-[44px] w-auto object-contain sm:h-[52px] lg:h-[64px]"
+                />
+                <img
+                  src="Images/blue-star.png"
+                  alt="Blue Star"
+                  className="h-[24px] w-auto object-contain sm:h-[30px] lg:h-[36px]"
+                />
+              </div>
 
-              <img
-                src="Images/bosch.webp"
-                alt="SRM"
+              <p
                 className="
-          h-[45px]
-          w-auto
-          object-contain
+          max-w-[320px]
+          text-center
+          font-manrope
+          text-[14px]
+          font-normal
+          leading-[22px]
+          text-[#5E5E66]
 
-          sm:h-[55px]
+          sm:max-w-[520px]
+          sm:text-[16px]
+          sm:leading-[26px]
 
-          lg:h-[70px]
+          lg:max-w-none
+          lg:whitespace-nowrap
+          lg:text-right
+          lg:text-[22px]
+          lg:leading-[32px]
         "
-              />
-
-              <img
-                src="Images/tata.webp"
-                alt="QMed"
-                className="
-          h-[70px]
-          w-auto
-          object-contain
-
-          sm:h-[85px]
-
-          lg:h-[110px]
-        "
-              />
-
-              <img
-                src="Images/reliance.webp"
-                alt="Velammal"
-                className="
-          h-[70px]
-          w-auto
-          object-contain
-
-          sm:h-[85px]
-
-          lg:h-[110px]
-        "
-              />
-
-              <img
-                src="Images/tvs.webp"
-                alt="KRM"
-                className="
-          h-[70px]
-          w-auto
-          object-contain
-
-          sm:h-[85px]
-
-          lg:h-[110px]
-        "
-              />
-              <img
-                src="Images/voltas.webp"
-                alt="KRM"
-                className="
-          h-[70px]
-          w-auto
-          object-contain
-
-          sm:h-[85px]
-
-          lg:h-[110px]
-        "
-              />
+              >
+                Chosen by companies that need reliable warehouse construction in
+                Chennai and across India.
+              </p>
             </div>
-          </div>
-
-          {/* BOTTOM TEXT */}
-          <div
-            className="
-      mt-[40px]
-
-      flex
-      justify-center
-
-      lg:mt-[54px]
-      lg:justify-end
-    "
-          >
-            <p
-              className="
-        max-w-[900px]
-
-        text-center
-
-        font-manrope
-        text-[15px]
-        font-normal
-        leading-[26px]
-
-        text-[#5E5E66]
-
-        sm:text-[18px]
-
-        lg:text-[24px]
-        lg:leading-[36px]
-        lg:text-right
-      "
-            >
-              Chosen by companies that need reliable warehouse construction in
-              Chennai and across India.
-            </p>
           </div>
         </section>
       </div>
