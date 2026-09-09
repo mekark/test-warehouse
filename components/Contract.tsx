@@ -9,7 +9,7 @@ const comparisonData = [
   {
     label: "Timeline Reliability",
     contractor: "Delays & excuses",
-    mekark: "120-day commitment",
+    mekark: "150-day commitment",
   },
   {
     label: "Manufacturing",

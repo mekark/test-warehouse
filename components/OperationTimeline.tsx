@@ -37,7 +37,7 @@ const STEPS = [
   },
   {
     number: "06",
-    title: "120-Day Delivery",
+    title: "150-Day Delivery",
     description: "Operational handover, ready to run",
   },
 ];
