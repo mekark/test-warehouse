@@ -1880,10 +1880,10 @@ lg:min-h-[680px]
       items-center
       gap-8
 
-      lg:flex-row
-      lg:items-center
-      lg:justify-between
-      lg:gap-12
+      min-[1440px]:flex-row
+      min-[1440px]:items-center
+      min-[1440px]:justify-between
+      min-[1440px]:gap-12
     "
           >
             {/* LEFT CONTENT */}
@@ -1895,8 +1895,10 @@ lg:min-h-[680px]
 
         text-center
 
-        lg:w-[420px]
-        lg:text-left
+        lg:max-w-none
+        min-[1440px]:w-[420px]
+        min-[1440px]:max-w-[420px]
+        min-[1440px]:text-left
       "
             >
               <h2
@@ -1915,9 +1917,14 @@ lg:min-h-[680px]
           lg:leading-[52px]
         "
               >
-                Trusted by businesses
-                <br />
-                that run on timelines,
+                <span className="hidden lg:inline min-[1440px]:hidden">
+                  Trusted by businesses that run on timelines,
+                </span>
+                <span className="lg:hidden min-[1440px]:inline">
+                  Trusted by businesses
+                  <br />
+                  that run on timelines,
+                </span>
                 <br />
                 <span className="font-normal text-[#5E5E66]">
                   not promises.
@@ -1934,10 +1941,10 @@ lg:min-h-[680px]
         items-center
         gap-5
 
-        lg:w-auto
-        lg:min-w-0
-        lg:flex-1
-        lg:items-end
+        min-[1440px]:w-auto
+        min-[1440px]:min-w-0
+        min-[1440px]:flex-1
+        min-[1440px]:items-end
       "
             >
               <div
@@ -1952,13 +1959,12 @@ lg:min-h-[680px]
 
           sm:grid-cols-3
 
-          lg:flex
-          lg:w-auto
-          lg:flex-nowrap
-          lg:items-center
-          lg:justify-end
-          lg:gap-8
-          xl:gap-10
+          min-[1440px]:flex
+          min-[1440px]:w-auto
+          min-[1440px]:flex-nowrap
+          min-[1440px]:items-center
+          min-[1440px]:justify-end
+          min-[1440px]:gap-8
         "
               >
                 <img
@@ -2007,11 +2013,11 @@ lg:min-h-[680px]
           sm:text-[16px]
           sm:leading-[26px]
 
-          lg:max-w-none
-          lg:whitespace-nowrap
-          lg:text-right
-          lg:text-[22px]
-          lg:leading-[32px]
+          min-[1440px]:max-w-none
+          min-[1440px]:whitespace-nowrap
+          min-[1440px]:text-right
+          min-[1440px]:text-[22px]
+          min-[1440px]:leading-[32px]
         "
               >
                 Chosen by companies that need reliable warehouse construction in
