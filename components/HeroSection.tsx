@@ -23,7 +23,7 @@ const stats = [
     label: "ANNUAL PRODUCTION",
   },
   {
-    value: "120 d",
+    value: "150 d",
     label: "FAST-TRACK MODEL",
   },
 ];
@@ -489,7 +489,7 @@ lg:min-h-[850px]
         sm:tracking-[2px]
       "
                   >
-                    FROM DESIGN TO HANDOVER | ONE TEAM | 120 DAYS
+                    FROM DESIGN TO HANDOVER | ONE TEAM | 150 DAYS
                   </span>
                 </div>
               </motion.div>
@@ -532,7 +532,7 @@ lg:min-h-[850px]
         lg:text-[86px]
       "
                   >
-                    120 Days
+                    150 Days
                   </span>
 
                   <span

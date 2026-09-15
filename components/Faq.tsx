@@ -37,7 +37,7 @@ const FAQ_GROUPS = [
         question:
           "How long does a typical PEB warehouse project take from planning to handover?",
         answer:
-          "With fast track warehouse construction, most projects are delivered in 120 days — compared to the industry-standard 9–12 months for conventional builds — because manufacturing happens in-house in parallel with site preparation.",
+          "With fast track warehouse construction, most projects are delivered in 150 days — compared to the industry-standard 9–12 months for conventional builds — because manufacturing happens in-house in parallel with site preparation.",
       },
     ],
   },
