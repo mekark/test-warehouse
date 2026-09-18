@@ -15,7 +15,7 @@ const REASONS = [
     text: "Turnkey EPC Project Responsibility",
   },
   {
-    value: "500+",
+    value: "200+",
     text: "Industrial & Warehouse Projects Delivered",
   },
   {
@@ -27,7 +27,7 @@ const REASONS = [
     text: "Production Capacity",
   },
   {
-    value: "15+",
+    value: "18+",
     text: "Years Industrial Construction Excellence",
   },
 ];
@@ -52,7 +52,7 @@ const STATS = [
     wide: true,
   },
   {
-    value: "300+",
+    value: "200+",
     text: "Industrial & Warehouse Facilities Delivered",
     dark: true,
     wide: false,
