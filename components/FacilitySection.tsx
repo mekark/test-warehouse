@@ -18,7 +18,7 @@ export default function FacilitySection() {
         "
       >
         <img
-          src="/Images/bgq (1).png"
+          src="/Images/bgq (1).webp"
           alt="Warehouse Facility"
           className="
             h-full
@@ -261,7 +261,7 @@ export default function FacilitySection() {
             "
           >
             <img
-              src="/Images/Men.png"
+              src="/Images/Men.webp"
               alt="Worker"
               className="
                 h-auto

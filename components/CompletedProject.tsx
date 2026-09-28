@@ -1,33 +1,32 @@
 "use client";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
 import { useRef } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const projects = [
   {
     id: "01",
     title: "Manufacturing Hub",
     location: "Chennai • Heavy-Duty PEB",
-    image: "/Images/1.png",
+    image: "/Images/1.webp",
   },
   {
     id: "02",
     title: "Auto Components Storage",
     location: "Sriperumbudur • Wide-Span",
-    image: "/Images/2.png",
+    image: "/Images/2.webp",
   },
   {
     id: "03",
     title: "E-commerce Fulfilment",
     location: "Coimbatore • 150,000 Sq.Ft",
-    image: "/Images/3.png",
+    image: "/Images/3.webp",
   },
   {
     id: "04",
     title: "Industrial Warehouse",
     location: "Hosur • Logistics Zone",
-    image: "/Images/4.png",
+    image: "/Images/4.webp",
   },
 ];
 
@@ -158,10 +157,8 @@ export default function CompletedProjects() {
               lg:flex
             "
           >
-            <motion.button
+            <button
               onClick={() => scroll("left")}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               className="
                 group
                 flex
@@ -173,8 +170,8 @@ export default function CompletedProjects() {
                 border
                 border-white/40
 
-                transition-all
-                duration-300
+                
+                
 
                 hover:border-white
                 hover:bg-white
@@ -182,14 +179,12 @@ export default function CompletedProjects() {
             >
               <ArrowLeft
                 size={20}
-                className="text-white transition-colors group-hover:text-[#ED2024]"
+                className="text-white  group-hover:text-[#ED2024]"
               />
-            </motion.button>
+            </button>
 
-            <motion.button
+            <button
               onClick={() => scroll("right")}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               className="
                 group
                 flex
@@ -201,8 +196,8 @@ export default function CompletedProjects() {
                 border
                 border-white/40
 
-                transition-all
-                duration-300
+                
+                
 
                 hover:border-white
                 hover:bg-white
@@ -210,9 +205,9 @@ export default function CompletedProjects() {
             >
               <ArrowRight
                 size={20}
-                className="text-white transition-colors group-hover:text-[#ED2024]"
+                className="text-white  group-hover:text-[#ED2024]"
               />
-            </motion.button>
+            </button>
           </div>
         </div>
 
@@ -261,11 +256,6 @@ export default function CompletedProjects() {
                     h-[320px]
                     w-full
                     object-cover
-
-                    transition-transform
-                    duration-700
-
-                    group-hover:scale-105
 
                     md:h-[400px]
                     lg:h-[460px]
@@ -398,10 +388,8 @@ export default function CompletedProjects() {
             lg:hidden
           "
         >
-          <motion.button
+          <button
             onClick={() => scroll("left")}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             className="
               group
               flex
@@ -413,8 +401,8 @@ export default function CompletedProjects() {
               border
               border-white/40
 
-              transition-all
-              duration-300
+              
+              
 
               hover:border-white
               hover:bg-white
@@ -422,14 +410,12 @@ export default function CompletedProjects() {
           >
             <ArrowLeft
               size={18}
-              className="text-white transition-colors group-hover:text-[#ED2024]"
+              className="text-white  group-hover:text-[#ED2024]"
             />
-          </motion.button>
+          </button>
 
-          <motion.button
+          <button
             onClick={() => scroll("right")}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             className="
               group
               flex
@@ -441,8 +427,8 @@ export default function CompletedProjects() {
               border
               border-white/40
 
-              transition-all
-              duration-300
+              
+              
 
               hover:border-white
               hover:bg-white
@@ -450,9 +436,9 @@ export default function CompletedProjects() {
           >
             <ArrowRight
               size={18}
-              className="text-white transition-colors group-hover:text-[#ED2024]"
+              className="text-white  group-hover:text-[#ED2024]"
             />
-          </motion.button>
+          </button>
         </div>
       </div>
     </section>

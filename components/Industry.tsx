@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Truck,
   ShoppingCart,
@@ -52,11 +49,7 @@ const industries = [
 
 export default function Industry() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
+    <section
       className="
         relative
         overflow-hidden
@@ -101,11 +94,7 @@ export default function Industry() {
         "
       >
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+        <div
           className="
             mb-[70px]
             text-center
@@ -145,21 +134,10 @@ export default function Industry() {
             construction, and industrial warehouse construction solutions for
             diverse industries across India.
           </p>
-        </motion.div>
+        </div>
 
         {/* Cards */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.12,
-              },
-            },
-          }}
+        <div
           className="
             grid
             gap-8
@@ -172,25 +150,8 @@ export default function Industry() {
             const Icon = industry.icon;
 
             return (
-              <motion.div
+              <div
                 key={index}
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    y: 60,
-                  },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.7,
-                  ease: "easeOut",
-                }}
-                whileHover={{
-                  y: -10,
-                }}
                 className={`
                   relative
                   overflow-hidden
@@ -199,8 +160,8 @@ export default function Industry() {
                   border-black
                   bg-[#1A1A1A]
                   p-8
-                  transition-all
-                  duration-500
+                  
+                  
                   hover:border-[#FF1E1E]
 
                   ${industry.glow ? "shadow-[0_0_80px_rgba(255,0,0,0.18)]" : ""}
@@ -216,19 +177,14 @@ export default function Industry() {
                     via-transparent
                     to-transparent
                     opacity-0
-                    transition-opacity
-                    duration-500
+                    
+                    
                     hover:opacity-100
                   "
                 />
 
                 {/* Icon */}
-                <motion.div
-                  whileHover={{
-                    scale: 1.08,
-                    rotate: -3,
-                  }}
-                  transition={{ duration: 0.3 }}
+                <div
                   className="
                     mb-7
                     flex
@@ -242,7 +198,7 @@ export default function Industry() {
                   "
                 >
                   <Icon size={34} className="text-white" strokeWidth={2.3} />
-                </motion.div>
+                </div>
 
                 {/* Title */}
                 <h3
@@ -273,11 +229,11 @@ export default function Industry() {
                 >
                   {industry.description}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

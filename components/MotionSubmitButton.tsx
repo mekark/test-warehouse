@@ -1,9 +1,6 @@
-"use client";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
-import { ReactNode } from "react";
-
-type MotionSubmitButtonProps = Omit<HTMLMotionProps<"button">, "children"> & {
+type MotionSubmitButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   isSubmitting?: boolean;
 };
@@ -18,24 +15,8 @@ export default function MotionSubmitButton({
   const isDisabled = disabled || isSubmitting;
 
   return (
-    <motion.button
-      {...props}
-      disabled={isDisabled}
-      whileHover={!isDisabled ? { scale: 1.02 } : undefined}
-      whileTap={!isDisabled ? { scale: 0.97 } : undefined}
-      animate={
-        isSubmitting
-          ? { opacity: [1, 0.72, 1], scale: [1, 0.99, 1] }
-          : { opacity: 1, scale: 1 }
-      }
-      transition={
-        isSubmitting
-          ? { duration: 1.1, repeat: Infinity, ease: "easeInOut" }
-          : { duration: 0.2 }
-      }
-      className={className}
-    >
+    <button {...props} disabled={isDisabled} className={className}>
       {children}
-    </motion.button>
+    </button>
   );
 }

@@ -200,8 +200,8 @@ export default function BlueprintSection() {
     text-[15px]
     text-black
     outline-none
-    transition-all
-    duration-300
+    
+    
     focus:border-[#ED2024]
     focus:bg-white
   `;
@@ -220,7 +220,7 @@ export default function BlueprintSection() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/Images/blueprint-section-bg.jpg"
+          src="/Images/blueprint-section-bg.webp"
           alt=""
           aria-hidden="true"
           className="h-full w-full object-cover object-center opacity-60"
@@ -265,7 +265,7 @@ export default function BlueprintSection() {
         >
           <div className="mb-6">
             <img
-              src="/Images/icon.png"
+              src="/Images/icon.webp"
               alt="Mekark Logo"
               className="
                 h-[32px]
@@ -390,7 +390,6 @@ export default function BlueprintSection() {
                       text-[#ED2024]
                     "
                     strokeWidth={2.2}
-                    
                   />
 
                   <div>
@@ -580,9 +579,7 @@ export default function BlueprintSection() {
             <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
               {/* NAME */}
               <div>
-                <label className={labelClass}>
-                  Name*
-                </label>
+                <label className={labelClass}>Name*</label>
 
                 <input
                   type="text"
@@ -602,9 +599,7 @@ export default function BlueprintSection() {
 
               {/* EMAIL */}
               <div>
-                <label className={labelClass}>
-                  Email
-                </label>
+                <label className={labelClass}>Email</label>
 
                 <input
                   type="email"
@@ -626,9 +621,7 @@ export default function BlueprintSection() {
             <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
               {/* PHONE */}
               <div>
-                <label className={labelClass}>
-                  Phone Number*
-                </label>
+                <label className={labelClass}>Phone Number*</label>
 
                 <input
                   type="tel"
@@ -649,9 +642,7 @@ export default function BlueprintSection() {
 
               {/* COMPANY */}
               <div>
-                <label className={labelClass}>
-                  Company Name
-                </label>
+                <label className={labelClass}>Company Name</label>
 
                 <input
                   type="text"
@@ -673,9 +664,7 @@ export default function BlueprintSection() {
             <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
               {/* LOCATION */}
               <div>
-                <label className={labelClass}>
-                  Location
-                </label>
+                <label className={labelClass}>Location</label>
 
                 <input
                   type="text"
@@ -695,9 +684,7 @@ export default function BlueprintSection() {
 
               {/* SQFT */}
               <div>
-                <label className={labelClass}>
-                  Square Feet*
-                </label>
+                <label className={labelClass}>Square Feet*</label>
 
                 <select
                   name="sqft"
@@ -723,9 +710,7 @@ export default function BlueprintSection() {
             <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
               {/* START TIMELINE */}
               <div>
-                <label className={labelClass}>
-                  Project Start Timeline *
-                </label>
+                <label className={labelClass}>Project Start Timeline *</label>
 
                 <select
                   name="startTimeline"
@@ -750,9 +735,7 @@ export default function BlueprintSection() {
 
               {/* BUDGET */}
               <div>
-                <label className={labelClass}>
-                  Project Budget *
-                </label>
+                <label className={labelClass}>Project Budget *</label>
 
                 <select
                   name="budget"
@@ -778,9 +761,7 @@ export default function BlueprintSection() {
 
             {/* PROJECT DETAILS */}
             <div>
-              <label className={labelClass}>
-                Project Details
-              </label>
+              <label className={labelClass}>Project Details</label>
 
               <textarea
                 name="projectDetails"
@@ -801,8 +782,8 @@ export default function BlueprintSection() {
                   text-[15px]
                   text-black
                   outline-none
-                  transition-all
-                  duration-300
+                  
+                  
                   focus:border-[#ED2024]
                   focus:bg-white
                 "
@@ -849,9 +830,8 @@ export default function BlueprintSection() {
                 font-bold
                 text-white
                 shadow-[0_10px_30px_rgba(215,20,26,0.35)]
-                transition-all
-                duration-300
-                hover:scale-[1.01]
+                
+                
                 hover:bg-[#ED2024]
                 disabled:cursor-not-allowed
                 disabled:opacity-70

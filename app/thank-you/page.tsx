@@ -16,12 +16,13 @@ export default function ThankYouPage() {
             Thank you. Our team will contact you shortly.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-[1rem] leading-8 text-[#52525B] sm:text-[1.05rem]">
-            Your project enquiry has been received successfully. We will review the details and get back to you for the next discussion.
+            Your project enquiry has been received successfully. We will review
+            the details and get back to you for the next discussion.
           </p>
           <div className="mt-10 flex justify-center">
             <Link
               href="/"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#C4161C] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-200 hover:bg-[#A31217]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#C4161C] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#A31217]"
             >
               <span>Back To Home</span>
               <ArrowRight className="h-4 w-4" />

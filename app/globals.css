@@ -24,43 +24,6 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-.timeline-glow {
-  animation: timelineMove 7s linear infinite;
-  will-change: transform;
-}
-
-@keyframes timelineMove {
-  0% {
-    transform: translateX(0px);
-  }
-
-  100% {
-    transform: translateX(1120px);
-  }
-}
-
-@media (max-width: 1536px) {
-  @keyframes timelineMove {
-    0% {
-      transform: translateX(0px);
-    }
-
-    100% {
-      transform: translateX(980px);
-    }
-  }
-}
-
-
 
 select,
 option {

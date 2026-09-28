@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Plus, Settings, Trophy, Wrench, X } from "lucide-react";
 
 const FAQ_GROUPS = [
@@ -16,8 +15,7 @@ const FAQ_GROUPS = [
           "PEB warehouse construction (pre-engineered warehouse building) uses factory-fabricated steel components assembled on-site, unlike conventional construction that builds structure piece-by-piece on location. This is why a pre engineered warehouse building can be delivered in a fraction of the time of RCC construction.",
       },
       {
-        question:
-          "What is the warehouse construction cost per sq ft in India?",
+        question: "What is the warehouse construction cost per sq ft in India?",
         answer:
           "Warehouse construction cost per sq ft varies based on span width, load-bearing requirements, flooring specification, and site conditions — typically ranging across a wide band depending on whether it's a basic storage shed or a high-spec manufacturing facility. We provide a detailed, itemized quote after a technical site assessment rather than a flat number that changes later.",
       },
@@ -177,14 +175,6 @@ export default function FAQSection() {
 
   const activeGroup = FAQ_GROUPS[activeGroupIndex];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const handleGroupChange = (index: number) => {
     if (index === activeGroupIndex) return;
     setActiveGroupIndex(index);
@@ -192,11 +182,7 @@ export default function FAQSection() {
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
+    <section
       className="
         overflow-hidden
         border-y
@@ -228,11 +214,7 @@ export default function FAQSection() {
           "
         >
           {/* QUOTE MARK */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div
             className="
               absolute
               left-0
@@ -248,7 +230,7 @@ export default function FAQSection() {
             "
           >
             “
-          </motion.div>
+          </div>
 
           <div
             className="
@@ -258,11 +240,7 @@ export default function FAQSection() {
             "
           >
             {/* LABEL */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <div
               className="
                 mb-5
                 flex
@@ -290,24 +268,14 @@ export default function FAQSection() {
               >
                 What Business Leaders Say
               </span>
-            </motion.div>
+            </div>
 
             <section className="relative overflow-hidden py-16 sm:py-24">
               <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeTestimonial}
-                    initial={{ opacity: 0, y: 60 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -40 }}
-                    transition={{ duration: 0.7 }}
-                  >
-                    {/* QUOTE */}
-                    <motion.h2
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8 }}
-                      className="
+                <div key={activeTestimonial}>
+                  {/* QUOTE */}
+                  <h2
+                    className="
                 max-w-[950px]
 
                 font-manrope
@@ -324,29 +292,22 @@ export default function FAQSection() {
                 lg:leading-[50px]
                 lg:tracking-[-2px]
               "
-                    >
-                      {testimonials[activeTestimonial].quote}
-                    </motion.h2>
+                  >
+                    {testimonials[activeTestimonial].quote}
+                  </h2>
 
-                    {/* AUTHOR */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.2 }}
-                      className="
+                  {/* AUTHOR */}
+                  <div
+                    className="
                 mt-10
                 flex
                 items-center
                 gap-4
               "
-                    >
-                      {/* INITIALS */}
-                      <motion.div
-                        whileHover={{
-                          scale: 1.08,
-                          rotate: -3,
-                        }}
-                        className="
+                  >
+                    {/* INITIALS */}
+                    <div
+                      className="
                   flex
                   h-[56px]
                   w-[56px]
@@ -361,25 +322,25 @@ export default function FAQSection() {
                   font-bold
                   text-white
                 "
-                      >
-                        {testimonials[activeTestimonial].initials}
-                      </motion.div>
+                    >
+                      {testimonials[activeTestimonial].initials}
+                    </div>
 
-                      {/* DETAILS */}
-                      <div>
-                        <p
-                          className="
+                    {/* DETAILS */}
+                    <div>
+                      <p
+                        className="
                     font-manrope
                     text-[16px]
                     font-bold
                     text-white
                   "
-                        >
-                          {testimonials[activeTestimonial].role}
-                        </p>
+                      >
+                        {testimonials[activeTestimonial].role}
+                      </p>
 
-                        <p
-                          className="
+                      <p
+                        className="
                     mt-1
 
                     font-manrope
@@ -387,13 +348,12 @@ export default function FAQSection() {
                     font-normal
                     text-[#A8A8A8]
                   "
-                        >
-                          {testimonials[activeTestimonial].company}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                </AnimatePresence>
+                      >
+                        {testimonials[activeTestimonial].company}
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
                 {/* DOTS */}
                 <div className="mt-12 flex items-center gap-3">
@@ -402,8 +362,6 @@ export default function FAQSection() {
                       key={index}
                       onClick={() => setActiveTestimonial(index)}
                       className={`
-                transition-all duration-300
-
                 ${
                   activeTestimonial === index
                     ? "h-[10px] w-[42px] bg-[#ED2024]"
@@ -420,11 +378,7 @@ export default function FAQSection() {
           </div>
 
           {/* RIGHT QUOTE */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div
             className="
               absolute
               bottom-0
@@ -442,7 +396,7 @@ export default function FAQSection() {
             "
           >
             ”
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -472,11 +426,7 @@ export default function FAQSection() {
           "
         >
           {/* LEFT IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div
             className="
               relative
               z-0
@@ -488,10 +438,7 @@ export default function FAQSection() {
               lg:block
             "
           >
-            <motion.div
-              whileHover={{
-                scale: 1.02,
-              }}
+            <div
               className="
                 pointer-events-none
                 absolute
@@ -506,7 +453,7 @@ export default function FAQSection() {
               "
             >
               <img
-                src="/Images/FAQ 1.png"
+                src="/Images/FAQ 1.webp"
                 alt="FAQ Illustration"
                 className="
                   h-full
@@ -515,25 +462,13 @@ export default function FAQSection() {
                   object-left-top
                 "
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* RIGHT FAQ */}
-          <motion.div
-            initial={{ opacity: 0, x: 80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative z-10"
-          >
+          <div className="relative z-10">
             {/* LABEL */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="mb-10"
-            >
+            <div className="mb-10">
               <div
                 className="
                   mb-5
@@ -581,7 +516,7 @@ export default function FAQSection() {
               >
                 Frequently Asked Questions
               </h2>
-            </motion.div>
+            </div>
 
             {/* FAQ TABS + ITEMS */}
             <div className="space-y-8">
@@ -630,8 +565,8 @@ export default function FAQSection() {
                         font-manrope
                         text-[12px]
                         font-semibold
-                        transition-all
-                        duration-300
+                        
+                        
 
                         sm:px-5
                         sm:text-[14px]
@@ -658,32 +593,24 @@ export default function FAQSection() {
                 })}
               </div>
 
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={activeGroup.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.28, ease: "easeOut" }}
-                  className="space-y-1"
-                >
-                  {activeGroup.items.map((faq, faqIndex) => {
-                    const isActive = openFaqIndex === faqIndex;
+              <div key={activeGroup.title} className="space-y-1">
+                {activeGroup.items.map((faq, faqIndex) => {
+                  const isActive = openFaqIndex === faqIndex;
 
-                    return (
-                      <div
-                        key={`${activeGroup.title}-${faq.question}`}
-                        className="
+                  return (
+                    <div
+                      key={`${activeGroup.title}-${faq.question}`}
+                      className="
                           border-b
                           border-[#E8E8E8]
                         "
-                      >
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setOpenFaqIndex(isActive ? null : faqIndex)
-                          }
-                          className="
+                    >
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setOpenFaqIndex(isActive ? null : faqIndex)
+                        }
+                        className="
                             flex
                             w-full
                             items-start
@@ -697,17 +624,17 @@ export default function FAQSection() {
                             sm:gap-5
                             sm:py-7
                           "
-                        >
-                          <span
-                            className={`
+                      >
+                        <span
+                          className={`
                               min-w-0
                               flex-1
 
                               font-manrope
                               text-[15px]
                               leading-[24px]
-                              transition-colors
-                              duration-300
+                              
+                              
 
                               sm:text-[18px]
                               sm:leading-[30px]
@@ -718,12 +645,12 @@ export default function FAQSection() {
                                   : "font-semibold text-black"
                               }
                             `}
-                          >
-                            {faq.question}
-                          </span>
+                        >
+                          {faq.question}
+                        </span>
 
-                          <div
-                            className={`
+                        <div
+                          className={`
                               mt-0.5
                               flex
                               h-[34px]
@@ -734,9 +661,6 @@ export default function FAQSection() {
 
                               rounded-full
 
-                              transition-all
-                              duration-300
-
                               sm:mt-0
 
                               ${
@@ -745,33 +669,26 @@ export default function FAQSection() {
                                   : "rotate-0 bg-[#EFEFEF] text-[#8F8F8F]"
                               }
                             `}
-                          >
-                            {isActive ? (
-                              <X className="h-4 w-4" />
-                            ) : (
-                              <Plus className="h-4 w-4" />
-                            )}
-                          </div>
-                        </button>
-
-                        <div
-                          className={`
-                            grid
-                            transition-[grid-template-rows]
-                            duration-300
-                            ease-out
-
-                            ${
-                              isActive
-                                ? "grid-rows-[1fr]"
-                                : "grid-rows-[0fr]"
-                            }
-                          `}
                         >
-                          <div className="overflow-hidden">
-                            <div className="pb-8">
-                              <p
-                                className="
+                          {isActive ? (
+                            <X className="h-4 w-4" />
+                          ) : (
+                            <Plus className="h-4 w-4" />
+                          )}
+                        </div>
+                      </button>
+
+                      <div
+                        className={`
+                            grid
+
+                            ${isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}
+                          `}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="pb-8">
+                            <p
+                              className="
                                   max-w-[720px]
 
                                   font-manrope
@@ -783,21 +700,20 @@ export default function FAQSection() {
                                   sm:text-[16px]
                                   sm:leading-[30px]
                                 "
-                              >
-                                {faq.answer}
-                              </p>
-                            </div>
+                            >
+                              {faq.answer}
+                            </p>
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
-                </motion.div>
-              </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

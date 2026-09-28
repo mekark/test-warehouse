@@ -1,9 +1,6 @@
-"use client";
+import { AnchorHTMLAttributes, ReactNode } from "react";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
-import { ReactNode } from "react";
-
-type MotionLinkButtonProps = Omit<HTMLMotionProps<"a">, "children"> & {
+type MotionLinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;
 };
 
@@ -13,14 +10,8 @@ export default function MotionLinkButton({
   ...props
 }: MotionLinkButtonProps) {
   return (
-    <motion.a
-      {...props}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ duration: 0.2 }}
-      className={className}
-    >
+    <a {...props} className={className}>
       {children}
-    </motion.a>
+    </a>
   );
 }

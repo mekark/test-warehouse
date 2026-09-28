@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Building2,
   Layers3,
@@ -65,11 +62,7 @@ const services = [
 
 export default function Warehouse() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
+    <section
       className="
         relative
         overflow-hidden
@@ -118,13 +111,7 @@ export default function Warehouse() {
         "
       >
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <h2
             className="
               font-manrope
@@ -178,21 +165,10 @@ export default function Warehouse() {
             delivers warehouse construction services as a full-scope warehouse
             construction contractor — from design to handover..
           </p>
-        </motion.div>
+        </div>
 
         {/* Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.1,
-              },
-            },
-          }}
+        <div
           className="
             mt-[60px]
             grid
@@ -209,25 +185,8 @@ export default function Warehouse() {
             const Icon = service.icon;
 
             return (
-              <motion.div
+              <div
                 key={index}
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    y: 50,
-                  },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeOut",
-                }}
-                whileHover={{
-                  y: -8,
-                }}
                 className="
                   group
                   relative
@@ -235,8 +194,8 @@ export default function Warehouse() {
                   border-[#D8D8D8]
                   p-6
 
-                  transition-all
-                  duration-500
+                  
+                  
 
                   hover:z-10
                   hover:bg-white
@@ -264,20 +223,15 @@ export default function Warehouse() {
                     to-transparent
 
                     opacity-0
-                    transition-opacity
-                    duration-500
+                    
+                    
 
                     group-hover:opacity-100
                   "
                 />
 
                 {/* Icon */}
-                <motion.div
-                  whileHover={{
-                    scale: 1.08,
-                    rotate: -4,
-                  }}
-                  transition={{ duration: 0.3 }}
+                <div
                   className="
                     relative
                     z-10
@@ -294,8 +248,8 @@ export default function Warehouse() {
 
                     shadow-[0_12px_30px_rgba(197,20,20,0.12)]
 
-                    transition-all
-                    duration-500
+                    
+                    
 
                     group-hover:bg-[#C51414]
                   "
@@ -304,14 +258,14 @@ export default function Warehouse() {
                     size={28}
                     className="
                       text-black
-                      transition-colors
-                      duration-500
+                      
+                      
 
                       group-hover:text-white
                     "
                     strokeWidth={2.2}
                   />
-                </motion.div>
+                </div>
 
                 {/* Title */}
                 <h3
@@ -327,8 +281,8 @@ export default function Warehouse() {
                     tracking-[-1px]
                     text-black
 
-                    transition-colors
-                    duration-500
+                    
+                    
 
                     group-hover:text-[#C51414]
 
@@ -351,8 +305,8 @@ export default function Warehouse() {
                     leading-[26px]
                     text-[#666666]
 
-                    transition-colors
-                    duration-500
+                    
+                    
 
                     group-hover:text-[#444]
 
@@ -361,11 +315,11 @@ export default function Warehouse() {
                 >
                   {service.description}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

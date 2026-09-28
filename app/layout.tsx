@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   description:
     "Mekark delivers turnkey warehouse construction, PEB warehouse construction, and industrial warehouse design & build solutions across India.",
   icons: {
-    icon: "/Images/LogoMekark.png",
-    shortcut: "/Images/LogoMekark.png",
-    apple: "/Images/LogoMekark.png",
+    icon: "/Images/LogoMekark.webp",
+    shortcut: "/Images/LogoMekark.webp",
+    apple: "/Images/LogoMekark.webp",
   },
 };
 

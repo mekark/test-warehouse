@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 
 export default function DelayCtaSection() {
@@ -37,13 +34,7 @@ export default function DelayCtaSection() {
           lg:px-16
         "
       >
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-[820px]"
-        >
+        <div className="max-w-[820px]">
           <h2
             className="
               font-manrope
@@ -79,16 +70,10 @@ export default function DelayCtaSection() {
             Lock your execution timeline with a trusted warehouse building
             contractor in Chennai.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-        >
+        <div>
           <EnquiryFormButton
-            lightRedirect
             showArrow
             className="
               flex
@@ -106,8 +91,8 @@ export default function DelayCtaSection() {
               font-bold
               text-[#ED2024]
 
-              transition-colors
-              duration-300
+              
+              
 
               hover:bg-black
               hover:text-white
@@ -119,7 +104,7 @@ export default function DelayCtaSection() {
           >
             Get Cost & Timeline Blueprint
           </EnquiryFormButton>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

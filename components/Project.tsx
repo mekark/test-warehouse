@@ -1,7 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Clock3,} from "lucide-react";
+import { Clock3 } from "lucide-react";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 
 const projects = [
@@ -11,7 +8,7 @@ const projects = [
     subtitle: "Delivered in 110 Days • Tamil Nadu",
     description:
       "Faster distribution and reduced turnaround time for a major FMCG distributor across South India.",
-    image: "/Project/FMCG (1).png",
+    image: "/Project/FMCG (1).webp",
   },
   {
     category: "Cold Storage",
@@ -19,7 +16,7 @@ const projects = [
     subtitle: "Precision Engineered • Chennai",
     description:
       "Controlled environments with precision-engineered PEB warehouse systems for temperature-sensitive goods.",
-    image: "/Project/COLD.png",
+    image: "/Project/COLD.webp",
   },
   {
     category: "Logistics",
@@ -27,17 +24,13 @@ const projects = [
     subtitle: "Turnkey EPC • South India",
     description:
       "End-to-end turnkey warehouse construction with optimized operational flow for cross-docking logistics.",
-    image: "/Project/LOGI.png",
+    image: "/Project/LOGI.webp",
   },
 ];
 
 export default function ProjectsSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
+    <section
       className="
         relative
         overflow-hidden
@@ -62,7 +55,7 @@ export default function ProjectsSection() {
         "
       >
         <img
-          src="/Project/BG.jpeg"
+          src="/Project/BG.webp"
           alt="Warehouse Background"
           className="
             h-full
@@ -95,11 +88,7 @@ export default function ProjectsSection() {
         "
       >
         {/* TOP LABEL */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="
             mb-5
             flex
@@ -123,14 +112,10 @@ export default function ProjectsSection() {
           >
             Real Projects
           </span>
-        </motion.div>
+        </div>
 
         {/* TITLE */}
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+        <h2
           className="
             max-w-[1200px]
 
@@ -152,21 +137,10 @@ export default function ProjectsSection() {
           <span className="text-[#D71920]">Business</span>
           <br />
           <span className="text-[#D71920]">Performance</span>
-        </motion.h2>
+        </h2>
 
         {/* PROJECT CARDS */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.15,
-              },
-            },
-          }}
+        <div
           className="
             mt-[70px]
 
@@ -178,22 +152,8 @@ export default function ProjectsSection() {
           "
         >
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: 60,
-                },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                },
-              }}
-              transition={{
-                duration: 0.7,
-                ease: "easeOut",
-              }}
               className="
                 group
                 overflow-hidden
@@ -207,20 +167,16 @@ export default function ProjectsSection() {
 
                 shadow-[0_10px_30px_rgba(0,0,0,0.08)]
 
-                transition-all
-                duration-500
-                ease-out
+                
+                
 
-                hover:-translate-y-2
                 hover:border-[#D71920]
                 hover:shadow-[0_20px_50px_rgba(215,25,32,0.18)]
               "
             >
               {/* IMAGE */}
               <div className="relative overflow-hidden">
-                <motion.img
-                  whileHover={{ scale: 1.06 }}
-                  transition={{ duration: 0.6 }}
+                <img
                   src={project.image}
                   alt={project.title}
                   className="
@@ -325,9 +281,9 @@ export default function ProjectsSection() {
                   {project.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* BUTTON */}
         <div
@@ -359,8 +315,8 @@ export default function ProjectsSection() {
 
         text-black
 
-        transition-all
-        duration-300
+        
+        
 
         hover:bg-black
         hover:text-white
@@ -370,6 +326,6 @@ export default function ProjectsSection() {
           </EnquiryFormButton>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

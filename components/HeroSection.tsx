@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 import MotionLinkButton from "@/components/MotionLinkButton";
@@ -11,7 +10,7 @@ import { getPageSourceUrl } from "@/lib/sourceUrl";
 
 const stats = [
   {
-    value: "2M+",
+    value: "7M+",
     label: "SQ.FT DELIVERED",
   },
   {
@@ -219,7 +218,7 @@ export default function HeroSection() {
     text-[12px]
     text-black
     outline-none
-    transition-all
+    
     focus:border-[#ED2024]
   `;
   return (
@@ -267,7 +266,7 @@ export default function HeroSection() {
     "
         >
           <img
-            src="/Images/icon.png"
+            src="/Images/icon.webp"
             alt="Mekark Logo"
             className="
         h-[18px]
@@ -299,8 +298,8 @@ export default function HeroSection() {
 
       shadow-[0px_10px_24px_rgba(237,32,36,0.22)]
 
-      transition-all
-      duration-300
+      
+      
 
       hover:bg-[#cf1a20]
 
@@ -345,7 +344,7 @@ lg:min-h-[850px]
             "
           >
             <Image
-              src="/Images/Warehouse Interior.png"
+              src="/Images/Warehouse Interior.webp"
               alt="Warehouse Interior"
               fill
               priority
@@ -400,11 +399,7 @@ lg:min-h-[850px]
             />
 
             {/* CONTENT */}
-            <motion.div
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+            <div
               className="
     relative
     z-20
@@ -418,13 +413,7 @@ lg:min-h-[850px]
     pt-[0px]
   "
             >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-6"
-              >
+              <div className="mb-6">
                 <div
                   className="
       inline-flex
@@ -492,14 +481,9 @@ lg:min-h-[850px]
                     FROM DESIGN TO HANDOVER | ONE TEAM | 150 DAYS
                   </span>
                 </div>
-              </motion.div>
+              </div>
               {/* HEADING */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
+              <div>
                 <h1
                   className="
       text-[44px]
@@ -551,14 +535,10 @@ lg:min-h-[850px]
                     not 9-12 months.
                   </span>
                 </div>
-              </motion.div>
+              </div>
 
               {/* DESCRIPTION */}
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.15 }}
+              <p
                 className="
       mt-8
       max-w-[720px]
@@ -574,13 +554,9 @@ lg:min-h-[850px]
                 steel warehouse construction, industrial warehouse construction,
                 turnkey warehouse construction, and pre-engineered warehouse
                 buildings across South India.
-              </motion.p>
+              </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.3 }}
+              <div
                 className="
     mt-6
     space-y-3
@@ -623,14 +599,10 @@ lg:min-h-[850px]
                     </p>
                   </div>
                 ))}
-              </motion.div>
+              </div>
 
               {/* SMALL TEXT */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.25 }}
+              <p
                 className="
       mt-7
 
@@ -642,7 +614,7 @@ lg:min-h-[850px]
     "
               >
                 BUILT FOR DECISION-MAKERS WHO CAN’T AFFORD SLOW EXECUTION.
-              </motion.p>
+              </p>
               {/* REVIEW */}
               <div
                 className="
@@ -676,9 +648,9 @@ lg:min-h-[850px]
                 {/* LOGOS */}
                 <div className="flex items-center">
                   {[
-                    "/Images/bosch.png",
+                    "/Images/bosch.webp",
                     "/Images/reliance.webp",
-                    "/Images/tata.png",
+                    "/Images/tata.webp",
                     "/Images/tvs.webp",
                   ].map((logo, index) => (
                     <div
@@ -1024,7 +996,7 @@ lg:min-h-[850px]
             text-[12px]
             text-black
             outline-none
-            transition-all
+            
             focus:border-[#ED2024]
           "
                       />
@@ -1065,8 +1037,8 @@ lg:min-h-[850px]
           font-semibold
           text-white
           shadow-[0px_12px_30px_rgba(237,32,36,0.18)]
-          transition-all
-          duration-300
+          
+          
           hover:bg-[#cf1a20]
           disabled:cursor-not-allowed
           disabled:opacity-70
@@ -1097,11 +1069,7 @@ lg:min-h-[850px]
               </div>
 
               {/* BUTTON */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.35 }}
+              <div
                 className="
     mt-10
 
@@ -1140,10 +1108,9 @@ lg:min-h-[850px]
 
         shadow-[0px_12px_30px_rgba(0,0,0,0.08)]
 
-        transition-all
-        duration-300
+        
+        
 
-        hover:scale-[1.02]
         hover:bg-[#1F1F1F]
         hover:text-white
 
@@ -1182,10 +1149,9 @@ lg:min-h-[850px]
 
         shadow-[0px_12px_30px_rgba(237,32,36,0.28)]
 
-        transition-all
-        duration-300
+        
+        
 
-        hover:scale-[1.02]
         hover:bg-[#cf1a20]
 
         sm:w-[260px]
@@ -1193,7 +1159,7 @@ lg:min-h-[850px]
                 >
                   WhatsApp Us →
                 </MotionLinkButton>
-              </motion.div>
+              </div>
 
               {/* DIVIDER */}
               <div
@@ -1210,18 +1176,7 @@ lg:min-h-[850px]
               />
 
               {/* STATS */}
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.12,
-                    },
-                  },
-                }}
+              <div
                 className="
       mt-6
 
@@ -1237,22 +1192,7 @@ lg:min-h-[850px]
     "
               >
                 {stats.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 40,
-                      },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                      },
-                    }}
-                    transition={{
-                      duration: 0.6,
-                    }}
-                  >
+                  <div key={index}>
                     {/* VALUE */}
                     <h3
                       className="
@@ -1311,10 +1251,10 @@ lg:min-h-[850px]
                     >
                       {item.label}
                     </p>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
 
           {/* RIGHT FORM SECTION */}
@@ -1346,7 +1286,7 @@ lg:min-h-[850px]
             {/* MOBILE IMAGE */}
             <div className="absolute inset-0 lg:hidden">
               <Image
-                src="/Images/Warehouse Interior.png"
+                src="/Images/Warehouse Interior.webp"
                 alt="Warehouse Interior"
                 fill
                 priority
@@ -1633,7 +1573,7 @@ lg:min-h-[680px]
         text-[12px]
         text-black
         outline-none
-        transition-all
+        
         focus:border-[#ED2024]
       "
                   />
@@ -1674,8 +1614,8 @@ lg:min-h-[680px]
       font-semibold
       text-white
       shadow-[0px_12px_30px_rgba(237,32,36,0.18)]
-      transition-all
-      duration-300
+      
+      
       hover:bg-[#cf1a20]
       disabled:cursor-not-allowed
       disabled:opacity-70
@@ -1705,7 +1645,7 @@ lg:min-h-[680px]
             </div>
           </div>
         </div>
-        {/* DECISION MAKER TRIGGERS */}
+        {/* DECISION MAKER TRIGGERS
         <div
           className="
     relative
@@ -1715,13 +1655,14 @@ lg:min-h-[680px]
     flex-col
     justify-center
 
-    h-[124px]
+    min-h-[124px]
     w-full
+    px-5
+    py-16
 
     bg-[#ED2024]
   "
         >
-          {/* TOP SMALL LABEL */}
           <div
             className="
       absolute
@@ -1749,46 +1690,32 @@ lg:min-h-[680px]
             </p>
           </div>
 
-          {/* MOVING CAROUSEL */}
           <div
             className="
       relative
       mt-[6px]
 
-      overflow-hidden
-      whitespace-nowrap
+      flex
+      flex-wrap
+      items-center
+      justify-center
     "
           >
-            <div
-              className="
-        flex
-        w-max
-        items-center
-
-        animate-[marquee_28s_linear_infinite]
-      "
-            >
-              {[
-                "DELAYED OPERATIONS = LOST REVENUE",
-                "INEFFICIENT LAYOUTS = HIGHER LOGISTICS COST",
-                "VENDOR DEPENDENCY = EXECUTION RISK",
-                "POOR PLANNING = FUTURE EXPANSION LIMITS",
-
-                "DELAYED OPERATIONS = LOST REVENUE",
-                "INEFFICIENT LAYOUTS = HIGHER LOGISTICS COST",
-                "VENDOR DEPENDENCY = EXECUTION RISK",
-                "POOR PLANNING = FUTURE EXPANSION LIMITS",
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="
+            {[
+              "DELAYED OPERATIONS = LOST REVENUE",
+              "INEFFICIENT LAYOUTS = HIGHER LOGISTICS COST",
+              "VENDOR DEPENDENCY = EXECUTION RISK",
+              "POOR PLANNING = FUTURE EXPANSION LIMITS",
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="
             flex
             items-center
           "
-                >
-                  {/* TEXT */}
-                  <span
-                    className="
+              >
+                <span
+                  className="
               px-10
 
               whitespace-nowrap
@@ -1803,13 +1730,12 @@ lg:min-h-[680px]
 
               text-white
             "
-                  >
-                    {item}
-                  </span>
+                >
+                  {item}
+                </span>
 
-                  {/* SLASH */}
-                  <span
-                    className="
+                <span
+                  className="
               px-6
 
               text-[48px]
@@ -1818,15 +1744,13 @@ lg:min-h-[680px]
 
               text-white/80
             "
-                  >
-                    /
-                  </span>
-                </div>
-              ))}
-            </div>
+                >
+                  /
+                </span>
+              </div>
+            ))}
           </div>
 
-          {/* BOTTOM LABEL */}
           <div
             className="
       absolute
@@ -1854,6 +1778,7 @@ lg:min-h-[680px]
             </p>
           </div>
         </div>
+        */}
         {/* TRUSTED BRANDS SECTION */}
         <section
           className="
@@ -1973,12 +1898,12 @@ lg:min-h-[680px]
                   className="h-[44px] w-auto object-contain sm:h-[52px] lg:h-[64px]"
                 />
                 <img
-                  src="Images/bosch.png"
+                  src="Images/bosch.webp"
                   alt="Bosch"
                   className="h-[40px] w-auto object-contain sm:h-[48px] lg:h-[60px]"
                 />
                 <img
-                  src="Images/tata.png"
+                  src="Images/tata.webp"
                   alt="Tata"
                   className="h-[44px] w-auto object-contain sm:h-[52px] lg:h-[64px]"
                 />
@@ -1993,7 +1918,7 @@ lg:min-h-[680px]
                   className="h-[44px] w-auto object-contain sm:h-[52px] lg:h-[64px]"
                 />
                 <img
-                  src="Images/blue-star.png"
+                  src="Images/blue-star.webp"
                   alt="Blue Star"
                   className="h-[24px] w-auto object-contain sm:h-[30px] lg:h-[36px]"
                 />

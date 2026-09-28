@@ -1,8 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ArrowUp, ArrowRight } from "lucide-react";
-import CountUp from "react-countup";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 
 const REASONS = [
@@ -67,11 +63,7 @@ const STATS = [
 
 export default function WhyChooseUs() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
+    <section
       className="
         w-full
         bg-[#ED2024]
@@ -88,11 +80,7 @@ export default function WhyChooseUs() {
         "
       >
         {/* LEFT */}
-        <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+        <div
           className="
             bg-[#F3F3F3]
             px-6
@@ -106,11 +94,7 @@ export default function WhyChooseUs() {
         >
           {/* Heading */}
           <div>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <p
               className="
                 font-manrope
                 text-[40px]
@@ -122,13 +106,9 @@ export default function WhyChooseUs() {
               "
             >
               Top 6 Reasons
-            </motion.p>
+            </p>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
+            <h2
               className="
                 mt-2
 
@@ -143,46 +123,19 @@ font-semibold                leading-[92%]
               Why Industries
               <br />
               Choose <span className="text-[#ED2024]">Mekark</span>
-            </motion.h2>
+            </h2>
           </div>
 
           {/* List */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.12,
-                },
-              },
-            }}
+          <div
             className="
               mt-10
               space-y-0
             "
           >
             {REASONS.map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    x: -40,
-                  },
-                  visible: {
-                    opacity: 1,
-                    x: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.6,
-                }}
-                whileHover={{
-                  x: 6,
-                }}
                 className="
                   flex
                   items-center
@@ -202,13 +155,7 @@ font-semibold                leading-[92%]
                     gap-2
                   "
                 >
-                  <motion.div
-                    whileHover={{
-                      scale: 1.15,
-                      rotate: 8,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
+                  <div>
                     <ArrowUp
                       className="
                         h-8
@@ -217,7 +164,7 @@ font-semibold                leading-[92%]
                       "
                       strokeWidth={2.5}
                     />
-                  </motion.div>
+                  </div>
 
                   <span
                     className="
@@ -248,9 +195,9 @@ font-semibold                leading-[92%]
                 >
                   {item.text}
                 </p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Bottom CTA */}
           <EnquiryFormButton
@@ -265,8 +212,8 @@ font-semibold                leading-[92%]
               font-bold
               text-[#FF2B2B]
 
-              transition-all
-              duration-300
+              
+              
 
               hover:gap-3
             "
@@ -274,14 +221,10 @@ font-semibold                leading-[92%]
             Engineering Industrial Growth
             <ArrowRight className="h-4 w-4" />
           </EnquiryFormButton>
-        </motion.div>
+        </div>
 
         {/* RIGHT */}
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+        <div
           className="
             bg-[#ED2024]
             px-6
@@ -294,11 +237,7 @@ font-semibold                leading-[92%]
           "
         >
           {/* Heading */}
-          <motion.h3
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <h3
             className="
               max-w-[520px]
 
@@ -313,21 +252,10 @@ font-semibold                leading-[92%]
             Our Client Success
             <br />
             Drives Our Growth
-          </motion.h3>
+          </h3>
 
           {/* Stats Grid */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.15,
-                },
-              },
-            }}
+          <div
             className="
               mt-10
               grid
@@ -338,33 +266,14 @@ font-semibold                leading-[92%]
             "
           >
             {STATS.map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    y: 40,
-                    scale: 0.96,
-                  },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  duration: 0.6,
-                }}
-                whileHover={{
-                  y: -6,
-                  scale: 1.02,
-                }}
                 className={`
                   rounded-[24px]
                   p-6
 
-                  transition-all
-                  duration-300
+                  
+                  
 
                   ${
                     item.dark
@@ -389,13 +298,7 @@ font-semibold                leading-[92%]
                 >
                   {item.value.includes("%") ? (
                     <>
-                      <CountUp
-                        end={Number(item.value.replace("%", ""))}
-                        duration={2.2}
-                        enableScrollSpy
-                        scrollSpyOnce
-                      />
-
+                      {item.value.replace("%", "")}
                       <span
                         className={
                           item.dark ? "text-[#ED2024]" : "text-[#2A0500]"
@@ -406,13 +309,7 @@ font-semibold                leading-[92%]
                     </>
                   ) : item.value.includes("+") ? (
                     <>
-                      <CountUp
-                        end={Number(item.value.replace("+", ""))}
-                        duration={2.2}
-                        enableScrollSpy
-                        scrollSpyOnce
-                      />
-
+                      {item.value.replace("+", "")}
                       <span
                         className={
                           item.dark ? "text-[#ED2024]" : "text-[#2A0500]"
@@ -421,15 +318,8 @@ font-semibold                leading-[92%]
                         +
                       </span>
                     </>
-                  ) : item.value.includes("/") ? (
-                    item.value
                   ) : (
-                    <CountUp
-                      end={Number(item.value)}
-                      duration={2.2}
-                      enableScrollSpy
-                      scrollSpyOnce
-                    />
+                    item.value
                   )}
                 </h4>
 
@@ -448,11 +338,11 @@ font-semibold                leading-[92%]
                 >
                   {item.text}
                 </p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
