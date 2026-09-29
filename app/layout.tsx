@@ -45,13 +45,6 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} h-full antialiased`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){function mark(node){if(!node||node.nodeType!==1)return;if(node.tagName==="LINK"&&node.rel==="stylesheet"){node.setAttribute("data-clarity-unmask","true");}}document.querySelectorAll('link[rel="stylesheet"]').forEach(mark);new MutationObserver(function(records){records.forEach(function(record){record.addedNodes.forEach(mark);});}).observe(document.documentElement,{childList:true,subtree:true});})();`,
-          }}
-        />
-      </head>
       <body className="min-h-full flex flex-col">
         {/* Google Tag Manager */}
         <Script
