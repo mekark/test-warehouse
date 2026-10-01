@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import FloatingWhatsApp from "@/components/FloatingWhatsapp";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 import { Geist, Geist_Mono, Manrope } from "next/font/google";
 
 import "./globals.css";
 
 const GTM_ID = "GTM-5SBMM86H";
+const GTM_LOAD_DELAY_MS = 6000;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,56 +50,36 @@ export default function RootLayout({
         {/* Google Tag Manager */}
         <Script
           id="google-tag-manager"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,s,l,i){
+              (function(w,d,s,l,i,delay){
                 w[l]=w[l]||[];
-                w[l].push({
-                  'gtm.start': new Date().getTime(),
-                  event:'gtm.js'
-                });
 
-                var f=d.getElementsByTagName(s)[0],
-                    j=d.createElement(s),
-                    dl=l!='dataLayer'?'&l='+l:'';
+                // Load GTM ${GTM_LOAD_DELAY_MS / 1000}s after the page is ready
+                setTimeout(function(){
+                  w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event:'gtm.js'
+                  });
 
-                j.async=true;
-                j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                  var f=d.getElementsByTagName(s)[0],
+                      j=d.createElement(s),
+                      dl=l!='dataLayer'?'&l='+l:'';
 
-                f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}');
-            `,
-          }}
-        />
+                  j.async=true;
+                  j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
 
-        {/* Tawk.to */}
-        <Script
-          id="tawk-to"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              var Tawk_API = Tawk_API || {};
-              var Tawk_LoadStart = new Date();
-
-              (function() {
-                var s1 = document.createElement("script");
-                var s0 = document.getElementsByTagName("script")[0];
-
-                s1.async = true;
-                s1.src = "https://embed.tawk.to/69fd7e65427c251c368c1e92/1jo33bfff";
-                s1.charset = "UTF-8";
-                s1.setAttribute("crossorigin", "*");
-
-                s0.parentNode.insertBefore(s1, s0);
-              })();
+                  f.parentNode.insertBefore(j,f);
+                }, delay);
+              })(window,document,'script','dataLayer','${GTM_ID}',${GTM_LOAD_DELAY_MS});
             `,
           }}
         />
 
         {children}
 
-        <FloatingWhatsApp />
+        <ScrollToTopButton />
       </body>
     </html>
   );

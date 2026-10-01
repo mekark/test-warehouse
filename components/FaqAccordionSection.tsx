@@ -1,0 +1,377 @@
+"use client";
+
+import Image from "next/image";
+import { Manrope } from "next/font/google";
+import { useState } from "react";
+import { FAQ_GROUPS } from "@/components/faqData";
+import ScaledCanvas from "@/components/ScaledCanvas";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "800"],
+});
+
+const DESIGN_WIDTH = 1920;
+const DESIGN_HEIGHT = 950;
+
+// Tab paddings come straight from the Figma frame (each pill hugs its content)
+// Mobile pills are smaller; paddings again come from the Figma frame
+const MOBILE_TAB_PADDING = [
+  "px-[10px]",
+  "pl-[9px] pr-[8px]",
+  "pl-[7px] pr-[6px]",
+];
+
+const TAB_PADDING = ["px-[32px]", "pl-[28px] pr-[27px]", "pl-[33px] pr-[32px]"];
+
+type Group = (typeof FAQ_GROUPS)[number];
+
+function Tabs({
+  activeIndex,
+  onSelect,
+}: {
+  activeIndex: number;
+  onSelect: (index: number) => void;
+}) {
+  return (
+    <div className="flex flex-wrap items-start gap-3 min-[1024px]:gap-[24px]">
+      {FAQ_GROUPS.map((group, index) => {
+        const Icon = group.icon;
+        const active = index === activeIndex;
+
+        return (
+          <button
+            key={group.title}
+            type="button"
+            onClick={() => onSelect(index)}
+            aria-pressed={active}
+            className={`flex items-center justify-center gap-[8px] rounded-[50px] py-[15px] text-[14px] whitespace-nowrap ${
+              TAB_PADDING[index]
+            } ${
+              active
+                ? "bg-[#C4161C] font-bold text-[#F5F5F5]"
+                : "bg-[#EBEBEB] font-medium text-[#929292]"
+            }`}
+          >
+            <Icon size={24} strokeWidth={2} />
+            <span className="leading-[normal]">{group.title}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function MobileTabs({
+  activeIndex,
+  onSelect,
+}: {
+  activeIndex: number;
+  onSelect: (index: number) => void;
+}) {
+  return (
+    <div className="-mr-[20px] flex gap-[10px] overflow-x-auto pr-[20px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {FAQ_GROUPS.map((group, index) => {
+        const Icon = group.icon;
+        const active = index === activeIndex;
+
+        return (
+          <button
+            key={group.title}
+            type="button"
+            onClick={() => onSelect(index)}
+            aria-pressed={active}
+            className={`flex shrink-0 items-center justify-center gap-[8px] rounded-[50px] py-[11px] text-[10px] whitespace-nowrap ${
+              MOBILE_TAB_PADDING[index]
+            } ${
+              active
+                ? "bg-[#C4161C] font-bold text-[#F5F5F5]"
+                : "bg-[#EBEBEB] font-medium text-[#929292]"
+            }`}
+          >
+            <Icon size={14} strokeWidth={2} />
+            <span className="leading-[normal]">{group.title}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function Items({
+  group,
+  openIndex,
+  onToggle,
+  fixedLayout,
+}: {
+  group: Group;
+  openIndex: number | null;
+  onToggle: (index: number) => void;
+  /** Desktop: replicate the absolute Figma layout. Otherwise flow naturally. */
+  fixedLayout: boolean;
+}) {
+  return (
+    <div className={`flex flex-col items-start ${fixedLayout ? "" : "w-full"}`}>
+      {group.items.map((item, index) => {
+        const open = index === openIndex;
+
+        return (
+          <div
+            key={item.question}
+            className={`flex flex-col items-start border-b-[1.333px] border-solid border-[#E2E2E2] pb-[33.333px] ${
+              fixedLayout ? "w-[911.556px]" : "w-full"
+            } ${index === 0 || !fixedLayout ? "pt-0" : "pt-[32px]"} ${
+              !fixedLayout && index > 0 ? "pt-5" : ""
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => onToggle(index)}
+              aria-expanded={open}
+              className={`relative w-full text-left ${
+                fixedLayout
+                  ? "h-[37.333px]"
+                  : "flex items-start justify-between gap-4"
+              }`}
+            >
+              <span
+                className={`font-bold ${
+                  open ? "text-[#C4161C]" : "text-[#080808]"
+                } ${
+                  fixedLayout
+                    ? `absolute left-0 text-[21.333px] leading-[29.867px] ${
+                        open
+                          ? "top-[14.33px] w-[698.803px] -translate-y-1/2"
+                          : "top-1/2 w-[698.803px] -translate-y-1/2"
+                      }`
+                    : "text-[17px] leading-[26px] sm:text-[19px]"
+                }`}
+              >
+                {item.question}
+              </span>
+
+              <span
+                aria-hidden
+                className={`flex size-[37.333px] shrink-0 items-center justify-center rounded-[18.667px] text-[21.333px] leading-[normal] font-normal ${
+                  fixedLayout ? "absolute top-0 right-0" : ""
+                } ${
+                  open
+                    ? "rotate-45 bg-[#C4161C] text-[#F5F5F5]"
+                    : "bg-[#F0F0F0] text-[#9A9A9A]"
+                }`}
+              >
+                +
+              </span>
+            </button>
+
+            {open && (
+              <p
+                className={`font-medium text-[#5A5A5A] ${
+                  fixedLayout
+                    ? "mt-[18.667px] w-full max-h-[266px] overflow-hidden text-[18.667px] leading-[30.8px]"
+                    : "mt-4 text-[15px] leading-[26px] sm:text-[17px]"
+                }`}
+              >
+                {item.answer}
+              </p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function Heading() {
+  return (
+    <div className="flex flex-col items-start gap-[6px]">
+      <div className="flex items-center gap-[10.667px]">
+        <span className="h-[2.667px] w-[26.667px] bg-[#C4161C]" />
+        <span className="text-[14.667px] leading-[normal] font-extrabold tracking-[2.6667px] whitespace-nowrap text-[#C4161C] uppercase">
+          FAQ
+        </span>
+      </div>
+      <h2 className="text-[30px] leading-[normal] font-bold text-[#070506] sm:text-[38px] min-[1024px]:text-[46px]! min-[1024px]:whitespace-nowrap">
+        Frequently Asked Questions.
+      </h2>
+    </div>
+  );
+}
+
+export default function FaqAccordionSection() {
+  const [activeTab, setActiveTab] = useState(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const group = FAQ_GROUPS[activeTab];
+
+  const selectTab = (index: number) => {
+    setActiveTab(index);
+    setOpenIndex(0);
+  };
+
+  const toggleItem = (index: number) =>
+    setOpenIndex((current) => (current === index ? null : index));
+
+  return (
+    <section className={`${manrope.className} w-full bg-white`}>
+      {/* DESKTOP: exact Figma frame, scaled to the viewport */}
+      <div className="hidden min-[1024px]:block">
+        <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
+          <div
+            className="relative w-[1920px] overflow-hidden bg-white"
+            style={{ height: DESIGN_HEIGHT }}
+          >
+            {/* question-mark artwork */}
+            <div className="absolute bottom-[153px] left-[-240px] h-[1002px] w-[1098px] overflow-hidden">
+              <Image
+                src="/Images/faq/faq-bg.webp"
+                alt=""
+                width={1536}
+                height={1024}
+                className="absolute top-[-0.02%] left-0 h-[100.07%] w-[136.98%] max-w-none"
+              />
+            </div>
+
+            {/* faq list */}
+            <div className="absolute top-[81px] left-[901px] flex flex-col items-start gap-[40px]">
+              <div className="flex flex-col items-start gap-[24px]">
+                <Heading />
+                <Tabs activeIndex={activeTab} onSelect={selectTab} />
+              </div>
+
+              <Items
+                group={group}
+                openIndex={openIndex}
+                onToggle={toggleItem}
+                fixedLayout
+              />
+            </div>
+          </div>
+        </ScaledCanvas>
+      </div>
+
+      {/* MOBILE (below 640px) */}
+      <div className="flex flex-col gap-[24px] bg-[#F9F6F7] px-[20px] py-[32px] sm:hidden">
+        <div className="flex w-full flex-col">
+          <div className="flex flex-col items-start gap-[12px] px-[20px] py-[6px]">
+            <div className="flex items-center gap-[10.667px]">
+              <span className="h-[2.667px] w-[26.667px] bg-[#C4161C]" />
+              <span className="text-[14.667px] leading-[normal] font-extrabold tracking-[2.6667px] whitespace-nowrap text-[#C4161C] uppercase">
+                FAQ
+              </span>
+            </div>
+
+            <h2 className="w-[309px] max-w-full text-[28px] leading-[32px] font-bold text-[#070506]">
+              Frequently Asked
+              <br />
+              Questions
+            </h2>
+
+            <div className="w-full min-w-0">
+              <MobileTabs activeIndex={activeTab} onSelect={selectTab} />
+            </div>
+          </div>
+
+          <div className="relative aspect-[350/327] w-full overflow-hidden">
+            <Image
+              src="/Images/faq/faq-bg.webp"
+              alt=""
+              width={1536}
+              height={1024}
+              className="absolute top-[-0.02%] left-0 h-[100.07%] w-[140.11%] max-w-none"
+            />
+          </div>
+        </div>
+
+        <div className="flex w-full flex-col items-end gap-[12px]">
+          {group.items.map((item, index) => {
+            const open = index === openIndex;
+            // Break the first question after "construction" so line 2 can run on to "conventional"
+            const label =
+              `${index + 1}.${index < 2 ? "" : " "}${item.question}`.replace(
+                "construction and how",
+                "construction\nand how",
+              );
+
+            return (
+              <div
+                key={item.question}
+                className="flex w-full flex-col gap-[12px]"
+              >
+                <div className="flex w-full flex-col gap-[10px]">
+                  <button
+                    type="button"
+                    onClick={() => toggleItem(index)}
+                    aria-expanded={open}
+                    className="flex w-full items-center gap-[12px] text-left"
+                  >
+                    <span
+                      className={`min-w-0 flex-1 text-[14px] leading-[22px] font-medium whitespace-pre-line ${
+                        open ? "text-[#C4161C]" : "text-[#080808]"
+                      }`}
+                    >
+                      {label}
+                    </span>
+
+                    {open ? (
+                      <span
+                        aria-hidden
+                        className="flex size-[24px] shrink-0 items-center justify-center"
+                      >
+                        <span className="flex size-[24px] rotate-45 items-center justify-center rounded-[18.667px] bg-[#C4161C] text-[21.333px] leading-[normal] font-normal text-[#F5F5F5]">
+                          +
+                        </span>
+                      </span>
+                    ) : (
+                      <span
+                        aria-hidden
+                        className="flex size-[24px] shrink-0 items-center justify-center rounded-[18.667px] bg-[#F0F0F0] text-[21.333px] leading-[normal] font-normal text-[#9A9A9A]"
+                      >
+                        +
+                      </span>
+                    )}
+                  </button>
+
+                  {open && (
+                    <p className="w-full text-[14px] leading-[20px] font-medium text-[#5A5A5A]">
+                      {item.answer}
+                    </p>
+                  )}
+                </div>
+
+                <div className="h-px w-full bg-[#E2E2E2]" />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* TABLET (640px - 1023px) */}
+      <div className="hidden sm:max-[1023px]:block">
+        <div className="relative mx-auto h-[220px] w-full max-w-[560px] overflow-hidden sm:h-[320px]">
+          <Image
+            src="/Images/faq/faq-bg.webp"
+            alt=""
+            fill
+            sizes="(min-width: 640px) 560px, 100vw"
+            className="object-cover object-[15%_center]"
+          />
+        </div>
+
+        <div className="flex flex-col gap-8 px-5 pt-8 pb-12 sm:px-10 sm:pb-16">
+          <div className="flex flex-col gap-6">
+            <Heading />
+            <Tabs activeIndex={activeTab} onSelect={selectTab} />
+          </div>
+
+          <Items
+            group={group}
+            openIndex={openIndex}
+            onToggle={toggleItem}
+            fixedLayout={false}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
