@@ -1,11 +1,6 @@
 import Image from "next/image";
-import { Manrope } from "next/font/google";
+import { manrope } from "@/lib/fonts";
 import ScaledCanvas from "@/components/ScaledCanvas";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 866;
@@ -199,7 +194,7 @@ export default function WhyMekarkSection() {
                 alt="Mekark billboard on an industrial construction site"
                 width={1868}
                 height={842}
-                priority
+                sizes="106vw"
                 className="absolute top-[3.7%] left-[-0.07%] h-[96.3%] w-[96.72%] max-w-none"
               />
             </div>
@@ -214,7 +209,7 @@ export default function WhyMekarkSection() {
                 src="/Images/why/overlay.webp"
                 alt=""
                 fill
-                sizes="916px"
+                sizes="48vw"
                 className="object-cover"
               />
             </div>
@@ -226,6 +221,7 @@ export default function WhyMekarkSection() {
                 alt=""
                 width={1867}
                 height={842}
+                sizes="100vw"
                 className="absolute top-0 left-[-9.3%] h-full w-[109.35%] max-w-none"
               />
             </div>
@@ -296,7 +292,7 @@ export default function WhyMekarkSection() {
               alt="Mekark billboard on an industrial construction site"
               width={1868}
               height={842}
-              priority
+              sizes="617px"
               className="absolute top-[-0.11%] left-[-0.07%] h-[106.22%] w-[96.72%] max-w-none"
             />
           </div>

@@ -1,4 +1,4 @@
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { manrope, spaceGrotesk } from "@/lib/fonts";
 import {
   CalendarCheck,
   CircleCheck,
@@ -11,16 +11,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import ScaledCanvas from "@/components/ScaledCanvas";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "700", "800"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["700"],
-});
 
 // Figma frame is 1707px of content + 80px padding on each side
 const DESIGN_WIDTH = 1867;

@@ -1,11 +1,6 @@
 import Image from "next/image";
-import { Manrope } from "next/font/google";
+import { manrope } from "@/lib/fonts";
 import ScaledCanvas from "@/components/ScaledCanvas";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-});
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 1425;
@@ -153,6 +148,7 @@ export default function ProjectsGallerySection() {
                     alt={tile.alt}
                     width={587}
                     height={352}
+                    sizes={`${Math.ceil((tile.width / DESIGN_WIDTH) * 100)}vw`}
                     className={tile.imageClass}
                   />
                 ) : (
@@ -160,7 +156,7 @@ export default function ProjectsGallerySection() {
                     src={tile.src}
                     alt={tile.alt}
                     fill
-                    sizes={`${tile.width}px`}
+                    sizes={`${Math.ceil((tile.width / DESIGN_WIDTH) * 100)}vw`}
                     className={tile.imageClass}
                   />
                 )}
@@ -196,6 +192,7 @@ export default function ProjectsGallerySection() {
               alt={TILES[0].alt}
               width={1174}
               height={704}
+              sizes="143vw"
               className="absolute top-[-10.6%] left-[-32.69%] h-[135.59%] w-[142.13%] max-w-none"
             />
           </div>
@@ -236,6 +233,7 @@ export default function ProjectsGallerySection() {
               alt={TILES[3].alt}
               width={587}
               height={352}
+              sizes="123vw"
               className="absolute top-[-19.59%] left-[-17.92%] h-[131.24%] w-[122.56%] max-w-none"
             />
           </div>

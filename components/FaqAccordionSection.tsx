@@ -1,15 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Manrope } from "next/font/google";
+import { manrope } from "@/lib/fonts";
 import { useState } from "react";
 import { FAQ_GROUPS } from "@/components/faqData";
 import ScaledCanvas from "@/components/ScaledCanvas";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-});
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 950;
@@ -228,6 +223,7 @@ export default function FaqAccordionSection() {
                 alt=""
                 width={1536}
                 height={1024}
+                sizes="79vw"
                 className="absolute top-[-0.02%] left-0 h-[100.07%] w-[136.98%] max-w-none"
               />
             </div>
@@ -278,6 +274,7 @@ export default function FaqAccordionSection() {
               alt=""
               width={1536}
               height={1024}
+              sizes="140vw"
               className="absolute top-[-0.02%] left-0 h-[100.07%] w-[140.11%] max-w-none"
             />
           </div>
