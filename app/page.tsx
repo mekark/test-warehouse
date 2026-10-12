@@ -10,9 +10,6 @@ import FloatingContact from "@/components/FloatingContact";
 export default function Home() {
   return (
     <main className="overflow-hidden">
-
-
-      
       <FloatingContact />
       <BlueprintHeroSection />
       <ProcessSection />

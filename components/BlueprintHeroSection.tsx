@@ -5,7 +5,6 @@ import HeroBlueprintForm from "@/components/HeroBlueprintForm";
 import ScaledCanvas from "@/components/ScaledCanvas";
 import BlueprintHeroMobile from "@/components/BlueprintHeroMobile";
 import {
-  HIGHLIGHTS,
   PHONE_NUMBER,
   WHATSAPP_MESSAGE,
   WHATSAPP_NUMBER,
@@ -31,6 +30,16 @@ const CLIENT_LOGOS = [
   { name: "LA Freightlift", src: "/Images/hero/clients/laf.webp", scale: 1.2 },
   { name: "Komatsu", src: "/Images/hero/clients/komatsu.webp", scale: 1 },
 ] as const;
+
+// Listed in reading order for the 2-column grid (row by row)
+const INDUSTRIES = [
+  "Engineering, Electronics, Electrical & Semiconductor.",
+  "Retail, Cold Storage, E-commerce, Distributions.",
+  "Automotive, Electrical Vehicle,  Machinery & Heavy Manufacturing.",
+  "Textile, Pharmaceutical, Chemical & Life Sciences.",
+  "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
+  "Apparel, Leather, Food Processing, Beverage, FMCG.",
+];
 
 const STATS = [
   { value: "300", suffix: "+", label: "Projects", width: "w-[145.333px]" },
@@ -102,62 +111,60 @@ export default function BlueprintHeroSection() {
             {/* CONTENT */}
             <div className="relative z-10 flex w-full flex-col gap-10 px-5 pt-6 pb-12 sm:px-[80px] min-[1024px]:h-full min-[1024px]:flex-row min-[1024px]:items-start min-[1024px]:justify-between min-[1024px]:gap-10 min-[1024px]:pt-0! min-[1024px]:pr-[130px]! min-[1024px]:pb-0">
               {/* LEFT COLUMN */}
-              <div className="flex w-full min-w-0 flex-col items-start gap-[24px] min-[1024px]:mt-[118.5px] min-[1024px]:max-w-[891px] min-[1024px]:flex-1">
+              <div className="flex w-full min-w-0 flex-col items-start gap-[24px] min-[1024px]:mt-[118.5px] min-[1024px]:max-w-[1011px] min-[1024px]:flex-1">
                 {/* PILL */}
                 <div className="flex max-w-full items-center gap-[10.667px] rounded-full border-[1.333px] border-solid border-white/20 px-[17.333px] py-[9.333px]">
                   <span className="size-[10.667px] shrink-0 rounded-full bg-[#E40015]" />
                   <p
                     className={`${inter.className} text-[11px] leading-[20px] font-medium text-white sm:text-[14px] sm:whitespace-nowrap`}
                   >
-                    FROM DESIGN TO HANDOVER | ONE TEAM | 150 DAYS
+                    Turnkey Industrial Warehouse Construction Company
                   </p>
                 </div>
 
                 {/* HEADING */}
                 <div className="flex w-full flex-col items-start gap-[10px]">
                   <h2 className="w-full text-[32px] leading-[1.1] font-bold text-white sm:text-[48px] sm:leading-[48px] min-[1024px]:w-[891px] min-[1024px]:max-w-full">
-                    Build Your PEB Industrial Warehouse in
+                    Build Warehouses. Design to Delivery
                   </h2>
-                  <div className="relative h-[56px] w-[178px] shrink-0 bg-[#ED1D23] sm:-mt-[3px] sm:h-[62px] sm:w-[239px]">
-                    <p className="absolute top-[29px] left-[5px] -translate-y-1/2 font-bold whitespace-nowrap text-white sm:top-[27px]">
-                      <span className="text-[40px] leading-[58px] sm:text-[54px]">
-                        {"150 Days "}
-                      </span>
-                      <span className="text-[24px] leading-[58px] font-medium text-[#ED1D23] sm:text-[38px]">
-                        not 9-12 months.
-                      </span>
+                  <div className="relative h-[56px] w-[734px] max-w-full shrink-0 bg-[#ED1D23]">
+                    <p className="absolute top-[27px] left-[5px] -translate-y-1/2 text-[42px] leading-[58px] font-bold whitespace-nowrap text-white">
+                      Construction &amp; Handover - 150 days
                     </p>
                   </div>
                 </div>
 
                 {/* DESCRIPTION */}
-                <p className="w-full text-[16px] leading-[24px] font-semibold text-[#A9A9A9] sm:text-[20px] sm:leading-[26px]">
-                  From planning to handover, Mekark is a leading warehouse
-                  construction company specializing in PEB warehouse
-                  construction, steel warehouse construction, industrial
-                  warehouse construction, turnkey warehouse construction, and
-                  pre-engineered warehouse buildings across South India.
-                </p>
+                <div className="flex w-full flex-col items-start gap-[16px]">
+                  <div className="w-full text-[16px] leading-[28px] font-normal text-[#A9A9A9] sm:text-[22px]">
+                    <p>
+                      <span className="font-bold text-[#ED1D23]">MEKARK</span>
+                      {" - Builds Every Structure You Want."}
+                    </p>
+                    <p>
+                      {"All kinds of Warehouse Constructions – "}
+                      <span className="font-bold text-white">ALL INDIA</span>
+                    </p>
+                  </div>
 
-                {/* HIGHLIGHTS */}
-                <div className="grid grid-cols-1 gap-x-[24px] gap-y-[20px] sm:inline-grid sm:grid-cols-[repeat(2,fit-content(100%))]">
-                  {HIGHLIGHTS.map((item) => (
-                    <div
-                      key={item}
-                      className="flex h-[19px] items-center gap-[8px]"
-                    >
-                      <Image
-                        src="/Images/hero/chevron.svg"
-                        alt=""
-                        width={24}
-                        height={24}
-                        className="size-[24px] shrink-0"
-                      />
-                      <p className="text-[14px] leading-[20px] font-normal whitespace-nowrap text-white/70 sm:text-[16px]">
-                        {item}
-                      </p>
-                    </div>
-                  ))}
+                  <p className="w-full text-[16px] leading-[28px] font-bold text-[#F3F3F3] sm:text-[22px]">
+                    In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.
+                  </p>
+
+                  {/* HIGHLIGHTS */}
+                  <div className="grid grid-cols-1 gap-x-[20px] gap-y-[16px] sm:inline-grid sm:grid-cols-[repeat(2,fit-content(100%))]">
+                    {INDUSTRIES.map((item) => (
+                      <div
+                        key={item}
+                        className="flex min-h-[19px] items-center gap-[8px]"
+                      >
+                        <span className="size-[8px] shrink-0 rounded-full bg-[#E40015]" />
+                        <p className="text-[14px] leading-[20px] font-normal whitespace-pre text-[#F7F7F7] sm:text-[18px]">
+                          {item}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* TRUSTED ACROSS INDIA */}
