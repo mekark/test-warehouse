@@ -132,9 +132,9 @@ export default function BlueprintHeroMobile() {
               Build Warehouses. Design to Delivery
             </h2>
 
-            <div className="absolute top-[55px] left-0 flex h-[23px] w-[292px] items-center bg-[#C4161C] pl-5">
+            <div className="absolute top-[55px] left-0 flex h-[23px] items-center bg-[#C4161C] pr-3 pl-5">
               <p className="text-[16px] leading-[normal] font-semibold whitespace-nowrap">
-                Construction &amp; Handover - 150 days
+                Construction &amp; Handover - 150 days*
               </p>
             </div>
           </div>

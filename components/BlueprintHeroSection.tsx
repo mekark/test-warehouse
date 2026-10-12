@@ -127,9 +127,9 @@ export default function BlueprintHeroSection() {
                   <h2 className="w-full text-[32px] leading-[1.1] font-bold text-white sm:text-[48px] sm:leading-[48px] min-[1024px]:w-[891px] min-[1024px]:max-w-full">
                     Build Warehouses. Design to Delivery
                   </h2>
-                  <div className="relative h-[56px] w-[734px] max-w-full shrink-0 bg-[#ED1D23]">
-                    <p className="absolute top-[27px] left-[5px] -translate-y-1/2 text-[42px] leading-[58px] font-bold whitespace-nowrap text-white">
-                      Construction &amp; Handover - 150 days
+                  <div className="flex h-[56px] w-fit max-w-full shrink-0 items-center bg-[#ED1D23] pr-[10px] pl-[5px]">
+                    <p className="text-[42px] leading-[58px] font-bold whitespace-nowrap text-white">
+                      Construction &amp; Handover - 150 days*
                     </p>
                   </div>
                 </div>
