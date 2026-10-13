@@ -1,10 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  SQFT_OPTIONS,
-  useBlueprintForm,
-} from "@/hooks/useBlueprintForm";
+import { SQFT_OPTIONS, useBlueprintForm } from "@/hooks/useBlueprintForm";
 
 const fieldBase =
   "w-full rounded-[8px] border-[1.101px] border-solid bg-[#F0F0F0] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -60,7 +57,7 @@ export function BlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35px]">
             <div className="flex w-full flex-col items-start gap-[7px] sm:w-[262.202px]">
               <label htmlFor="lb-name" className={labelClass}>
-                Full Name*
+                Full Name<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="lb-name"
@@ -76,7 +73,7 @@ export function BlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-location" className={labelClass}>
-                Project Location
+                Project Location<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="lb-location"
@@ -87,6 +84,7 @@ export function BlueprintForm() {
                 onChange={handleChange}
                 className={`${inputClass(errors.location)} rounded-[8.809px] pr-[36.101px] pl-[23.101px] tracking-[0.3303px]`}
               />
+              {errorText(errors.location)}
             </div>
           </div>
 
@@ -94,14 +92,15 @@ export function BlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35.237px]">
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-phone" className={labelClass}>
-                Mobile Number*
+                Mobile Number<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="lb-phone"
                 type="tel"
                 name="phoneNumber"
-                maxLength={15}
-                placeholder="+91 98765 43210"
+                maxLength={10}
+                inputMode="numeric"
+                placeholder="9876543210"
                 value={values.phoneNumber}
                 onChange={handleChange}
                 className={inputClass(errors.phoneNumber)}
@@ -111,7 +110,7 @@ export function BlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-email" className={labelClass}>
-                Email Address
+                Email Address<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="lb-email"
@@ -130,7 +129,7 @@ export function BlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[37px]">
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-industry" className={labelClass}>
-                Industry Type*
+                Industry Type<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="lb-industry"
@@ -146,7 +145,7 @@ export function BlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-sqft" className={labelClass}>
-                Project Sq. Ft*
+                Project Sq. Ft<span className="text-[#C4161C]">*</span>
               </label>
               <select
                 id="lb-sqft"
@@ -169,7 +168,7 @@ export function BlueprintForm() {
           {/* ROW 4 */}
           <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px]">
             <label htmlFor="lb-details" className={labelClass}>
-              Requirement Details
+              Requirement Details<span className="text-[#C4161C]">*</span>
             </label>
             <textarea
               id="lb-details"
@@ -177,8 +176,9 @@ export function BlueprintForm() {
               placeholder="Enter Requirement Details"
               value={values.details}
               onChange={handleChange}
-              className={`${fieldBase} ${borderColor()} h-[82.6px] resize-none rounded-[8.809px] pt-[15.101px] pr-[36.101px] pb-[15.101px] pl-[23.101px]`}
+              className={`${fieldBase} ${borderColor(errors.details)} h-[82.6px] resize-none rounded-[8.809px] pt-[15.101px] pr-[36.101px] pb-[15.101px] pl-[23.101px]`}
             />
+            {errorText(errors.details)}
           </div>
         </div>
 
@@ -260,7 +260,7 @@ export function MobileBlueprintForm() {
         className="flex w-full flex-col gap-[16px]"
       >
         <div className="flex w-full flex-col gap-[16px]">
-          <div>
+          <div className="relative">
             <input
               type="text"
               name="name"
@@ -270,34 +270,56 @@ export function MobileBlueprintForm() {
               onChange={handleChange}
               className={`${mobileField} ${borderColor(errors.name)} px-[16px]`}
             />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
             {errorText(errors.name)}
           </div>
 
-          <input
-            type="text"
-            name="location"
-            aria-label="Project location"
-            placeholder="Enter project location"
-            value={values.location}
-            onChange={handleChange}
-            className={`${mobileField} pr-[32px] pl-[20px] tracking-[0.3px]`}
-          />
+          <div className="relative">
+            <input
+              type="text"
+              name="location"
+              aria-label="Project location"
+              placeholder="Enter project location"
+              value={values.location}
+              onChange={handleChange}
+              className={`${mobileField} ${borderColor(errors.location)} pr-[32px] pl-[20px] tracking-[0.3px]`}
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
+            {errorText(errors.location)}
+          </div>
 
-          <div>
+          <div className="relative">
             <input
               type="tel"
               name="phoneNumber"
-              maxLength={15}
+              maxLength={10}
+              inputMode="numeric"
               aria-label="Mobile number"
-              placeholder="Mobile Number*"
+              placeholder="Mobile Number"
               value={values.phoneNumber}
               onChange={handleChange}
               className={`${mobileField} ${borderColor(errors.phoneNumber)} px-[16px]`}
             />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
             {errorText(errors.phoneNumber)}
           </div>
 
-          <div>
+          <div className="relative">
             <input
               type="email"
               name="email"
@@ -307,10 +329,16 @@ export function MobileBlueprintForm() {
               onChange={handleChange}
               className={`${mobileField} ${borderColor(errors.email)} px-[16px]`}
             />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
             {errorText(errors.email)}
           </div>
 
-          <div>
+          <div className="relative">
             <input
               type="text"
               name="industry"
@@ -320,6 +348,12 @@ export function MobileBlueprintForm() {
               onChange={handleChange}
               className={`${mobileField} ${borderColor(errors.industry)} pr-[32px] pl-[20px]`}
             />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
             {errorText(errors.industry)}
           </div>
 
@@ -340,19 +374,40 @@ export function MobileBlueprintForm() {
                 ))}
               </select>
               {chevron}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute top-1/2 right-[40px] -translate-y-1/2 text-[14px] leading-none text-[#C4161C]"
+              >
+                *
+              </span>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute top-1/2 right-[40px] -translate-y-1/2 text-[14px] leading-none text-[#C4161C]"
+              >
+                *
+              </span>
             </div>
             {errorText(errors.sqft)}
           </div>
 
-          <textarea
-            name="details"
-            rows={1}
-            aria-label="Requirement details"
-            placeholder="Enter requirement details"
-            value={values.details}
-            onChange={handleChange}
-            className={`${mobileField} block h-[46px] resize-none pr-[32px] pl-[20px]`}
-          />
+          <div className="relative">
+            <textarea
+              name="details"
+              rows={1}
+              aria-label="Requirement details"
+              placeholder="Enter requirement details"
+              value={values.details}
+              onChange={handleChange}
+              className={`${mobileField} ${borderColor(errors.details)} block h-[46px] resize-none pr-[32px] pl-[20px]`}
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
+            {errorText(errors.details)}
+          </div>
         </div>
 
         <div className="flex w-full flex-col gap-[16px]">

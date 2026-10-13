@@ -212,7 +212,7 @@ export default function ProcessSection() {
                     {step.number}
                   </span>
 
-                  <div className="flex min-w-0 items-center gap-[10px] rounded-[6px] bg-[#FFFCFC] py-[6px] pr-[9px] pl-[10px] drop-shadow-[-1px_1px_3px_rgba(30,30,30,0.1)]">
+                  <div className="flex min-w-0 flex-1 items-center gap-[10px] rounded-[6px] bg-[#FFFCFC] py-[6px] pr-[9px] pl-[10px] drop-shadow-[-1px_1px_3px_rgba(30,30,30,0.1)]">
                     <Icon
                       size={20}
                       strokeWidth={2}

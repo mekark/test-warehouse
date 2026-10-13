@@ -7,6 +7,8 @@ const FORM_ENDPOINT = "/api/enquiry-form";
 const THANK_YOU_URL = "https://warehouse.mekark.com/thank-you";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const LETTERS_REGEX = /^[\p{L}\s]+$/u;
+
 export const INDUSTRIES = [
   "Manufacturing",
   "Logistics & Warehousing",
@@ -35,7 +37,9 @@ export type BlueprintFormValues = {
   details: string;
 };
 
-export type BlueprintFormErrors = Partial<Record<keyof BlueprintFormValues, string>>;
+export type BlueprintFormErrors = Partial<
+  Record<keyof BlueprintFormValues, string>
+>;
 
 const INITIAL_VALUES: BlueprintFormValues = {
   name: "",
@@ -57,29 +61,45 @@ export function useBlueprintForm() {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
+    let { value } = e.target;
+
+    if (name === "phoneNumber") value = value.replace(/\D/g, "").slice(0, 10);
+    if (name === "name" || name === "location") {
+      value = value.replace(/[^\p{L}\s]/gu, "");
+    }
+
     setValues((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validate = () => {
     const next: BlueprintFormErrors = {};
-    const phoneDigits = values.phoneNumber.replace(/\D/g, "");
+    const required = "This field is required.";
 
-    if (!values.name.trim()) next.name = "This field is required.";
-
-    if (!values.phoneNumber.trim()) {
-      next.phoneNumber = "This field is required.";
-    } else if (phoneDigits.length < 10 || phoneDigits.length > 15) {
-      next.phoneNumber = "Enter valid phone number.";
+    if (!values.name.trim()) next.name = required;
+    else if (!LETTERS_REGEX.test(values.name.trim())) {
+      next.name = "Only letters are allowed.";
     }
 
-    if (values.email.trim() && !EMAIL_REGEX.test(values.email)) {
+    if (!values.location.trim()) next.location = required;
+    else if (!LETTERS_REGEX.test(values.location.trim())) {
+      next.location = "Only letters are allowed.";
+    }
+
+    if (!values.phoneNumber) next.phoneNumber = required;
+    else if (!/^\d{10}$/.test(values.phoneNumber)) {
+      next.phoneNumber = "Enter a valid 10-digit phone number.";
+    }
+
+    if (!values.email.trim()) next.email = required;
+    else if (!EMAIL_REGEX.test(values.email.trim())) {
       next.email = "Enter valid email.";
     }
 
-    if (!values.industry) next.industry = "This field is required.";
-    if (!values.sqft) next.sqft = "This field is required.";
+    if (!values.industry.trim()) next.industry = required;
+    if (!values.sqft) next.sqft = required;
+    if (!values.details.trim()) next.details = required;
 
     setErrors(next);
     return Object.keys(next).length === 0;

@@ -1,10 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  SQFT_OPTIONS,
-  useBlueprintForm,
-} from "@/hooks/useBlueprintForm";
+import { SQFT_OPTIONS, useBlueprintForm } from "@/hooks/useBlueprintForm";
 
 const fieldBase =
   "w-full rounded-[8px] border border-solid bg-[#F0F0F0] px-[18px] py-[14px] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -60,7 +57,7 @@ export default function HeroMobileForm() {
         className="flex w-full flex-col items-center gap-[16px]"
       >
         <div className="flex w-full flex-col gap-[12px]">
-          <div>
+          <div className="relative">
             <input
               type="text"
               name="name"
@@ -70,34 +67,56 @@ export default function HeroMobileForm() {
               onChange={handleChange}
               className={`${fieldBase} ${borderColor(errors.name)}`}
             />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
             {errorText(errors.name)}
           </div>
 
-          <input
-            type="text"
-            name="location"
-            aria-label="Project location"
-            placeholder="Enter Project Location"
-            value={values.location}
-            onChange={handleChange}
-            className={`${fieldBase} border-[#E2E2E2] px-[22px]`}
-          />
+          <div className="relative">
+            <input
+              type="text"
+              name="location"
+              aria-label="Project location"
+              placeholder="Enter Project Location"
+              value={values.location}
+              onChange={handleChange}
+              className={`${fieldBase} ${borderColor(errors.location)} px-[22px]`}
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
+            {errorText(errors.location)}
+          </div>
 
-          <div>
+          <div className="relative">
             <input
               type="tel"
               name="phoneNumber"
-              maxLength={15}
+              maxLength={10}
+              inputMode="numeric"
               aria-label="Mobile number"
-              placeholder="Mobile Number*"
+              placeholder="Mobile Number"
               value={values.phoneNumber}
               onChange={handleChange}
               className={`${fieldBase} ${borderColor(errors.phoneNumber)}`}
             />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
             {errorText(errors.phoneNumber)}
           </div>
 
-          <div>
+          <div className="relative">
             <input
               type="email"
               name="email"
@@ -107,10 +126,16 @@ export default function HeroMobileForm() {
               onChange={handleChange}
               className={`${fieldBase} ${borderColor(errors.email)}`}
             />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
             {errorText(errors.email)}
           </div>
 
-          <div>
+          <div className="relative">
             <input
               type="text"
               name="industry"
@@ -120,6 +145,12 @@ export default function HeroMobileForm() {
               onChange={handleChange}
               className={`${fieldBase} ${borderColor(errors.industry)}`}
             />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
             {errorText(errors.industry)}
           </div>
 
@@ -140,19 +171,34 @@ export default function HeroMobileForm() {
                 ))}
               </select>
               {chevron}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute top-1/2 right-[40px] -translate-y-1/2 text-[14px] leading-none text-[#C4161C]"
+              >
+                *
+              </span>
             </div>
             {errorText(errors.sqft)}
           </div>
 
-          <textarea
-            name="details"
-            rows={1}
-            aria-label="Requirement details"
-            placeholder="Enter Requirement Details"
-            value={values.details}
-            onChange={handleChange}
-            className={`${fieldBase} block h-[46px] resize-none border-[#E2E2E2] px-[22px]`}
-          />
+          <div className="relative">
+            <textarea
+              name="details"
+              rows={1}
+              aria-label="Requirement details"
+              placeholder="Enter Requirement Details"
+              value={values.details}
+              onChange={handleChange}
+              className={`${fieldBase} ${borderColor(errors.details)} block h-[46px] resize-none px-[22px]`}
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[14px] right-[14px] text-[14px] leading-none text-[#C4161C]"
+            >
+              *
+            </span>
+            {errorText(errors.details)}
+          </div>
         </div>
 
         <div className="flex w-full flex-col items-center gap-[12px]">

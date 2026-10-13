@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  SQFT_OPTIONS,
-  useBlueprintForm,
-} from "@/hooks/useBlueprintForm";
+import { SQFT_OPTIONS, useBlueprintForm } from "@/hooks/useBlueprintForm";
 
 const fieldBase =
   "w-full rounded-[8px] border-[1.101px] border-solid bg-[#F0F0F0] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -62,7 +59,7 @@ export default function HeroBlueprintForm() {
           <div className="flex w-full flex-col gap-0 sm:flex-row sm:items-center sm:gap-[35px]">
             <div className="flex w-full flex-col items-start gap-[7px] sm:w-[262.202px]">
               <label htmlFor="bh-name" className={labelClass}>
-                Full Name*
+                Full Name<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="bh-name"
@@ -78,7 +75,7 @@ export default function HeroBlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-location" className={labelClass}>
-                Project Location
+                Project Location<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="bh-location"
@@ -89,6 +86,7 @@ export default function HeroBlueprintForm() {
                 onChange={handleChange}
                 className={`${inputClass(errors.location)} rounded-[8.809px] pl-[23.101px] pr-[36.101px] tracking-[0.3303px]`}
               />
+              {errorText(errors.location)}
             </div>
           </div>
 
@@ -96,14 +94,15 @@ export default function HeroBlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35.237px]">
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-phone" className={labelClass}>
-                Mobile Number*
+                Mobile Number<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="bh-phone"
                 type="tel"
                 name="phoneNumber"
-                maxLength={15}
-                placeholder="+91 98765 43210"
+                maxLength={10}
+                inputMode="numeric"
+                placeholder="9876543210"
                 value={values.phoneNumber}
                 onChange={handleChange}
                 className={inputClass(errors.phoneNumber)}
@@ -113,7 +112,7 @@ export default function HeroBlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-email" className={labelClass}>
-                Email Address
+                Email Address<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="bh-email"
@@ -132,7 +131,7 @@ export default function HeroBlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[37px]">
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-industry" className={labelClass}>
-                Industry Type*
+                Industry Type<span className="text-[#C4161C]">*</span>
               </label>
               <input
                 id="bh-industry"
@@ -148,7 +147,7 @@ export default function HeroBlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-sqft" className={labelClass}>
-                Project Sq. Ft*
+                Project Sq. Ft<span className="text-[#C4161C]">*</span>
               </label>
               <select
                 id="bh-sqft"
@@ -171,7 +170,7 @@ export default function HeroBlueprintForm() {
           {/* ROW 4 */}
           <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px]">
             <label htmlFor="bh-details" className={labelClass}>
-              Requirement Details
+              Requirement Details<span className="text-[#C4161C]">*</span>
             </label>
             <textarea
               id="bh-details"
@@ -179,8 +178,9 @@ export default function HeroBlueprintForm() {
               placeholder="Enter Requirement Details"
               value={values.details}
               onChange={handleChange}
-              className={`${fieldBase} ${borderColor()} h-[82.6px] resize-none rounded-[8.809px] pt-[15.101px] pr-[36.101px] pb-[15.101px] pl-[23.101px]`}
+              className={`${fieldBase} ${borderColor(errors.details)} h-[82.6px] resize-none rounded-[8.809px] pt-[15.101px] pr-[36.101px] pb-[15.101px] pl-[23.101px]`}
             />
+            {errorText(errors.details)}
           </div>
         </div>
 
