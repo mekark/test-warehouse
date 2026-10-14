@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   description:
     "Leading Turnkey Warehouse EPC & Turnkey industrial warehouse  Construction Company – large warehouse construction Turnkey EPC expertise in In House PEB Manufacturing, Civil, PEB, MEP and Seamless Execution servicing the needs of Turnkey warehouse building Contractor & Turnkey warehouse construction services Company",
   icons: {
-    icon: "/Images/LogoMekark.webp",
-    shortcut: "/Images/LogoMekark.webp",
+    icon: "/Mekark%20Favicon-32x32px.png",
+    shortcut: "/Mekark%20Favicon-32x32px.png",
     apple: "/Images/LogoMekark.webp",
   },
 };
