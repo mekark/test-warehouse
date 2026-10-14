@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DeferredGoogleTagManager from "@/components/DeferredGoogleTagManager";
+import Footer from "@/components/Footer";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 import "./globals.css";
@@ -43,6 +44,8 @@ export default function RootLayout({
         </noscript>
 
         {children}
+
+        <Footer />
 
         <ScrollToTopButton />
         <DeferredGoogleTagManager gtmId={GTM_ID} />
