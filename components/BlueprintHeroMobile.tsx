@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 import HeroMobileForm from "@/components/HeroMobileForm";
 import {
@@ -6,7 +6,35 @@ import {
   WHATSAPP_MESSAGE,
   WHATSAPP_NUMBER,
 } from "@/components/heroData";
+import { BLANK_GIF } from "@/lib/blankImage";
 import { manrope } from "@/lib/fonts";
+
+// This hero is CSS-hidden from 640px up, but an eager <img> would still
+// download there, so both above-the-fold images sit in a <picture> whose
+// (min-width: 640px) source is a blank GIF.
+const HIDDEN_ABOVE_PHONE = "(min-width: 640px)";
+
+// The tall background is the phone LCP element. `sizes` is ~0.65x its 505px
+// CSS width (~1.1x on a 1.75x phone): it sits under dark overlays, so the
+// slight softness is invisible and the file is much smaller.
+const { props: bgProps } = getImageProps({
+  src: "/Images/hero/m-bg.webp",
+  alt: "",
+  fill: true,
+  sizes: "320px",
+  loading: "eager",
+  fetchPriority: "high",
+  className: "object-cover",
+});
+
+const { props: heroProps } = getImageProps({
+  src: "/Images/hero/m-hero.webp",
+  alt: "Industrial warehouse interior",
+  fill: true,
+  sizes: "100vw",
+  loading: "eager",
+  className: "object-cover object-bottom",
+});
 
 // The four client logos and their crops from the mobile Figma node
 // (w / h = logo box inside the 64x40 tile, as in Figma).
@@ -61,13 +89,11 @@ export default function BlueprintHeroMobile() {
     >
       {/* BACKGROUND: sunset steel frame, dark overlay, fade-to-black, radial vignette */}
       <div className="pointer-events-none absolute top-[419px] bottom-0 left-1/2 w-[505px] -translate-x-1/2">
-        <Image
-          src="/Images/hero/m-bg.webp"
-          alt=""
-          fill
-          sizes="505px"
-          className="object-cover"
-        />
+        <picture>
+          <source media={HIDDEN_ABOVE_PHONE} srcSet={BLANK_GIF} />
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
+          <img {...bgProps} />
+        </picture>
       </div>
       <div className="pointer-events-none absolute inset-x-0 top-[284px] bottom-0 bg-[rgba(15,15,15,0.4)]" />
       <div className="pointer-events-none absolute top-0 left-1/2 h-[1690px] w-[1028px] -translate-x-1/2">
@@ -116,14 +142,11 @@ export default function BlueprintHeroMobile() {
 
           <div className="absolute bottom-0 left-0 h-[240px] w-full overflow-hidden bg-[#060606]">
             <div className="absolute inset-x-0 bottom-px h-[235px]">
-              <Image
-                src="/Images/hero/m-hero.webp"
-                alt="Industrial warehouse interior"
-                fill
-                fetchPriority="high"
-                sizes="100vw"
-                className="object-cover object-bottom"
-              />
+              <picture>
+                <source media={HIDDEN_ABOVE_PHONE} srcSet={BLANK_GIF} />
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                <img {...heroProps} />
+              </picture>
             </div>
             <div className="absolute inset-x-0 -top-px h-[105px] bg-[linear-gradient(175.242deg,#060606_21.88%,rgba(32,32,32,0.83)_53.892%,rgba(6,6,6,0)_89.049%)]" />
             <div className="absolute inset-x-0 bottom-px h-[32px] bg-[linear-gradient(180.821deg,rgba(30,30,30,0)_1.0095%,#1E1E1E_99.312%)]" />

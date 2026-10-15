@@ -195,7 +195,8 @@ export default function   WhyMekarkSection() {
               alt="Mekark billboard on an industrial construction site"
               width={1868}
               height={842}
-              sizes="617px"
+              // ~0.62x the 617px CSS width (picks the 680w file on a 1.75x phone)
+              sizes="385px"
               className="absolute top-[-0.11%] left-[-0.07%] h-[106.22%] w-[96.72%] max-w-none"
             />
           </div>

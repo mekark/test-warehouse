@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
+import { BLANK_GIF } from "@/lib/blankImage";
 import { inter, manrope } from "@/lib/fonts";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 import HeroBlueprintForm from "@/components/HeroBlueprintForm";
@@ -61,6 +62,18 @@ const STATS = [
 // Figma frame is 1920px wide; on desktop viewports the whole section is scaled to fit
 const DESIGN_WIDTH = 1920;
 
+// Tablet/desktop LCP element. It is CSS-hidden below 640px, where an eager
+// <img> would still download, so the <picture> gives phones a blank GIF.
+const { props: heroBgProps } = getImageProps({
+  src: "/Images/hero/hero-bg-sharp.webp",
+  alt: "Industrial warehouse interior",
+  fill: true,
+  loading: "eager",
+  fetchPriority: "high",
+  sizes: "(min-width: 1024px) 95vw, 100vw",
+  className: "object-cover brightness-[1.6] contrast-[1.05]",
+});
+
 export default function BlueprintHeroSection() {
   return (
     <>
@@ -77,15 +90,11 @@ export default function BlueprintHeroSection() {
           >
             {/* BACKGROUND IMAGE */}
             <div className="absolute inset-0 min-[1024px]:inset-auto min-[1024px]:top-[-60px] min-[1024px]:right-[-8.3%] min-[1024px]:h-[1080px] min-[1024px]:w-[94.44%] overflow-hidden">
-              <Image
-                src="/Images/hero/hero-bg-sharp.webp"
-                alt="Industrial warehouse interior"
-                fill
-                loading="lazy"
-                fetchPriority="high"
-                sizes="(min-width: 1024px) 95vw, 100vw"
-                className="object-cover brightness-[1.6] contrast-[1.05]"
-              />
+              <picture>
+                <source media="(max-width: 639px)" srcSet={BLANK_GIF} />
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                <img {...heroBgProps} />
+              </picture>
             </div>
 
             {/* GRADIENT OVERLAY */}
