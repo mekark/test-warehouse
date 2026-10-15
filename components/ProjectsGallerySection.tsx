@@ -145,7 +145,9 @@ export default function ProjectsGallerySection() {
                 src={tile.src}
                 alt={tile.alt}
                 fill
-                sizes="100vw"
+                // Tile is 100vw - 40px; ~0.65x of that keeps the file near
+                // the displayed size on ~1.75x phones (~2x on 3x phones)
+                sizes="calc(65vw - 26px)"
                 className="object-cover"
               />
             </div>
