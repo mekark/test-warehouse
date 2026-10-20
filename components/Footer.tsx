@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms Of Service", href: "/terms-of-service" },
-  { label: "Cookie Policy", href: "/cookie-policy" },
+  { label: "Privacy Policy", href: "https://www.mekark.com/resources/privacy-policy" },
+  { label: "Terms Of Service", href: "https://www.mekark.com/resources/terms-of-service" },
+  { label: "Cookie Policy", href: "https://www.mekark.com/resources/cookie-policy" },
 ] as const;
 
 export default function Footer() {
