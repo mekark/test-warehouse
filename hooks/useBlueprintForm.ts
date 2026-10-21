@@ -144,6 +144,9 @@ export function useBlueprintForm() {
       }
 
       setValues(INITIAL_VALUES);
+      try {
+        sessionStorage.setItem("enquirySubmitted", "1");
+      } catch {}
       // Stay on the current host/path: /thank-you on the subdomain, /warehouse/thank-you on mekark.com.
       window.location.assign(`${window.location.pathname.replace(new RegExp("/$"), "")}/thank-you`);
     } catch (error) {
