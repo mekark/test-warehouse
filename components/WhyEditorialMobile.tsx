@@ -61,9 +61,8 @@ export default function WhyEditorialMobile() {
     >
       <div className="flex w-full max-w-[342px] flex-col gap-[12px]">
         <h2 className="text-[28px] leading-[34px] font-extrabold text-white">
-          Why Top Industries
-          <br />
-          <span className="text-[#ED1D23]">Choose MEKARK</span>
+          Why Top Industries <span className="text-[#ED1D23]">Choose MEKARK</span>{" "}
+          as Their Warehouse Construction Contractor
         </h2>
         <p className="text-[14px] leading-[20px] font-normal text-[#888]">
           India’s Leading PEB manufacturer &amp; Constructor.

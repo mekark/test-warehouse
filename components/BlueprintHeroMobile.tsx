@@ -46,13 +46,19 @@ const LOGOS = [
   { name: "Tata", src: "/Images/hero/mobile-tata.webp", w: 32, h: 32 },
 ] as const;
 
-const INDUSTRIES = [
-  "Engineering, Electronics, Electrical & Semiconductor.",
-  "Retail, Cold Storage, E-commerce, Distributions.",
-  "Automotive, Electrical Vehicle,  Machinery & Heavy Manufacturing.",
-  "Textile, Pharmaceutical, Chemical & Life Sciences.",
-  "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
-  "Apparel, Leather, Food Processing, Beverage, FMCG.",
+const HIGHLIGHTS = [
+  {
+    title: "Single-Point EPC Accountability:",
+    text: "Civil, PEB Structural Steel, Flooring & MEP under one roof.",
+  },
+  {
+    title: "Built for Heavy Loads:",
+    text: "Custom foundation and FM2 laser-screeded flooring for heavy racking.",
+  },
+  {
+    title: "Pan-India Execution:",
+    text: "40,000 MT annual in-house PEB production capacity.",
+  },
 ];
 
 const STATS = [
@@ -128,7 +134,7 @@ export default function BlueprintHeroMobile() {
             />
           </div>
           <EnquiryFormButton className="flex items-center justify-center rounded-[8px] bg-[#C4161C] px-[12px] py-[6px] text-[12px] leading-[normal] font-semibold whitespace-nowrap text-[#F5F5F5]">
-            Get Free Quote
+            Request an Estimate
           </EnquiryFormButton>
         </header>
 
@@ -137,7 +143,7 @@ export default function BlueprintHeroMobile() {
           <div className="absolute top-[15px] left-5 flex max-w-[calc(100%-40px)] items-center gap-[8px] rounded-full border border-solid border-white/20 px-[12px] py-[6px]">
             <span className="size-[8px] shrink-0 rounded-full bg-[#E40015]" />
             <p className="text-[10px] leading-[16px] font-medium">
-              Turnkey Industrial Warehouse Construction Company
+            India’s Trusted Turnkey EPC & In-House PEB Manufacturer
             </p>
           </div>
 
@@ -153,51 +159,36 @@ export default function BlueprintHeroMobile() {
             <div className="absolute inset-x-0 bottom-px h-[32px] bg-[linear-gradient(180.821deg,rgba(30,30,30,0)_1.0095%,#1E1E1E_99.312%)]" />
 
             <h2 className="absolute top-[2px] left-5 w-[338px] max-w-[calc(100%-40px)] text-[22px] leading-[24px] font-semibold">
-              Build Warehouses. Design to Delivery
+            Turnkey Industrial Warehouse Construction Company in India
             </h2>
-
-            <div className="absolute top-[55px] left-0 flex h-[23px] items-center bg-[#C4161C] pr-3 pl-5">
-              <p className="text-[16px] leading-[normal] font-semibold whitespace-nowrap">
-                Construction &amp; Handover - 150 days*
-              </p>
-            </div>
           </div>
         </div>
 
         <div className="flex w-full flex-col gap-[13px] px-5 pt-[12px]">
           {/* DESCRIPTION */}
           <div className="flex w-full flex-col gap-[10px]">
-            <div className="w-full text-[13px] leading-[normal] font-normal text-[#F3F3F3]">
-              <p>
-                <span className="text-[#ED1D23]">MEKARK</span>
-                {" - Builds Every Structure You Want."}
-              </p>
-              <p>
-                {"All kinds of Turnkey Industrial Constructions – "}
-                <span className="font-bold text-white">ALL INDIA</span>
-              </p>
-            </div>
+            <p className="w-full text-[13px] leading-[normal] font-normal text-[#F3F3F3]">
+              From soil testing and structural PEB fabrication to civil
+              execution and MEP handover—we build high-load, clear-span
+              industrial warehouses in{" "}
+              <span className="font-bold text-white">150 Days*</span>.
+            </p>
 
-            <div className="flex w-full flex-col gap-[4px]">
-              <p className="w-full text-[13px] leading-[normal] font-bold text-white">
-                In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.
-              </p>
-
-              {/* INDUSTRIES */}
-              <ul className="flex w-full flex-col gap-[6px]">
-                {INDUSTRIES.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-[6px] px-[12px]"
-                  >
-                    <span className="size-[5px] shrink-0 rounded-full bg-[#E40015]" />
-                    <span className="min-w-px flex-1 text-[12px] leading-[20px] whitespace-pre-wrap text-white/70">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* HIGHLIGHTS */}
+            <ul className="flex w-full flex-col gap-[6px]">
+              {HIGHLIGHTS.map((item) => (
+                <li
+                  key={item.title}
+                  className="flex items-start gap-[6px] px-[12px]"
+                >
+                  <span className="mt-[8px] size-[5px] shrink-0 rounded-full bg-[#E40015]" />
+                  <span className="min-w-px flex-1 text-[12px] leading-[20px] text-white/70">
+                    <span className="font-bold text-white">{item.title}</span>{" "}
+                    {item.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* TRUSTED ACROSS INDIA */}

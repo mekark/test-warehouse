@@ -7,7 +7,7 @@ import { assetUrl } from "@/lib/assetPrefix";
 const fieldBase =
   "w-full rounded-[8px] border border-solid bg-[#F0F0F0] px-[18px] py-[14px] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
 
-/** Phone-only "Request Your Project Blueprint" card (Figma mobile frame). */
+/** Phone-only "Request Your Warehouse Project Blueprint" card (Figma mobile frame). */
 export default function HeroMobileForm() {
   const {
     values,
@@ -45,10 +45,11 @@ export default function HeroMobileForm() {
     <div className="flex w-full flex-col items-center gap-[16px] rounded-[24px] bg-white/[0.01] px-[20px] py-[24px] shadow-[0px_26.43px_88.09px_0px_rgba(0,0,0,0.06)] backdrop-blur-[15px]">
       <div className="flex w-full flex-col items-start gap-[6px] text-white">
         <h3 className="w-full text-[24px] leading-[normal] font-extrabold">
-          Request Your Project Blueprint
+          Request Your Warehouse Project Blueprint &amp; Cost Estimate
         </h3>
         <p className="w-full text-[14px] leading-[normal] font-medium">
-          Get a custom layout, cost range &amp; 150-day* timeline
+          Get a custom structural layout, BOQ cost range &amp; 150-day
+          execution timeline.
         </p>
       </div>
 
@@ -214,7 +215,7 @@ export default function HeroMobileForm() {
             disabled={isSubmitting}
             className="flex w-full items-center justify-center rounded-[10px] bg-[#C4161C] px-[24px] py-[13px] text-center text-[14px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.81px_17.62px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {isSubmitting ? "Submitting..." : "Get a Free Quote →"}
+            {isSubmitting ? "Submitting..." : "Request an Estimate"}
           </button>
 
           <p className="w-full text-center text-[12px] leading-[normal] font-medium text-[#8A8A8A]">

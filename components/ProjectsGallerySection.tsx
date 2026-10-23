@@ -69,9 +69,6 @@ function Heading() {
           Projects <span className="text-[#ED1D23]">Gallery</span>
         </h2>
       </div>
-      <p className="text-[16px] leading-[26px] font-medium text-[#64748B] sm:text-[20px] min-[1024px]:text-[24px]! min-[1024px]:leading-[36px]! min-[1024px]:whitespace-nowrap">
-        Our Completed Projects Across India.
-      </p>
     </div>
   );
 }
@@ -130,9 +127,6 @@ export default function ProjectsGallerySection() {
               Projects <span className="text-[#ED1D23]">Gallery</span>
             </h2>
           </div>
-          <p className="w-[307px] max-w-full text-[14px] leading-[20px] font-medium text-[#64748B]">
-            Our Completed Projects Across India.
-          </p>
         </div>
 
         <div className="flex w-full flex-col gap-[16px]">

@@ -16,7 +16,6 @@ import { assetUrl } from "@/lib/assetPrefix";
 // extra padding inside the file; the rest use the default 34px height.
 const CLIENT_LOGOS = [
   { name: "VWU", src: "/Images/hero/clients/vwu.webp", scale: 1 },
-  { name: "Voltas", src: "/Images/hero/clients/voltas.webp", scale: 1.6 },
   { name: "TVS", src: "/Images/hero/clients/tvs.webp", scale: 1.6 },
   { name: "Tata Electronics", src: "/Images/hero/clients/tata.webp", scale: 1.6 },
   { name: "Schwing Stetter", src: "/Images/hero/clients/stetter.webp", scale: 1.6 },
@@ -33,14 +32,19 @@ const CLIENT_LOGOS = [
   { name: "Komatsu", src: "/Images/hero/clients/komatsu.webp", scale: 1 },
 ] as const;
 
-// Listed in reading order for the 2-column grid (row by row)
-const INDUSTRIES = [
-  "Engineering, Electronics, Electrical & Semiconductor.",
-  "Retail, Cold Storage, E-commerce, Distributions.",
-  "Automotive, Electrical Vehicle,  Machinery & Heavy Manufacturing.",
-  "Textile, Pharmaceutical, Chemical & Life Sciences.",
-  "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
-  "Apparel, Leather, Food Processing, Beverage, FMCG.",
+const HIGHLIGHTS = [
+  {
+    title: "Single-Point EPC Accountability:",
+    text: "Civil, PEB Structural Steel, Flooring & MEP under one roof.",
+  },
+  {
+    title: "Built for Heavy Loads:",
+    text: "Custom foundation and FM2 laser-screeded flooring for heavy racking.",
+  },
+  {
+    title: "Pan-India Execution:",
+    text: "40,000 MT annual in-house PEB production capacity.",
+  },
 ];
 
 const STATS = [
@@ -114,7 +118,7 @@ export default function BlueprintHeroSection() {
               </div>
 
               <EnquiryFormButton className="flex items-center justify-center rounded-[8px] bg-[#C4161C] px-[16px] py-[8px] text-[14px] font-semibold leading-[normal] whitespace-pre text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] sm:px-[24px] sm:py-[10px] sm:text-[16px]">
-                {"Get  Free Quote "}
+                {"Request an Estimate"}
               </EnquiryFormButton>
             </header>
 
@@ -128,49 +132,39 @@ export default function BlueprintHeroSection() {
                   <p
                     className={`${inter.className} text-[11px] leading-[20px] font-medium text-white sm:text-[14px] sm:whitespace-nowrap`}
                   >
-                    Turnkey Industrial Warehouse Construction Company
+                    India’s Trusted Turnkey EPC & In-House PEB Manufacturer
                   </p>
                 </div>
 
                 {/* HEADING */}
                 <div className="flex w-full flex-col items-start gap-[10px]">
                   <h2 className="w-full text-[32px] leading-[1.1] font-bold text-white sm:text-[48px] sm:leading-[48px] min-[1024px]:w-[891px] min-[1024px]:max-w-full">
-                    Build Warehouses. Design to Delivery
+                  Turnkey Industrial Warehouse Construction Company in India
                   </h2>
-                  <div className="flex h-[56px] w-fit max-w-full shrink-0 items-center bg-[#ED1D23] pr-[10px] pl-[5px]">
-                    <p className="text-[42px] leading-[58px] font-bold whitespace-nowrap text-white">
-                      Construction &amp; Handover - 150 days*
-                    </p>
-                  </div>
                 </div>
 
                 {/* DESCRIPTION */}
                 <div className="flex w-full flex-col items-start gap-[16px]">
-                  <div className="w-full text-[16px] leading-[28px] font-normal text-[#A9A9A9] sm:text-[22px]">
-                    <p>
-                      <span className="font-bold text-[#ED1D23]">MEKARK</span>
-                      {" - Builds Every Structure You Want."}
-                    </p>
-                    <p>
-                      {"All kinds of Warehouse Constructions – "}
-                      <span className="font-bold text-white">ALL INDIA</span>
-                    </p>
-                  </div>
-
-                  <p className="w-full text-[16px] leading-[28px] font-bold text-[#F3F3F3] sm:text-[22px]">
-                    In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.
+                  <p className="w-full text-[16px] leading-[28px] font-normal text-[#A9A9A9] sm:text-[22px] min-[1024px]:max-w-[891px]">
+                    From soil testing and structural PEB fabrication to civil
+                    execution and MEP handover—we build high-load, clear-span
+                    industrial warehouses in{" "}
+                    <span className="font-bold text-white">150 Days*</span>.
                   </p>
 
                   {/* HIGHLIGHTS */}
-                  <div className="grid grid-cols-1 gap-x-[20px] gap-y-[16px] sm:inline-grid sm:grid-cols-[repeat(2,fit-content(100%))]">
-                    {INDUSTRIES.map((item) => (
+                  <div className="flex flex-col gap-[16px]">
+                    {HIGHLIGHTS.map((item) => (
                       <div
-                        key={item}
+                        key={item.title}
                         className="flex min-h-[19px] items-center gap-[8px]"
                       >
                         <span className="size-[8px] shrink-0 rounded-full bg-[#E40015]" />
-                        <p className="text-[14px] leading-[20px] font-normal whitespace-pre text-[#F7F7F7] sm:text-[18px]">
-                          {item}
+                        <p className="text-[14px] leading-[20px] font-normal text-[#F7F7F7] sm:text-[18px]">
+                          <span className="font-bold text-white">
+                            {item.title}
+                          </span>{" "}
+                          {item.text}
                         </p>
                       </div>
                     ))}

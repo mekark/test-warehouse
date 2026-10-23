@@ -10,9 +10,9 @@ const GTM_ID = "GTM-5SBMM86H";
 
 export const metadata: Metadata = {
   title:
-    "Turnkey Warehouse Construction Company – Industrial warehouse contractor",
+    "Turnkey Industrial Warehouse Construction Company in India | Mekark",
   description:
-    "Leading Turnkey Warehouse EPC & Turnkey industrial warehouse  Construction Company – large warehouse construction Turnkey EPC expertise in In House PEB Manufacturing, Civil, PEB, MEP and Seamless Execution servicing the needs of Turnkey warehouse building Contractor & Turnkey warehouse construction services Company",
+    "Leading industrial warehouse contractor in India. We deliver large-scale turnkey warehouse construction from design to handover in 150 days. Get a free quote.",
   icons: {
     icon: assetUrl("/Mekark%20Favicon-32x32px.png"),
     shortcut: assetUrl("/Mekark%20Favicon-32x32px.png"),

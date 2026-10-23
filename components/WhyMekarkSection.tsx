@@ -1,260 +1,200 @@
 import Image from "next/image";
 import { manrope } from "@/lib/fonts";
 import ScaledCanvas from "@/components/ScaledCanvas";
-import WhyMekarkAccordion, {
-  WhyMekarkMobileAccordion,
-} from "@/components/WhyMekarkAccordion";
-import { assetUrl } from "@/lib/assetPrefix";
 
 const DESIGN_WIDTH = 1920;
-const DESIGN_HEIGHT = 866;
 
-type Point = {
-  value: string;
-  text: string;
-  /** Position / size of the row inside the 540x407 "Points" box in Figma */
-  left: number;
-  top: number;
-  width: number;
-  /** Gap between arrow and value */
-  arrowGap: number;
-  /** Fixed value column width (undefined = hug content) */
-  valueWidth?: number;
-  textSize: number;
-  /** Fixed text width (undefined = fill remaining space) */
-  textWidth?: number;
-  alignEnd?: boolean;
-  centered?: boolean;
-};
-
-const POINTS: Point[] = [
+const ITEMS = [
   {
-    value: "5X",
-    text: "Faster Project Planning & Execution Speed",
-    left: 0,
-    top: 0,
-    width: 580,
-    arrowGap: 10,
-    valueWidth: 40,
-    textSize: 24,
-    alignEnd: true,
-    centered: true,
+    title: "End-to-End Turnkey Warehouse Construction",
+    description:
+      "Single-point accountability from architectural planning and soil investigation to RCC civil work, PEB erection, and fire safety approvals.",
   },
   {
-    value: "100%",
-    text: "Turnkey EPC Project Responsibility",
-    left: 20.33,
-    top: 77,
-    width: 571,
-    arrowGap: 13,
-    valueWidth: 81.333,
-    textSize: 26,
-    centered: true,
+    title: "In-House BIM & Structural Engineering",
+    description:
+      "Our 175+ engineering team uses Tekla and STAAD.Pro to optimize steel tonnage, reducing your warehouse building construction cost by up to 15% without compromising structural safety.",
   },
   {
-    value: "200+",
-    text: "Industrial & Warehouse Projects Delivered",
-    left: 40.33,
-    top: 145,
-    width: 659,
-    arrowGap: 13,
-    valueWidth: 81.333,
-    textSize: 26,
-    centered: true,
+    title: "Custom Foundation & Heavy-Load Flooring",
+    description:
+      "As an experienced industrial warehouse contractor, we engineer foundations, plinth beams, and crack-free VDF/laser-screed floors tailored to your racking and forklift point loads.",
   },
   {
-    value: "90%",
-    text: "Quality & Safety Compliance Standards",
-    left: 40.33,
-    top: 214,
-    width: 609,
-    arrowGap: 10,
-    textSize: 26,
-    centered: true,
+    title: "In-House 40,000 MT PEB Manufacturing",
+    description:
+      "Zero outsourcing delays. All primary columns, rafters, purlins, and standing seam roofing sheets are fabricated in our automated factory.",
   },
   {
-    value: "40k +",
-    text: "PEB & Structural Steel Expertise",
-    left: 20.33,
-    top: 283,
-    width: 531,
-    arrowGap: 10,
-    valueWidth: 81.333,
-    textSize: 26,
-    centered: true,
+    title: "100% Transparent BOQ & Zero Cost Overruns",
+    description:
+      "Itemized bill of quantities and milestone-linked billing ensure your large warehouse construction stays strictly within budget.",
   },
   {
-    value: "18+ ",
-    text: "Years Industrial Construction Excellence",
-    left: 0.33,
-    top: 351,
-    width: 608,
-    arrowGap: 10,
-    textSize: 26,
-    textWidth: 432,
+    title: "Rigorous Quality & Statutory Compliance",
+    description:
+      "Every structure undergoes ultrasonic weld testing, mill test verification, and pre-handover statutory clearance checks.",
   },
 ];
 
-function Arrow() {
-  return (
-    <Image
-      src={assetUrl("/Images/why/arrow.svg")}
-      alt=""
-      width={17}
-      height={27}
-      className="h-[27px] w-[17px] shrink-0"
-    />
-  );
-}
+const SUBTEXT =
+  "As a premier warehouse building contractor, we eliminate multi-vendor delays by handling engineering, manufacturing, and on-site civil construction in-house.";
 
-function Heading() {
+const number = (index: number) => String(index + 1).padStart(2, "0");
+
+/** The person cut-out, mirrored horizontally as in Figma. */
+function Person({ className }: { className: string }) {
   return (
-    <div className="flex flex-col gap-[22px]">
-      <h2 className="text-[34px] leading-[1.1] font-bold text-[#030303] sm:text-[48px] min-[1024px]:text-[66px]! min-[1024px]:leading-[69.333px]!">
-        Why Top Industries
-        <br />
-        Choose Mekark
-      </h2>
-      <p className="text-[16px] leading-[28px] font-normal text-[#424242] min-[1024px]:text-[20px] min-[1024px]:leading-[normal]">
-        India’s Leading Industrial Warehouse Construction
-      </p>
+    <div className={`absolute -scale-x-100 overflow-hidden ${className}`}>
+      <Image
+        src="/Images/why/man.webp"
+        alt=""
+        width={1867}
+        height={842}
+        sizes="600px"
+        className="absolute top-0 left-[-381.09%] h-full w-[812.93%] max-w-none"
+      />
     </div>
   );
 }
 
-export default function   WhyMekarkSection() {
+export default function WhyMekarkSection() {
   return (
     <section className={`${manrope.className} w-full bg-white`}>
-      {/* DESKTOP: exact Figma frame, scaled to the viewport */}
+      {/* DESKTOP: Figma frame, scaled to the viewport */}
       <div className="hidden min-[1024px]:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
-          <div
-            className="group/why relative w-[1920px] overflow-hidden bg-white"
-            style={{ height: DESIGN_HEIGHT }}
-          >
-            {/* scene */}
-            <div className="absolute top-[-84px] left-0 h-[950.667px] w-[2101.333px] overflow-hidden">
-              <Image
-                src="/Images/why/scene.webp"
-                alt="Mekark billboard on an industrial construction site"
-                width={1868}
-                height={842}
-                sizes="106vw"
-                className="absolute top-[3.7%] left-[-0.07%] h-[96.3%] w-[96.72%] max-w-none"
-              />
-            </div>
+          <div className="flex w-[1920px] flex-col items-center bg-white pb-[60px]">
+            {/* HERO BAND */}
+            <div className="relative h-[558px] w-full">
+              <div className="absolute inset-0 overflow-hidden">
+                <Image
+                  src="/Images/why/warehouse.webp"
+                  alt="Mekark pre-engineered steel warehouse with red cladding and loading docks"
+                  width={1536}
+                  height={445}
+                  sizes="100vw"
+                  className="absolute top-[0.04%] left-0 h-[99.97%] w-full max-w-none"
+                />
+                <div className="absolute top-[125px] left-[1100px] h-[128px] w-[319px]">
+                  <Image
+                    src="/Images/why/warehouse-logo.webp"
+                    alt=""
+                    fill
+                    sizes="319px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <Person className="bottom-[-17px] left-[726px] h-[331px] w-[90px]" />
+              <div className="absolute inset-y-0 right-[673px] left-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.78),rgba(255,255,255,0.45)_26%,rgba(255,255,255,0)_44%)]" />
+              <div className="absolute inset-x-0 bottom-0 h-[90px] bg-[linear-gradient(to_bottom,rgba(255,255,255,0),#fff_92%)]" />
 
-            {/* red panel */}
-            <div className="absolute top-0 left-[1004px] h-[701.333px] w-[916px] bg-[#E60F1A]" />
-            {/* grows downward while an accordion row is open so the content stays on red */}
-            <div className="absolute top-[554.67px] left-[964px] h-[183px] w-[956px] bg-[#E60F1A] transition-[height] duration-300 ease-in-out group-has-[[aria-expanded=true]]/why:h-[250px]" />
-
-            {/* white fade over the top of the red panel */}
-            <div className="absolute top-[-2.67px] left-[1004px] h-[398.667px] w-[916px]">
-              <Image
-                src="/Images/why/overlay.webp"
-                alt=""
-                fill
-                sizes="48vw"
-                className="object-cover"
-              />
-            </div>
-
-            {/* person cut-out */}
-            <div className="absolute top-[-14.67px] left-[156px] h-[866.667px] w-[1757.333px] overflow-hidden">
-              <Image
-                src="/Images/why/man.webp"
-                alt=""
-                width={1867}
-                height={842}
-                sizes="100vw"
-                className="absolute top-0 left-[-9.3%] h-full w-[109.35%] max-w-none"
-              />
-            </div>
-
-            {/* heading */}
-            <div className="absolute top-[49.33px] left-[1089.33px] w-[706.667px]">
-              <Heading />
-            </div>
-
-            {/* accordion */}
-            <div className="absolute top-[265.67px] left-[1071px] w-[750px]">
-              <div className="flex justify-end">
-                <WhyMekarkAccordion />
+              <div className="absolute top-[200px] left-[80px] flex w-[759px] -translate-y-1/2 flex-col gap-[20px]">
+                <h2 className="text-[54px] leading-[60px] font-bold text-[#030303]">
+                  Why Top Industries Choose Mekark as Their{" "}
+                  <span className="block text-[40px] text-[#ED1D23]">
+                    Warehouse Construction Contractor
+                  </span>
+                </h2>
+                <p className="w-[640px] text-[20px] leading-[30px] font-normal text-[#424242]">
+                  {SUBTEXT}
+                </p>
               </div>
             </div>
+
+            {/* POINTS: 3 x 2 grid with hairline dividers */}
+            <ol className="grid w-full grid-cols-3 px-[80px]">
+              {ITEMS.map((item, index) => (
+                <li
+                  key={item.title}
+                  className={`flex flex-col gap-[10px] py-[36px] ${
+                    index % 3 === 0 ? "pr-[56px]" : "border-l border-[#E2E2E2] px-[56px]"
+                  } ${index >= 3 ? "border-t border-t-[#E2E2E2]" : ""}`}
+                >
+                  <span
+                    className="h-[41px] bg-clip-text text-[50px] leading-[41px] font-extrabold tracking-[-2.64px] text-transparent"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(155.3deg, rgba(225,225,225,0) 1.24%, #E1E1E1 85.1%)",
+                    }}
+                  >
+                    {number(index)}
+                  </span>
+                  <div className="flex flex-col gap-[20px]">
+                    <h3 className="text-[24px] leading-[26px] font-semibold text-black">
+                      {item.title}
+                    </h3>
+                    <p className="text-[18px] leading-[24px] font-normal text-[#6E6E6E]">
+                      {item.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </ScaledCanvas>
       </div>
 
-      {/* MOBILE (below 640px) */}
-      <div className="bg-[#F9F6F7] sm:hidden">
-        <div className="relative h-[249px] w-full overflow-hidden">
-          <div className="absolute top-[-13px] left-0 h-[262px] w-[638px] overflow-hidden">
+      {/* MOBILE + TABLET (below 1024px): Figma mobile frame, scaled with the width */}
+      <div className="flex flex-col items-center gap-[9px] pt-[50px] pb-[33px] min-[1024px]:hidden">
+        <div className="relative aspect-[390/177] w-full">
+          <div className="absolute inset-0 overflow-hidden">
             <Image
-              src="/Images/why/scene.webp"
-              alt="Mekark billboard on an industrial construction site"
-              width={1868}
-              height={842}
-              // ~0.62x the 617px CSS width (picks the 680w file on a 1.75x phone)
-              sizes="385px"
-              className="absolute top-[-0.11%] left-[-0.07%] h-[106.22%] w-[96.72%] max-w-none"
+              src="/Images/why/warehouse.webp"
+              alt="Mekark pre-engineered steel warehouse with red cladding and loading docks"
+              width={1536}
+              height={445}
+              sizes="160vw"
+              className="absolute top-[-0.23%] left-[-56.71%] h-[100.23%] w-[156.67%] max-w-none"
             />
           </div>
+          <div className="absolute top-[23.94%] left-[34.29%] h-[21.6%] w-[23.72%] rotate-[0.77deg]">
+            <Image
+              src="/Images/why/warehouse-logo.webp"
+              alt=""
+              fill
+              sizes="25vw"
+              className="object-cover"
+            />
+          </div>
+          <Person className="bottom-[-1.7%] left-[12.05%] h-[71.19%] w-[8.72%]" />
+          <div className="absolute inset-x-0 bottom-0 h-[33.33%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0),#fff_92%)]" />
         </div>
 
-        <div className="flex w-full flex-col items-center gap-[20px] bg-gradient-to-b from-[#FFFDFD] from-[6.034%] to-[#E60F1A] to-[47.028%] px-[20px] pt-[20px] pb-[30px]">
-          <div className="flex w-full flex-col gap-[12px]">
-            <h2 className="text-[28px] leading-[34px] font-bold text-[#030303]">
-              Why Top Industries
-              <br />
-              Choose Mekark
+        <div className="flex w-full flex-col gap-[40px] px-[20px] sm:px-10">
+          <div className="flex flex-col gap-[12px]">
+            <h2 className="text-[28px] leading-[32px] font-extrabold text-[#030303]">
+              Why Top Industries Choose Mekark as Their{" "}
+              <span className="block text-[25px] text-[#ED1D23]">
+                Warehouse Construction Contractor
+              </span>
             </h2>
-            <p className="text-[12px] leading-[19px] font-normal text-[#424242]">
-              India’s Leading Industrial Warehouse Construction
+            <p className="text-[14px] leading-[20px] font-normal text-[#6E6E6E]">
+              {SUBTEXT}
             </p>
           </div>
 
-          <WhyMekarkMobileAccordion />
-        </div>
-      </div>
-
-      {/* TABLET (640px - 1023px) */}
-      <div className="hidden sm:max-[1023px]:block">
-        <div className="relative h-[260px] w-full sm:h-[380px]">
-          <Image
-            src="/Images/why/scene.webp"
-            alt="Mekark billboard on an industrial construction site"
-            fill
-            sizes="100vw"
-            className="object-cover object-left"
-          />
-        </div>
-
-        <div className="bg-[#E60F1A] px-5 py-10 sm:px-10 sm:py-14">
-          <h2 className="text-[34px] leading-[1.1] font-bold text-white sm:text-[48px]">
-            Why Top Industries Choose Mekark
-          </h2>
-          <p className="mt-3 text-[16px] leading-[28px] font-normal text-white/80">
-            India’s Leading Industrial Warehouse Construction
-          </p>
-
-          <ul className="mt-8 flex flex-col">
-            {POINTS.map((point) => (
+          <ol className="flex flex-col gap-[12px]">
+            {ITEMS.map((item, index) => (
               <li
-                key={point.value}
-                className="flex items-center gap-4 border-b-[1.333px] border-solid border-white/30 py-4"
+                key={item.title}
+                className={`flex flex-col gap-[4px] ${
+                  index > 0 ? "border-t border-[#E2E2E2] pt-[12px]" : ""
+                }`}
               >
-                <Arrow />
-                <span className="min-w-[72px] text-[24px] leading-[28px] font-semibold whitespace-nowrap text-[#080808] sm:text-[32px]">
-                  {point.value}
-                </span>
-                <span className="text-[16px] leading-[24px] font-bold text-white sm:text-[22px]">
-                  {point.text}
-                </span>
+                <h3 className="flex text-[18px] leading-[22px] font-bold text-[#111]">
+                  <span className="w-[32px] shrink-0 text-[#ED1D23]">
+                    {number(index)}.
+                  </span>
+                  {item.title}
+                </h3>
+                <p className="pl-[32px] text-[14px] leading-[20px] font-normal text-[#6E6E6E]">
+                  {item.description}
+                </p>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </div>
     </section>

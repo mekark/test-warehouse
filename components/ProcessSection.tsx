@@ -15,6 +15,7 @@ const DESIGN_WIDTH = 1867;
 
 type Step = {
   number: string;
+  days: string;
   title: string;
   description: string;
   icon: LucideIcon;
@@ -27,8 +28,10 @@ type Step = {
 const STEPS: Step[] = [
   {
     number: "01",
-    title: "Site & Project Feasibility",
-    description: "Geotechnical, regulatory, and budget checks.",
+    days: "Days 1–15",
+    title: "Site Feasibility & Geotechnical Survey",
+    description:
+      "Topographical mapping, soil bearing capacity tests, and master layout planning.",
     icon: ClipboardCheck,
     left: -1,
     width: 270,
@@ -36,8 +39,10 @@ const STEPS: Step[] = [
   },
   {
     number: "02",
-    title: "Design & Engineering",
-    description: "In-house engineering and planning.",
+    days: "Days 16–30",
+    title: "Structural BIM Design & Approvals",
+    description:
+      "3D structural modeling, wind/seismic load calculation, and GA drawing sign-off.",
     icon: DraftingCompass,
     left: 298,
     width: 272,
@@ -45,8 +50,10 @@ const STEPS: Step[] = [
   },
   {
     number: "03",
-    title: "Factory Fabrication",
-    description: "Precision-made columns, rafters, and purlins.",
+    days: "Days 31–75",
+    title: "Civil Foundation & Parallel PEB Fabrication",
+    description:
+      "Simultaneous on-site RCC footing/pedestal work and off-site factory steel fabrication.",
     icon: Factory,
     left: 598,
     width: 268,
@@ -54,8 +61,10 @@ const STEPS: Step[] = [
   },
   {
     number: "04",
-    title: "On-Site Erection",
-    description: "On-site structural assembly",
+    days: "Days 76–115",
+    title: "Structural Steel Erection & Cladding",
+    description:
+      "Bolt-together erection of frames, crane beams, standing seam leak-proof roofing, and wall sheeting.",
     icon: HardHat,
     left: 894,
     width: 271,
@@ -63,8 +72,10 @@ const STEPS: Step[] = [
   },
   {
     number: "05",
-    title: "Quality Validation",
-    description: "Inspection, installation & compliance checks",
+    days: "Days 116–140",
+    title: "Industrial Flooring & MEP Integration",
+    description:
+      "Laser-screed/VDF floor casting, HVLS fans, sky-lighting, fire hydrant systems, and dock doors.",
     icon: ShieldCheck,
     left: 1193,
     width: 271,
@@ -72,8 +83,10 @@ const STEPS: Step[] = [
   },
   {
     number: "06",
-    title: "Handover & After-Sales",
-    description: "Snag clearance, documentation, and support.",
+    days: "Days 141–150",
+    title: "Quality Validation & Final Handover",
+    description:
+      "Load testing, snag clearance, structural stability certification, and key handover.",
     icon: Truck,
     left: 1492,
     width: 270,
@@ -89,15 +102,31 @@ function StepIcon({ icon: Icon }: { icon: LucideIcon }) {
   );
 }
 
+function StepNumber({ step }: { step: Step }) {
+  return (
+    <div className="flex items-center gap-[12px]">
+      <p
+        className={`${spaceGrotesk.className} text-[26px] leading-[21.333px] font-bold text-[#ED1D23]`}
+      >
+        {step.number}
+      </p>
+      <span className="rounded-full bg-[#ED1D23]/10 px-[10px] py-[4px] text-[14px] leading-[normal] font-semibold whitespace-nowrap text-[#ED1D23]">
+        {step.days}
+      </span>
+    </div>
+  );
+}
+
 function Heading() {
   return (
     <div className="flex flex-col gap-[10px]">
       <h2 className="text-[34px] leading-[1.15] font-bold text-[#0F172A] min-[1024px]:w-[1219px] min-[1024px]:text-[66px] min-[1024px]:leading-[73.333px]">
-        Our Turnkey{" "}
-        <span className="text-[#ED1D23]">Warehouse Construction</span>
+        Our 150 Day Turnkey{" "}
+        <span className="text-[#ED1D23]">Warehouse Construction Services Workflow</span>
       </h2>
       <p className="text-[18px] leading-[20px] font-normal text-[#64748B] min-[1024px]:text-[24px]">
-        As a warehouse construction company, we follow a proven 6-step process to ensure on-time delivery.
+      6-Step Execution Process 
+
       </p>
     </div>
   );
@@ -114,7 +143,8 @@ export default function ProcessSection() {
               <Heading />
 
               <div className="flex w-full flex-col items-center justify-center gap-[50px]">
-                <div className="relative h-[271px] w-full">
+                {/* steps are absolutely positioned, so this height must fit the longest column */}
+                <div className="relative h-[380px] w-full">
                   {/* connector line */}
                   <div className="absolute top-[47px] left-[72px] h-[1.333px] w-[1430px] bg-[#E4DFE0]" />
 
@@ -127,11 +157,7 @@ export default function ProcessSection() {
                       <StepIcon icon={step.icon} />
 
                       <div className="flex w-full flex-col items-start gap-[12px]">
-                        <p
-                          className={`${spaceGrotesk.className} text-[26px] leading-[21.333px] font-bold text-[#ED1D23]`}
-                        >
-                          {step.number}
-                        </p>
+                        <StepNumber step={step} />
                         <p className="w-full text-[21px] leading-[normal] font-bold text-[#080808]">
                           {step.title}
                         </p>
@@ -159,11 +185,7 @@ export default function ProcessSection() {
             <li key={step.number} className="flex flex-col items-start gap-6">
               <StepIcon icon={step.icon} />
               <div className="flex flex-col gap-3">
-                <p
-                  className={`${spaceGrotesk.className} text-[26px] leading-[21.333px] font-bold text-[#ED1D23]`}
-                >
-                  {step.number}
-                </p>
+                <StepNumber step={step} />
                 <p className="text-[21px] leading-[normal] font-bold text-[#080808]">
                   {step.title}
                 </p>
@@ -183,11 +205,12 @@ export default function ProcessSection() {
         <div className="mx-auto flex w-full max-w-[350px] flex-col items-center gap-[24px]">
           <div className="flex w-full max-w-[324px] flex-col gap-[12px]">
             <h2 className="text-[27px] leading-[34px] font-bold text-[#0F172A]">
-              Our Turnkey{" "}
-              <span className="text-[#ED1D23]">Warehouse Construction</span>
+              Our 150 Day Turnkey{" "}
+              <span className="text-[#ED1D23]">Warehouse Construction Services Workflow</span>
             </h2>
             <p className="text-[14px] leading-[20px] font-normal text-[#64748B]">
-              As a warehouse construction company, we follow a proven 6-step process to ensure on-time delivery.
+            6-Step Execution Process 
+
             </p>
           </div>
 
@@ -219,6 +242,9 @@ export default function ProcessSection() {
                       className="shrink-0 text-[#ED1D23]"
                     />
                     <div className="flex min-w-0 flex-col gap-px">
+                      <p className="text-[11px] leading-[normal] font-semibold text-[#ED1D23] uppercase">
+                        {step.days}
+                      </p>
                       <p className="text-[16px] leading-[normal] font-semibold text-[#0F172A]">
                         {step.title}
                       </p>
