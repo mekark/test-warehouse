@@ -39,11 +39,11 @@ export function BlueprintForm() {
 
   return (
     <div className="flex w-full flex-col items-center gap-[26px] rounded-[31.931px] bg-white px-5 py-[32px] sm:px-[50px] sm:py-[44px] min-[1024px]:w-[659px]">
-      <div className="flex w-full flex-col items-start gap-[6px]">
-        <h3 className="w-full text-[22px] leading-[normal] font-extrabold text-[#080808] sm:text-[24px]">
+      <div className="flex w-full flex-col items-center gap-[10px] text-center">
+        <h3 className="w-full text-[22px] leading-[1.25] font-extrabold text-balance text-[#080808] sm:text-[24px]">
           Request Your Warehouse Project Blueprint &amp; Cost Estimate
         </h3>
-        <p className="w-full text-[14px] leading-[normal] font-medium text-[#ffffff]">
+        <p className="w-full text-[14px] leading-[1.4] font-medium text-balance text-[#5A5A5A]">
           Get a custom structural layout, BOQ cost range &amp; 150-day
           execution timeline.
         </p>
@@ -54,7 +54,7 @@ export function BlueprintForm() {
         noValidate
         className="flex w-full flex-col items-center gap-[26px]"
       >
-        <div className="flex w-full flex-col items-start">
+        <div className="flex w-full flex-col items-start sm:gap-[18px]">
           {/* ROW 1 */}
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35px]">
             <div className="flex w-full flex-col items-start gap-[7px] sm:w-[262.202px]">
@@ -73,7 +73,7 @@ export function BlueprintForm() {
               {errorText(errors.name)}
             </div>
 
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
               <label htmlFor="lb-location" className={labelClass}>
                 Project Location<span className="text-[#C4161C]">*</span>
               </label>
@@ -92,7 +92,7 @@ export function BlueprintForm() {
 
           {/* ROW 2 */}
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35.237px]">
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
               <label htmlFor="lb-phone" className={labelClass}>
                 Mobile Number<span className="text-[#C4161C]">*</span>
               </label>
@@ -110,7 +110,7 @@ export function BlueprintForm() {
               {errorText(errors.phoneNumber)}
             </div>
 
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
               <label htmlFor="lb-email" className={labelClass}>
                 Email Address<span className="text-[#C4161C]">*</span>
               </label>
@@ -129,7 +129,7 @@ export function BlueprintForm() {
 
           {/* ROW 3 */}
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[37px]">
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
               <label htmlFor="lb-industry" className={labelClass}>
                 Industry Type<span className="text-[#C4161C]">*</span>
               </label>
@@ -145,7 +145,7 @@ export function BlueprintForm() {
               {errorText(errors.industry)}
             </div>
 
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
               <label htmlFor="lb-sqft" className={labelClass}>
                 Project Sq. Ft<span className="text-[#C4161C]">*</span>
               </label>

@@ -13,6 +13,8 @@ type Tile = {
   radiusClass: string;
   /** Tailwind classes positioning the <img> inside the tile (Figma crop) */
   imageClass: string;
+  /** Use the desktop crop on phones too, instead of a plain object-cover fill */
+  cropOnMobile?: boolean;
 };
 
 // 2 x 3 grid, left-to-right / top-to-bottom, as laid out in the Figma frame
@@ -30,11 +32,11 @@ const TILES: Tile[] = [
     imageClass: "absolute top-[-2.5%] left-[-5.01%] size-[104.97%] max-w-none",
   },
   {
-    src: "/Images/gallery/p3.webp",
-    alt: "Warehouse with brown glazed entrance",
+    src: "/Images/gallery/solo-paints-cold-storage.webp",
+    alt: "Solo Paints industrial warehouse with red-striped cladding and truck loading bays",
     radiusClass: "rounded-bl-[32px]",
     imageClass:
-      "absolute top-[-2.25%] left-[-11.16%] h-[119.15%] w-[119.17%] max-w-none",
+      "absolute top-[-2.74%] left-[-3.73%] h-[110.81%] w-[110.82%] max-w-none",
   },
   {
     src: "/Images/gallery/p4.webp",
@@ -55,6 +57,7 @@ const TILES: Tile[] = [
     radiusClass: "rounded-br-[32px]",
     imageClass:
       "absolute top-[-10.66%] left-[-10.82%] h-[110.75%] w-[110.81%] max-w-none",
+    cropOnMobile: true,
   },
 ];
 
@@ -117,7 +120,7 @@ export default function ProjectsGallerySection() {
       </div>
 
       {/* MOBILE (below 640px) */}
-      <div className="flex flex-col gap-[24px] px-[20px] py-[32px] sm:hidden">
+      <div className="flex flex-col gap-[16px] px-[20px] py-[32px] sm:hidden">
         <div className="flex w-full flex-col gap-[12px]">
           <div className="flex w-full flex-col gap-[8px] font-bold">
             <p className="text-[12px] leading-[18px] tracking-[1.5978px] text-[#ED1D23] uppercase">
@@ -129,21 +132,34 @@ export default function ProjectsGallerySection() {
           </div>
         </div>
 
-        <div className="flex w-full flex-col gap-[16px]">
+        {/* One continuous stack: only the outer corners are rounded */}
+        <div className="flex w-full flex-col gap-[10px] overflow-hidden rounded-[10px]">
           {TILES.map((tile) => (
             <div
               key={tile.src}
-              className="relative aspect-[1672/941] w-full overflow-hidden rounded-[16px] bg-[#D9D9D9]"
+              className="relative aspect-[350/197] w-full overflow-hidden bg-[#D9D9D9]"
             >
-              <Image
-                src={tile.src}
-                alt={tile.alt}
-                fill
-                // Tile is 100vw - 40px; ~0.65x of that keeps the file near
-                // the displayed size on ~1.75x phones (~2x on 3x phones)
-                sizes="calc(65vw - 26px)"
-                className="object-cover"
-              />
+              {/* Tile is 100vw - 40px; ~0.65x of that keeps the file near
+                  the displayed size on ~1.75x phones (~2x on 3x phones) */}
+              {tile.cropOnMobile ? (
+                // fill's inline sizing would override the crop classes
+                <Image
+                  src={tile.src}
+                  alt={tile.alt}
+                  width={1672}
+                  height={941}
+                  sizes="calc(65vw - 26px)"
+                  className={tile.imageClass}
+                />
+              ) : (
+                <Image
+                  src={tile.src}
+                  alt={tile.alt}
+                  fill
+                  sizes="calc(65vw - 26px)"
+                  className="object-cover"
+                />
+              )}
             </div>
           ))}
         </div>

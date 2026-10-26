@@ -120,9 +120,9 @@ function StepNumber({ step }: { step: Step }) {
 function Heading() {
   return (
     <div className="flex flex-col gap-[10px]">
-      <h2 className="text-[34px] leading-[1.15] font-bold text-[#0F172A] min-[1024px]:w-[1219px] min-[1024px]:text-[66px] min-[1024px]:leading-[73.333px]">
+      <h2 className="[font-variant-ligatures:none] text-[34px] leading-[1.15] font-bold text-[#0F172A] min-[1024px]:w-[1219px] min-[1024px]:text-[66px] min-[1024px]:leading-[73.333px]">
         Our 150 Day Turnkey{" "}
-        <span className="text-[#ED1D23]">Warehouse Construction Services Workflow</span>
+        <span className="text-[#ED1D23]">Warehouse Construction Services Work flow</span>
       </h2>
       <p className="text-[18px] leading-[20px] font-normal text-[#64748B] min-[1024px]:text-[24px]">
       6-Step Execution Process 
@@ -204,10 +204,10 @@ export default function ProcessSection() {
       <div className="px-5 pt-8 pb-10 sm:hidden">
         <div className="mx-auto flex w-full max-w-[350px] flex-col items-center gap-[24px]">
           <div className="flex w-full flex-col gap-[8px]">
-            <h2 className="text-[27px] leading-[34px] font-bold text-[#0F172A]">
+            <h2 className="[font-variant-ligatures:none] text-[27px] leading-[34px] font-bold text-[#0F172A]">
               Our 150 Day Turnkey{" "}
               <span className="block text-balance text-[#ED1D23]">
-                Warehouse Construction Services Workflow
+                Warehouse Construction Services Work flow
               </span>
             </h2>
             <p className="text-[14px] leading-[20px] font-normal text-[#64748B]">

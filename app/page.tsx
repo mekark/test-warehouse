@@ -4,6 +4,7 @@ import TechnicalSpecificationsSection from "@/components/TechnicalSpecifications
 import WhyMekarkSection from "@/components/WhyMekarkSection";
 import WhyEditorialMobile from "@/components/WhyEditorialMobile";
 import ProjectsGallerySection from "@/components/ProjectsGallerySection";
+import ManufacturingCapabilitiesSection from "@/components/ManufacturingCapabilitiesSection";
 import FaqAccordionSection from "@/components/FaqAccordionSection";
 import LeadBlueprintSection from "@/components/LeadBlueprintSection";
 import FloatingContact from "@/components/FloatingContact";
@@ -17,6 +18,7 @@ export default function Home() {
       <TechnicalSpecificationsSection />
       <WhyMekarkSection />
       <ProjectsGallerySection />
+      <ManufacturingCapabilitiesSection />
       <FaqAccordionSection />
       <LeadBlueprintSection />
     </main>

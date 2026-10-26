@@ -43,7 +43,7 @@ const HIGHLIGHTS = [
   },
   {
     title: "Pan-India Execution:",
-    text: "40,000 MT annual in-house PEB production capacity.",
+    text: "Standardized design and site practices that ensure the same quality across every project.",
   },
 ];
 

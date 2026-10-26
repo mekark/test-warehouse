@@ -43,11 +43,11 @@ export default function HeroMobileForm() {
 
   return (
     <div className="flex w-full flex-col items-center gap-[16px] rounded-[24px] bg-white/[0.01] px-[20px] py-[24px] shadow-[0px_26.43px_88.09px_0px_rgba(0,0,0,0.06)] backdrop-blur-[15px]">
-      <div className="flex w-full flex-col items-start gap-[6px] text-white">
-        <h3 className="w-full text-[24px] leading-[normal] font-extrabold">
+      <div className="flex w-full flex-col items-center gap-[8px] text-center text-white">
+        <h3 className="w-full text-[19px] leading-[1.25] font-extrabold text-balance">
           Request Your Warehouse Project Blueprint &amp; Cost Estimate
         </h3>
-        <p className="w-full text-[14px] leading-[normal] font-medium">
+        <p className="w-full text-[12px] leading-[1.4] font-medium text-balance">
           Get a custom structural layout, BOQ cost range &amp; 150-day
           execution timeline.
         </p>

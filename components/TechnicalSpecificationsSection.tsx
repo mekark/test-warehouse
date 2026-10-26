@@ -277,6 +277,95 @@ function MobileSpecCard({ card }: { card: SpecCard }) {
   );
 }
 
+/** Compact phone card (Figma mobile frame): text on the left, illustration pinned bottom-right. */
+function PhoneSpecCard({ card }: { card: SpecCard }) {
+  return (
+    <article className="relative flex min-h-[137px] w-full flex-col items-start overflow-clip rounded-[20px] bg-white py-[10px] pl-[12px] shadow-[5px_5px_8px_-4px_rgba(0,0,0,0.2)]">
+      <div
+        className={`pointer-events-none absolute right-[12px] overflow-hidden ${
+          card.icon === "compliance"
+            ? "bottom-[12px] h-[125px] w-[170px]"
+            : "bottom-0 h-[137px] w-[187px]"
+        }`}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={specAsset(card.illustration)}
+          alt=""
+          className={card.imageClassName}
+        />
+      </div>
+      <div className="relative flex flex-col items-start gap-[4px]">
+        <div className="flex flex-col items-start">
+          <p
+            className="bg-clip-text text-[30px] leading-normal font-extrabold tracking-[-1.8169px] text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(141.12deg, rgb(225, 225, 225) 16.647%, rgba(225, 225, 225, 0) 96.153%)",
+            }}
+          >
+            {card.number}
+          </p>
+          {/* The 48px desktop icon, scaled to the 24px phone size */}
+          <div className="size-[24px]">
+            <div className="origin-top-left scale-50">
+              <DesktopSpecIcon type={card.icon} />
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-start">
+          <p className="text-[14px] leading-[20px] font-semibold whitespace-nowrap text-black">
+            {card.title}
+          </p>
+          {/* Whole value is red on phones, including "Up to" */}
+          <p className="text-[18px] leading-[27px] font-extrabold tracking-[-1.025px] whitespace-nowrap text-[#ED1D23] [&_span]:text-[#ED1D23]">
+            {card.value}
+          </p>
+          <p className="text-[12px] leading-[20px] font-normal whitespace-nowrap text-[#6E6E6E]">
+            {card.description}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/** Phone background: warehouse watermark across the top, soft glow and red light streaks. */
+function PhoneBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden>
+      {/* Right-aligned (as in the 390px frame) so wider phones never show a gap */}
+      <div className="absolute top-0 right-0 h-[216px] w-[738px] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={specAsset("warehouse-watermark.webp")}
+          alt=""
+          className="absolute top-0 left-0 h-[136.63%] w-full max-w-none"
+        />
+      </div>
+      <div className="absolute top-[-66px] left-[calc(50%-439px)] h-[425px] w-[733px]">
+        <div className="absolute inset-[-70.59%_-40.93%]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={specAsset("ellipse-glow.svg")}
+            alt=""
+            className="block size-full max-w-none"
+          />
+        </div>
+      </div>
+      <div className="absolute top-[-90px] right-[-99px] flex h-[208px] w-[268px] items-center justify-center">
+        <div className="h-[120px] w-[240px] rotate-[24.31deg] bg-gradient-to-b from-[#C10300] to-[rgba(242,246,249,0)]" />
+      </div>
+      <div className="absolute top-[154px] left-[-81px] flex h-[154px] w-[214px] items-center justify-center">
+        <div className="h-[120px] w-[195px] rotate-[10.48deg] bg-gradient-to-b from-[rgba(193,3,0,0.4)] to-[rgba(242,246,249,0)]" />
+      </div>
+      <div className="absolute bottom-[-130px] left-[114px] flex h-[200px] w-[466px] items-center justify-center">
+        <div className="h-[120px] w-[451px] -scale-y-100 rotate-[169.52deg] bg-gradient-to-b from-[rgba(193,3,0,0.4)] to-[rgba(242,246,249,0)]" />
+      </div>
+    </div>
+  );
+}
+
 function DesktopBackground() {
   const maskUrl = specAsset("bg-mask.svg");
 
@@ -380,21 +469,25 @@ export default function TechnicalSpecificationsSection() {
         </div>
       </div>
 
-      <div className="relative overflow-hidden px-5 py-10 sm:hidden">
-        <div className="pointer-events-none absolute inset-0 opacity-15">
-          <Image
-            src={`${IMG}/warehouse-watermark.webp`}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-        <div className="relative mx-auto flex w-full max-w-[350px] flex-col items-center gap-6">
-          <SectionHeading compact />
-          <div className="flex w-full flex-col gap-5">
+      {/* PHONE (below 640px): Figma mobile frame */}
+      <div className="relative overflow-hidden bg-[#EEF5F9] px-5 py-6 sm:hidden">
+        <PhoneBackground />
+        <div className="relative mx-auto flex w-full max-w-[350px] flex-col items-center gap-5">
+          <div className="flex w-full flex-col items-center gap-2 text-center">
+            <p className="text-[12px] leading-[21.304px] font-bold tracking-[1.5978px] text-[#ED1D23] uppercase">
+              Technical Specifications
+            </p>
+            <h2 className="text-[28px] leading-[32px] font-bold text-[#0F172A]">
+              Engineered for Superior Performance
+            </h2>
+            <p className="text-[14px] leading-[20px] font-normal tracking-[-0.14px] text-[#64748B]">
+              Optimized design parameters to deliver strength, space and safety
+              for industrial and logistics operations.
+            </p>
+          </div>
+          <div className="flex w-full flex-col gap-[10px]">
             {SPECS.map((card) => (
-              <MobileSpecCard key={card.number} card={card} />
+              <PhoneSpecCard key={card.number} card={card} />
             ))}
           </div>
         </div>
