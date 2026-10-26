@@ -19,13 +19,13 @@ const HIDDEN_ABOVE_PHONE = "(min-width: 640px)";
 // CSS width (~1.1x on a 1.75x phone): it sits under dark overlays, so the
 // slight softness is invisible and the file is much smaller.
 const { props: bgProps } = getImageProps({
-  src: "/Images/hero/m-bg.webp",
+  src: "/Images/hero/m-bg-steel.webp",
   alt: "",
   fill: true,
   sizes: "320px",
   loading: "eager",
   fetchPriority: "high",
-  className: "object-cover",
+  className: "object-cover blur-[2px]",
 });
 
 const { props: heroProps } = getImageProps({
@@ -57,7 +57,7 @@ const HIGHLIGHTS = [
   },
   {
     title: "Pan-India Execution:",
-    text: "40,000 MT annual in-house PEB production capacity.",
+    text: "Standardized design and site practices that ensure the same quality across every project.",
   },
 ];
 
@@ -95,7 +95,7 @@ export default function BlueprintHeroMobile() {
       className={`${manrope.className} relative w-full overflow-hidden bg-[#060606] text-white`}
     >
       {/* BACKGROUND: sunset steel frame, dark overlay, fade-to-black, radial vignette */}
-      <div className="pointer-events-none absolute top-[419px] bottom-0 left-1/2 w-[505px] -translate-x-1/2">
+      <div className="pointer-events-none absolute top-[419px] bottom-0 left-1/2 w-[505px] -translate-x-1/2 overflow-hidden">
         <picture>
           <source media={HIDDEN_ABOVE_PHONE} srcSet={BLANK_GIF} />
           {/* eslint-disable-next-line jsx-a11y/alt-text */}

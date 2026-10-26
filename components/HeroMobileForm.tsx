@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { SQFT_OPTIONS, useBlueprintForm } from "@/hooks/useBlueprintForm";
-import { assetUrl } from "@/lib/assetPrefix";
+import SqftSelect from "@/components/SqftSelect";
 
 const fieldBase =
   "w-full rounded-[8px] border border-solid bg-[#F0F0F0] px-[18px] py-[14px] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -22,7 +21,7 @@ export default function HeroMobileForm() {
     error ? "border-[#C4161C]" : "border-[#E2E2E2]";
 
   const selectClass = (error?: string) =>
-    `${fieldBase} ${borderColor(error)} cursor-pointer appearance-none bg-none! pr-[40px] pl-[22px]`;
+    `${fieldBase} ${borderColor(error)} pr-[22px] pl-[22px]`;
 
   const errorText = (error?: string) =>
     error ? (
@@ -30,16 +29,6 @@ export default function HeroMobileForm() {
         {error}
       </p>
     ) : null;
-
-  const chevron = (
-    <Image
-      src={assetUrl("/Images/lead/m-chevron2.svg")}
-      alt=""
-      width={15}
-      height={15}
-      className="pointer-events-none absolute top-1/2 right-[22px] size-[15px] -translate-y-1/2 rotate-90"
-    />
-  );
 
   return (
     <div className="flex w-full flex-col items-center gap-[16px] rounded-[24px] bg-white/[0.01] px-[20px] py-[24px] shadow-[0px_26.43px_88.09px_0px_rgba(0,0,0,0.06)] backdrop-blur-[15px]">
@@ -158,21 +147,15 @@ export default function HeroMobileForm() {
 
           <div>
             <div className="relative">
-              <select
+              <SqftSelect
                 name="sqft"
-                aria-label="Project square feet"
+                ariaLabel="Project square feet"
                 value={values.sqft}
+                options={SQFT_OPTIONS}
+                placeholder="Select Sq.ft Requirement"
                 onChange={handleChange}
                 className={selectClass(errors.sqft)}
-              >
-                <option value="">Select Sq.ft Requirement</option>
-                {SQFT_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              {chevron}
+              />
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute top-1/2 right-[40px] -translate-y-1/2 text-[14px] leading-none text-[#C4161C]"

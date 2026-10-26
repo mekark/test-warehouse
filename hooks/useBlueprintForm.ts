@@ -25,7 +25,7 @@ export const SQFT_OPTIONS = [
   "10,000 - 20,000",
   "20,000 - 30,000",
   "30,000 - 50,000",
-  "50,000+ sq.ft",
+  " Above 50,000 sq.ft",
 ];
 
 export type BlueprintFormValues = {

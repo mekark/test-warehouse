@@ -46,10 +46,9 @@ const TILES: Tile[] = [
   },
   {
     src: "/Images/gallery/p5.webp",
-    alt: "Aerial view of a white PEB industrial warehouse",
+    alt: "Aerial view of a green and beige PEB distribution warehouse",
     radiusClass: "rounded-bl-[32px]",
-    imageClass:
-      "absolute top-[-16.65%] left-[-3.05%] h-[116.64%] w-[116.44%] max-w-none",
+    imageClass: "absolute inset-0 size-full max-w-none object-cover",
   },
   {
     src: "/Images/gallery/p6.webp",

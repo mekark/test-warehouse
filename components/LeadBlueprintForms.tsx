@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { SQFT_OPTIONS, useBlueprintForm } from "@/hooks/useBlueprintForm";
-import { assetUrl } from "@/lib/assetPrefix";
+import SqftSelect from "@/components/SqftSelect";
 
 const fieldBase =
   "w-full rounded-[8px] border-[1.101px] border-solid bg-[#F0F0F0] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -25,10 +24,8 @@ export function BlueprintForm() {
   const inputClass = (error?: string) =>
     `${fieldBase} ${borderColor(error)} px-[19.101px] py-[15.101px]`;
 
-  const selectClass = (error?: string, hasValue?: boolean) =>
-    `${fieldBase} ${borderColor(error)} appearance-none cursor-pointer rounded-[8.809px] py-[15.101px] pr-[36.101px] pl-[23.101px] ${
-      hasValue ? "text-black" : "text-[#757575]"
-    }`;
+  const selectClass = (error?: string) =>
+    `${fieldBase} ${borderColor(error)} rounded-[8.809px] py-[15.101px] pr-[19.101px] pl-[23.101px]`;
 
   const errorText = (error?: string) =>
     error ? (
@@ -149,20 +146,15 @@ export function BlueprintForm() {
               <label htmlFor="lb-sqft" className={labelClass}>
                 Project Sq. Ft<span className="text-[#C4161C]">*</span>
               </label>
-              <select
+              <SqftSelect
                 id="lb-sqft"
                 name="sqft"
                 value={values.sqft}
+                options={SQFT_OPTIONS}
+                placeholder="Select Sq.ft Requirement"
                 onChange={handleChange}
-                className={selectClass(errors.sqft, !!values.sqft)}
-              >
-                <option value="">Select Sq.ft Requirement</option>
-                {SQFT_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+                className={selectClass(errors.sqft)}
+              />
               {errorText(errors.sqft)}
             </div>
           </div>
@@ -230,20 +222,8 @@ export function MobileBlueprintForm() {
       </p>
     ) : null;
 
-  const selectClass = (error?: string, hasValue?: boolean) =>
-    `${mobileField} ${borderColor(error)} cursor-pointer appearance-none bg-none! pr-[32px] pl-[20px] ${
-      hasValue ? "text-black" : "text-[#757575]"
-    }`;
-
-  const chevron = (
-    <Image
-      src={assetUrl("/Images/lead/m-chevron2.svg")}
-      alt=""
-      width={15}
-      height={15}
-      className="pointer-events-none absolute top-1/2 right-[16px] size-[15px] -translate-y-1/2 rotate-90"
-    />
-  );
+  const selectClass = (error?: string) =>
+    `${mobileField} ${borderColor(error)} pr-[16px] pl-[20px]`;
 
   return (
     <div className="flex w-full flex-col gap-[16px] rounded-[24px] border border-solid border-[#E2E2E2] bg-white p-[20px] drop-shadow-[0px_24px_40px_rgba(0,0,0,0.06)]">
@@ -362,27 +342,15 @@ export function MobileBlueprintForm() {
 
           <div>
             <div className="relative">
-              <select
+              <SqftSelect
                 name="sqft"
-                aria-label="Project square feet"
+                ariaLabel="Project square feet"
                 value={values.sqft}
+                options={SQFT_OPTIONS}
+                placeholder="Select Sq. Ft Requirement"
                 onChange={handleChange}
-                className={selectClass(errors.sqft, !!values.sqft)}
-              >
-                <option value="">Select Sq. Ft Requirement</option>
-                {SQFT_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              {chevron}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute top-1/2 right-[40px] -translate-y-1/2 text-[14px] leading-none text-[#C4161C]"
-              >
-                *
-              </span>
+                className={selectClass(errors.sqft)}
+              />
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute top-1/2 right-[40px] -translate-y-1/2 text-[14px] leading-none text-[#C4161C]"

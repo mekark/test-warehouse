@@ -1,6 +1,7 @@
 "use client";
 
 import { SQFT_OPTIONS, useBlueprintForm } from "@/hooks/useBlueprintForm";
+import SqftSelect from "@/components/SqftSelect";
 
 const fieldBase =
   "w-full rounded-[8px] border-[1.101px] border-solid bg-[#F0F0F0] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -24,10 +25,8 @@ export default function HeroBlueprintForm() {
   const inputClass = (error?: string) =>
     `${fieldBase} ${borderColor(error)} px-[19.101px] py-[15.101px]`;
 
-  const selectClass = (error?: string, hasValue?: boolean) =>
-    `${fieldBase} ${borderColor(error)} appearance-none cursor-pointer pl-[23.101px] pr-[36.101px] py-[15.101px] tracking-[0.3303px] ${
-      hasValue ? "text-black" : "text-[#757575]"
-    }`;
+  const selectClass = (error?: string) =>
+    `${fieldBase} ${borderColor(error)} py-[15.101px] pr-[19.101px] pl-[23.101px] tracking-[0.3303px]`;
 
   const errorText = (error?: string) =>
     error ? (
@@ -148,20 +147,15 @@ export default function HeroBlueprintForm() {
               <label htmlFor="bh-sqft" className={labelClass}>
                 Project Sq. Ft<span className="text-[#C4161C]">*</span>
               </label>
-              <select
+              <SqftSelect
                 id="bh-sqft"
                 name="sqft"
                 value={values.sqft}
+                options={SQFT_OPTIONS}
+                placeholder="Select Sq.ft Requirement"
                 onChange={handleChange}
-                className={`${selectClass(errors.sqft, !!values.sqft)} rounded-[8.809px] tracking-normal`}
-              >
-                <option value="">Select Sq.ft Requirement</option>
-                {SQFT_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+                className={`${selectClass(errors.sqft)} rounded-[8.809px] tracking-normal`}
+              />
               {errorText(errors.sqft)}
             </div>
           </div>
