@@ -117,7 +117,7 @@ export default function BlueprintHeroSection() {
                 />
               </div>
 
-              <EnquiryFormButton className="flex items-center justify-center rounded-[8px] bg-[#C4161C] px-[16px] py-[8px] text-[14px] font-semibold leading-[normal] whitespace-pre text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] sm:px-[24px] sm:py-[10px] sm:text-[16px]">
+              <EnquiryFormButton className="flex items-center justify-center rounded-[8px] bg-[#C4161C] px-[16px] py-[8px] text-[14px] font-semibold leading-[normal] whitespace-pre text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] sm:px-[24px] sm:py-[10px] sm:text-[16px] transition-colors hover:bg-[#A31217]">
                 {"Request an Estimate"}
               </EnquiryFormButton>
             </header>
@@ -229,7 +229,7 @@ export default function BlueprintHeroSection() {
                     href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-[55.333px] shrink-0 items-center justify-center gap-[9.623px] rounded-full bg-white px-[24.058px] py-[14.435px]"
+                    className="flex h-[55.333px] shrink-0 items-center justify-center gap-[9.623px] rounded-full bg-white px-[24.058px] py-[14.435px] transition-colors hover:bg-[#FDEBEB]"
                   >
                     <span className="text-[16px] leading-[24.058px] font-bold whitespace-nowrap text-[#E5091F]">
                       WhatsApp
@@ -245,7 +245,7 @@ export default function BlueprintHeroSection() {
 
                   <a
                     href={`tel:${PHONE_NUMBER}`}
-                    className="flex h-[55.333px] shrink-0 items-center justify-center gap-[9.623px] rounded-full border border-solid border-white px-[24.058px] py-[14.435px]"
+                    className="flex h-[55.333px] shrink-0 items-center justify-center gap-[9.623px] rounded-full border border-solid border-white px-[24.058px] py-[14.435px] transition-colors hover:bg-white/15"
                   >
                     <span className="text-[16px] leading-[24.058px] font-bold whitespace-nowrap text-white">
                       Call Now

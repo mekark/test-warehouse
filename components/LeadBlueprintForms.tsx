@@ -43,7 +43,7 @@ export function BlueprintForm() {
         <h3 className="w-full text-[22px] leading-[normal] font-extrabold text-[#080808] sm:text-[24px]">
           Request Your Warehouse Project Blueprint &amp; Cost Estimate
         </h3>
-        <p className="w-full text-[14px] leading-[normal] font-medium text-[#9A9A9A]">
+        <p className="w-full text-[14px] leading-[normal] font-medium text-[#ffffff]">
           Get a custom structural layout, BOQ cost range &amp; 150-day
           execution timeline.
         </p>
@@ -194,7 +194,7 @@ export function BlueprintForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex h-[63.867px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[40px] py-[20px] text-center text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
+            className="flex h-[63.867px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[40px] py-[20px] text-center text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70 transition-colors enabled:hover:bg-[#A31217]"
           >
             {isSubmitting ? "Submitting..." : "Request an Estimate"}
           </button>
@@ -251,7 +251,7 @@ export function MobileBlueprintForm() {
         <h3 className="w-full text-[18px] leading-[normal] font-extrabold text-[#080808]">
           Request Your Warehouse Project Blueprint &amp; Cost Estimate
         </h3>
-        <p className="w-full text-[12px] leading-[normal] font-medium text-[#9A9A9A]">
+        <p className="w-full text-[12px] leading-[normal] font-medium text-[#ffffff]">
           Get a custom structural layout, BOQ cost range &amp; 150-day
           execution timeline.
         </p>
@@ -423,7 +423,7 @@ export function MobileBlueprintForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex w-full items-center justify-center rounded-[8px] bg-[#C4161C] px-[36px] py-[14px] text-center text-[14px] leading-[normal] font-semibold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8px_16px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
+            className="flex w-full items-center justify-center rounded-[8px] bg-[#C4161C] px-[36px] py-[14px] text-center text-[14px] leading-[normal] font-semibold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8px_16px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70 transition-colors enabled:hover:bg-[#A31217]"
           >
             {isSubmitting ? "Submitting..." : "Request an Estimate"}
           </button>

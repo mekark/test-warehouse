@@ -43,7 +43,7 @@ export default function ScrollToTopButton() {
         type="button"
         aria-label="Scroll to top"
         onClick={() => window.scrollTo({ top: 0 })}
-        className="inline-flex size-[52px] items-center justify-center rounded-full bg-[#C4161C] text-white sm:size-14 shadow-[0_20px_42px_-20px_rgba(196,22,28,0.72)]"
+        className="inline-flex size-[52px] items-center justify-center rounded-full bg-[#C4161C] text-white transition-colors hover:bg-[#A31217] sm:size-14 shadow-[0_20px_42px_-20px_rgba(196,22,28,0.72)]"
       >
         <ArrowUpIcon />
       </button>

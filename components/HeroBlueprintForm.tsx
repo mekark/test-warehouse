@@ -38,11 +38,11 @@ export default function HeroBlueprintForm() {
 
   return (
     <div className="flex w-full max-w-[659px] shrink-0 flex-col items-center gap-[26px] self-center rounded-[31.931px] bg-white/10 px-5 py-[32px] shadow-[0px_26.428px_88.092px_0px_rgba(0,0,0,0.45)] backdrop-blur-[15px] sm:px-[50px] sm:py-[44px] min-[1024px]:mt-[1.08px] min-[1024px]:w-[659px]">
-      <div className="flex w-full flex-col items-start gap-[6px]">
-        <h3 className="w-full text-[22px] leading-[normal] font-extrabold text-white sm:text-[24px]">
+      <div className="flex w-full flex-col items-center gap-[10px] text-center">
+        <h3 className="w-full text-[22px] leading-[1.25] font-extrabold text-balance text-white sm:text-[24px]">
           Request Your Warehouse Project Blueprint &amp; Cost Estimate
         </h3>
-        <p className="w-full text-[14px] leading-[normal] font-medium text-black">
+        <p className="w-full text-[14px] leading-[1.4] font-medium text-balance text-white">
           Get a custom structural layout, BOQ cost range &amp; 150-day
           execution timeline.
         </p>
@@ -72,7 +72,7 @@ export default function HeroBlueprintForm() {
               {errorText(errors.name)}
             </div>
 
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
               <label htmlFor="bh-location" className={labelClass}>
                 Project Location<span className="text-[#C4161C]">*</span>
               </label>
@@ -193,7 +193,7 @@ export default function HeroBlueprintForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex h-[63.867px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[40px] py-[20px] text-center text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
+            className="flex h-[63.867px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[40px] py-[20px] text-center text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70 transition-colors enabled:hover:bg-[#A31217]"
           >
             {isSubmitting ? "Submitting..." : "Request an Estimate"}
           </button>

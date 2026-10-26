@@ -41,7 +41,7 @@ function Items({
               type="button"
               onClick={() => onToggle(index)}
               aria-expanded={open}
-              className={`flex w-full justify-between text-left ${
+              className={`group flex w-full cursor-pointer justify-between text-left ${
                 open ? "items-center" : "items-start"
               } ${fixedLayout ? "gap-[13px]" : "gap-4"}`}
             >
@@ -49,7 +49,7 @@ function Items({
                 className={`min-w-0 flex-1 ${
                   open
                     ? "font-bold text-[#C4161C]"
-                    : "font-semibold text-[#080808]"
+                    : "font-semibold text-[#080808] transition-colors group-hover:text-[#C4161C]"
                 } ${
                   fixedLayout
                     ? "text-[21.333px] leading-[29.867px]"
@@ -69,7 +69,7 @@ function Items({
                 className={`flex size-[37.333px] shrink-0 items-center justify-center rounded-[18.667px] text-[21.333px] leading-[normal] font-normal ${
                   open
                     ? "rotate-45 bg-[#C4161C] text-[#F5F5F5]"
-                    : "bg-[#F0F0F0] text-[#9A9A9A]"
+                    : "bg-[#F0F0F0] text-[#9A9A9A] transition-colors group-hover:bg-[#FDEBEB] group-hover:text-[#C4161C]"
                 }`}
               >
                 +
@@ -191,13 +191,13 @@ export default function FaqAccordionSection() {
                     type="button"
                     onClick={() => toggleItem(index)}
                     aria-expanded={open}
-                    className="flex w-full items-center gap-[12px] text-left"
+                    className="group flex w-full cursor-pointer items-center gap-[12px] text-left"
                   >
                     <span
                       className={`min-w-0 flex-1 text-[16px] leading-[24px] ${
                         open
                           ? "font-semibold text-[#C4161C]"
-                          : "font-medium text-[#080808]"
+                          : "font-medium text-[#080808] transition-colors group-hover:text-[#C4161C]"
                       }`}
                     >
                       {index + 1}. {item.question}
@@ -208,7 +208,7 @@ export default function FaqAccordionSection() {
                       className={`flex size-[24px] shrink-0 items-center justify-center rounded-[18.667px] text-[21.333px] leading-[normal] font-normal transition-transform duration-300 ${
                         open
                           ? "rotate-45 bg-[#C4161C] text-[#F5F5F5]"
-                          : "bg-[#F0F0F0] text-[#9A9A9A]"
+                          : "bg-[#F0F0F0] text-[#9A9A9A] transition-colors group-hover:bg-[#FDEBEB] group-hover:text-[#C4161C]"
                       }`}
                     >
                       +

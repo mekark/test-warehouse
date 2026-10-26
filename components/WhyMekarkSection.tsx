@@ -17,6 +17,8 @@ const ITEMS = [
   },
   {
     title: "Custom Foundation & Heavy-Load Flooring",
+    // ~485px at 24px: just over the 474px column, tightened to fit.
+    oneLine: true,
     description:
       "As an experienced industrial warehouse contractor, we engineer foundations, plinth beams, and crack-free VDF/laser-screed floors tailored to your racking and forklift point loads.",
   },
@@ -27,6 +29,8 @@ const ITEMS = [
   },
   {
     title: "100% Transparent BOQ & Zero Cost Overruns",
+    // ~511px at 24px: overflows the 474px column into its 56px right padding.
+    oneLine: true,
     description:
       "Itemized bill of quantities and milestone-linked billing ensure your large warehouse construction stays strictly within budget.",
   },
@@ -42,22 +46,6 @@ const SUBTEXT =
 
 const number = (index: number) => String(index + 1).padStart(2, "0");
 
-/** The person cut-out, mirrored horizontally as in Figma. */
-function Person({ className }: { className: string }) {
-  return (
-    <div className={`absolute -scale-x-100 overflow-hidden ${className}`}>
-      <Image
-        src="/Images/why/man.webp"
-        alt=""
-        width={1867}
-        height={842}
-        sizes="600px"
-        className="absolute top-0 left-[-381.09%] h-full w-[812.93%] max-w-none"
-      />
-    </div>
-  );
-}
-
 export default function WhyMekarkSection() {
   return (
     <section className={`${manrope.className} w-full bg-white`}>
@@ -69,24 +57,13 @@ export default function WhyMekarkSection() {
             <div className="relative h-[558px] w-full">
               <div className="absolute inset-0 overflow-hidden">
                 <Image
-                  src="/Images/why/warehouse.webp"
-                  alt="Mekark pre-engineered steel warehouse with red cladding and loading docks"
-                  width={1536}
-                  height={445}
+                  src="/Images/why/warehouse-steel.webp"
+                  alt="Mekark pre-engineered steel warehouse with an open loading canopy"
+                  fill
                   sizes="100vw"
-                  className="absolute top-[0.04%] left-0 h-[99.97%] w-full max-w-none"
+                  className="object-cover"
                 />
-                <div className="absolute top-[125px] left-[1100px] h-[128px] w-[319px]">
-                  <Image
-                    src="/Images/why/warehouse-logo.webp"
-                    alt=""
-                    fill
-                    sizes="319px"
-                    className="object-cover"
-                  />
-                </div>
               </div>
-              <Person className="bottom-[-17px] left-[726px] h-[331px] w-[90px]" />
               <div className="absolute inset-y-0 right-[673px] left-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.78),rgba(255,255,255,0.45)_26%,rgba(255,255,255,0)_44%)]" />
               <div className="absolute inset-x-0 bottom-0 h-[90px] bg-[linear-gradient(to_bottom,rgba(255,255,255,0),#fff_92%)]" />
 
@@ -98,7 +75,10 @@ export default function WhyMekarkSection() {
                   </span>
                 </h2>
                 <p className="w-[640px] text-[20px] leading-[30px] font-normal text-[#424242]">
-                  {SUBTEXT}
+                  {/* Break before "on-site" so it doesn't run into the warehouse image */}
+                  {SUBTEXT.split(" on-site ")[0]}
+                  <br />
+                  on-site {SUBTEXT.split(" on-site ")[1]}
                 </p>
               </div>
             </div>
@@ -113,16 +93,20 @@ export default function WhyMekarkSection() {
                   } ${index >= 3 ? "border-t border-t-[#E2E2E2]" : ""}`}
                 >
                   <span
-                    className="h-[41px] bg-clip-text text-[50px] leading-[41px] font-extrabold tracking-[-2.64px] text-transparent"
+                    className="h-[41px] w-fit bg-clip-text text-[50px] leading-[41px] font-extrabold tracking-[-2.64px] text-transparent"
                     style={{
                       backgroundImage:
-                        "linear-gradient(155.3deg, rgba(225,225,225,0) 1.24%, #E1E1E1 85.1%)",
+                        "linear-gradient(155.3deg, rgba(225,225,225,0.15) 1.24%, #D9D9D9 85.1%)",
                     }}
                   >
                     {number(index)}
                   </span>
                   <div className="flex flex-col gap-[20px]">
-                    <h3 className="text-[24px] leading-[26px] font-semibold text-black">
+                    <h3
+                      className={`text-[24px] leading-[26px] font-semibold text-black ${
+                        item.oneLine ? "tracking-[-0.4px] whitespace-nowrap" : ""
+                      }`}
+                    >
                       {item.title}
                     </h3>
                     <p className="text-[18px] leading-[24px] font-normal text-[#6E6E6E]">
@@ -137,28 +121,17 @@ export default function WhyMekarkSection() {
       </div>
 
       {/* MOBILE + TABLET (below 1024px): Figma mobile frame, scaled with the width */}
-      <div className="flex flex-col items-center gap-[9px] pt-[50px] pb-[33px] min-[1024px]:hidden">
+      <div className="flex flex-col items-center gap-[9px] pb-[33px] min-[1024px]:hidden">
         <div className="relative aspect-[390/177] w-full">
           <div className="absolute inset-0 overflow-hidden">
             <Image
-              src="/Images/why/warehouse.webp"
-              alt="Mekark pre-engineered steel warehouse with red cladding and loading docks"
-              width={1536}
-              height={445}
-              sizes="160vw"
-              className="absolute top-[-0.23%] left-[-56.71%] h-[100.23%] w-[156.67%] max-w-none"
-            />
-          </div>
-          <div className="absolute top-[23.94%] left-[34.29%] h-[21.6%] w-[23.72%] rotate-[0.77deg]">
-            <Image
-              src="/Images/why/warehouse-logo.webp"
-              alt=""
+              src="/Images/why/warehouse-steel.webp"
+              alt="Mekark pre-engineered steel warehouse with an open loading canopy"
               fill
-              sizes="25vw"
-              className="object-cover"
+              sizes="100vw"
+              className="object-cover object-[75%_50%]"
             />
           </div>
-          <Person className="bottom-[-1.7%] left-[12.05%] h-[71.19%] w-[8.72%]" />
           <div className="absolute inset-x-0 bottom-0 h-[33.33%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0),#fff_92%)]" />
         </div>
 

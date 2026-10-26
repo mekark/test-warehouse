@@ -203,14 +203,15 @@ export default function ProcessSection() {
       {/* MOBILE (below 640px): vertical timeline */}
       <div className="px-5 pt-8 pb-10 sm:hidden">
         <div className="mx-auto flex w-full max-w-[350px] flex-col items-center gap-[24px]">
-          <div className="flex w-full max-w-[324px] flex-col gap-[12px]">
+          <div className="flex w-full flex-col gap-[8px]">
             <h2 className="text-[27px] leading-[34px] font-bold text-[#0F172A]">
               Our 150 Day Turnkey{" "}
-              <span className="text-[#ED1D23]">Warehouse Construction Services Workflow</span>
+              <span className="block text-balance text-[#ED1D23]">
+                Warehouse Construction Services Workflow
+              </span>
             </h2>
             <p className="text-[14px] leading-[20px] font-normal text-[#64748B]">
-            6-Step Execution Process 
-
+              6-Step Execution Process
             </p>
           </div>
 

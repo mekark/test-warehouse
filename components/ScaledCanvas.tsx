@@ -22,11 +22,13 @@ export default function ScaledCanvas({
   children,
 }: ScaledCanvasProps) {
   return (
-    <div
-      className="scaled-canvas"
-      style={{ "--dw": designWidth } as CSSProperties}
-    >
-      {children}
+    <div className="scaled-canvas-host w-full max-w-full">
+      <div
+        className="scaled-canvas"
+        style={{ "--dw": designWidth } as CSSProperties}
+      >
+        {children}
+      </div>
     </div>
   );
 }

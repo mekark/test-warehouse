@@ -52,7 +52,7 @@ function Includes() {
 
 function ContactCards() {
   const cardBase =
-    "relative flex w-full items-center rounded-[29.333px] border-[1.333px] border-solid border-black/5 bg-[#212121]";
+    "relative flex w-full items-center rounded-[29.333px] border-[1.333px] border-solid border-black/5 bg-[#212121] transition-colors hover:border-[#C4161C]/60 hover:bg-[#2B2B2B]";
 
   return (
     <div className="flex w-full flex-col gap-[21.333px] min-[1024px]:w-[593px]">
@@ -134,7 +134,7 @@ function MobileContactCard({
     <a
       href={href}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-      className="flex w-full items-center gap-[16px] rounded-[20px] border border-solid border-black/5 bg-[#212121] px-[16px] py-[10px]"
+      className="flex w-full items-center gap-[16px] rounded-[20px] border border-solid border-black/5 bg-[#212121] px-[16px] py-[10px] transition-colors hover:border-[#C4161C]/60 hover:bg-[#2B2B2B]"
     >
       <span className="flex size-[40px] shrink-0 flex-col items-center justify-center rounded-[8px] bg-[#CC000A]">
         {icon}

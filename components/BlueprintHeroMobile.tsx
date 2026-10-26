@@ -133,7 +133,7 @@ export default function BlueprintHeroMobile() {
               className="object-cover"
             />
           </div>
-          <EnquiryFormButton className="flex items-center justify-center rounded-[8px] bg-[#C4161C] px-[12px] py-[6px] text-[12px] leading-[normal] font-semibold whitespace-nowrap text-[#F5F5F5]">
+          <EnquiryFormButton className="flex items-center justify-center rounded-[8px] bg-[#C4161C] px-[12px] py-[6px] text-[12px] leading-[normal] font-semibold whitespace-nowrap text-[#F5F5F5] transition-colors hover:bg-[#A31217]">
             Request an Estimate
           </EnquiryFormButton>
         </header>
@@ -265,7 +265,7 @@ export default function BlueprintHeroMobile() {
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
               target="_blank"
               rel="noreferrer"
-              className="flex w-[140px] items-center justify-center gap-[8px] rounded-full bg-white px-[20px] py-[14px]"
+              className="flex w-[140px] items-center justify-center gap-[8px] rounded-full bg-white px-[20px] py-[14px] transition-colors hover:bg-[#FDEBEB]"
             >
               <span className="text-[14px] leading-[20px] font-bold whitespace-nowrap text-[#E5091F]">
                 WhatsApp
@@ -280,7 +280,7 @@ export default function BlueprintHeroMobile() {
             </a>
             <a
               href={`tel:${PHONE_NUMBER}`}
-              className="flex w-[140px] items-center justify-center gap-[8px] rounded-full border border-solid border-white px-[20px] py-[14px]"
+              className="flex w-[140px] items-center justify-center gap-[8px] rounded-full border border-solid border-white px-[20px] py-[14px] transition-colors hover:bg-white/15"
             >
               <span className="text-[14px] leading-[20px] font-bold whitespace-nowrap">
                 Call Now
