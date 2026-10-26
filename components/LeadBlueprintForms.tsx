@@ -227,11 +227,11 @@ export function MobileBlueprintForm() {
 
   return (
     <div className="flex w-full flex-col gap-[16px] rounded-[24px] border border-solid border-[#E2E2E2] bg-white p-[20px] drop-shadow-[0px_24px_40px_rgba(0,0,0,0.06)]">
-      <div className="flex w-full flex-col items-center justify-center gap-[8px]">
-        <h3 className="w-full text-[18px] leading-[normal] font-extrabold text-[#080808]">
+      <div className="flex w-full flex-col items-center justify-center gap-[8px] text-center">
+        <h3 className="w-full text-[18px] leading-[1.25] font-extrabold text-balance text-[#080808]">
           Request Your Warehouse Project Blueprint &amp; Cost Estimate
         </h3>
-        <p className="w-full text-[12px] leading-[normal] font-medium text-[#ffffff]">
+        <p className="w-full text-[12px] leading-[1.4] font-medium text-balance text-[#5A5A5A]">
           Get a custom structural layout, BOQ cost range &amp; 150-day
           execution timeline.
         </p>
