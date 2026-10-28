@@ -22,10 +22,9 @@ export const INDUSTRIES = [
 ];
 
 export const SQFT_OPTIONS = [
-  "10,000 - 20,000",
-  "20,000 - 30,000",
-  "30,000 - 50,000",
-  " Above 50,000 sq.ft",
+  "Below 30,000 Sq.ft",
+  "30,000 - 2,00,000 Sq.ft",
+  "Above 2,00,000 Sq.ft",
 ];
 
 export type BlueprintFormValues = {
