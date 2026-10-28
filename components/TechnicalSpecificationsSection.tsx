@@ -17,6 +17,8 @@ type SpecCard = {
   illustration: string;
   illustrationW: number;
   illustrationH: number;
+  /** Rendered illustration width as a fraction of its box (the w-[..] in imageClassName). */
+  imageWidth: number;
   imageClassName: string;
   numberGradient: string;
   icon: "span" | "height" | "kg" | "compliance";
@@ -37,6 +39,7 @@ const SPECS: SpecCard[] = [
     illustration: "card-01.webp",
     illustrationW: 255,
     illustrationH: 185,
+    imageWidth: 1.1969,
     imageClassName:
       "absolute top-[-23.99%] left-[-0.09%] h-[147.37%] w-[119.69%] max-w-none",
     numberGradient:
@@ -51,6 +54,7 @@ const SPECS: SpecCard[] = [
     illustration: "card-02.webp",
     illustrationW: 255,
     illustrationH: 195,
+    imageWidth: 1.044,
     imageClassName:
       "absolute top-[-17.93%] left-[-0.09%] h-[121.95%] w-[104.4%] max-w-none",
     numberGradient:
@@ -65,6 +69,7 @@ const SPECS: SpecCard[] = [
     illustration: "card-03.webp",
     illustrationW: 255,
     illustrationH: 195,
+    imageWidth: 0.9864,
     imageClassName:
       "absolute top-[-22.64%] left-[3.7%] h-[115.23%] w-[98.64%] max-w-none",
     numberGradient:
@@ -79,12 +84,26 @@ const SPECS: SpecCard[] = [
     illustration: "card-04.webp",
     illustrationW: 272,
     illustrationH: 195,
+    imageWidth: 1,
     imageClassName:
       "absolute top-[-1.37%] left-[2.21%] h-[92.13%] w-full max-w-none",
     numberGradient:
       "linear-gradient(149.8deg, rgb(225, 225, 225) 16.647%, rgba(225, 225, 225, 0) 96.153%)",
   },
 ];
+
+/**
+ * Card illustration, positioned (and over-scaled) inside its clipping box by
+ * `imageClassName`. Lazy by default, so the layouts hidden at the current
+ * breakpoint never download theirs.
+ */
+function SpecIllustration({ card, sizes }: { card: SpecCard; sizes: string }) {
+  return (
+    <div className={card.imageClassName}>
+      <Image src={`${IMG}/${card.illustration}`} alt="" fill sizes={sizes} />
+    </div>
+  );
+}
 
 function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
   if (type === "span") {
@@ -208,11 +227,10 @@ function DesktopSpecCard({ card }: { card: SpecCard }) {
           style={{ width: card.illustrationW, height: card.illustrationH }}
         >
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={specAsset(card.illustration)}
-              alt=""
-              className={card.imageClassName}
+            {/* The 1920px canvas is zoomed to the viewport, so vw is exact */}
+            <SpecIllustration
+              card={card}
+              sizes={`${(((card.illustrationW * card.imageWidth) / DESIGN_WIDTH) * 100).toFixed(2)}vw`}
             />
           </div>
         </div>
@@ -253,11 +271,10 @@ function MobileSpecCard({ card }: { card: SpecCard }) {
           }}
         >
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={specAsset(card.illustration)}
-              alt=""
-              className={card.imageClassName}
+            {/* Box is at most illustrationW wide */}
+            <SpecIllustration
+              card={card}
+              sizes={`${Math.round(card.illustrationW * card.imageWidth)}px`}
             />
           </div>
         </div>
@@ -279,20 +296,22 @@ function MobileSpecCard({ card }: { card: SpecCard }) {
 
 /** Compact phone card (Figma mobile frame): text on the left, illustration pinned bottom-right. */
 function PhoneSpecCard({ card }: { card: SpecCard }) {
+  const compliance = card.icon === "compliance";
+  const boxWidth = compliance ? 170 : 187;
+
   return (
     <article className="relative flex min-h-[137px] w-full flex-col items-start overflow-clip rounded-[20px] bg-white py-[10px] pl-[12px] shadow-[5px_5px_8px_-4px_rgba(0,0,0,0.2)]">
       <div
         className={`pointer-events-none absolute right-[12px] overflow-hidden ${
-          card.icon === "compliance"
+          compliance
             ? "bottom-[12px] h-[125px] w-[170px]"
             : "bottom-0 h-[137px] w-[187px]"
         }`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={specAsset(card.illustration)}
-          alt=""
-          className={card.imageClassName}
+        {/* ~0.65x the CSS width: about 1.2x on a 1.75x phone, 2x on a 3x one */}
+        <SpecIllustration
+          card={card}
+          sizes={`${Math.round(boxWidth * card.imageWidth * 0.65)}px`}
         />
       </div>
       <div className="relative flex flex-col items-start gap-[4px]">
@@ -336,12 +355,15 @@ function PhoneBackground() {
     <div className="pointer-events-none absolute inset-0" aria-hidden>
       {/* Right-aligned (as in the 390px frame) so wider phones never show a gap */}
       <div className="absolute top-0 right-0 h-[216px] w-[738px] overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={specAsset("warehouse-watermark.webp")}
-          alt=""
-          className="absolute top-0 left-0 h-[136.63%] w-full max-w-none"
-        />
+        <div className="absolute top-0 left-0 h-[136.63%] w-full">
+          {/* ~0.65x the 738px width (as for the phone card illustrations) */}
+          <Image
+            src={`${IMG}/warehouse-watermark.webp`}
+            alt=""
+            fill
+            sizes="470px"
+          />
+        </div>
       </div>
       <div className="absolute top-[-66px] left-[calc(50%-439px)] h-[425px] w-[733px]">
         <div className="absolute inset-[-70.59%_-40.93%]">
@@ -387,21 +409,24 @@ function DesktopBackground() {
           }}
         >
           <div className="absolute inset-0 overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={specAsset("bg-concrete.webp")}
-              alt=""
-              className="absolute top-[-130.12%] left-[0.02%] h-[208.04%] w-full max-w-none"
-            />
+            <div className="absolute top-[-130.12%] left-[0.02%] h-[208.04%] w-full">
+              <Image
+                src={`${IMG}/bg-concrete.webp`}
+                alt=""
+                fill
+                sizes="100vw"
+              />
+            </div>
           </div>
         </div>
       </div>
       <div className="absolute top-0 left-[-6px] h-[773px] w-[1932px]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={specAsset("warehouse-watermark.webp")}
+        <Image
+          src={`${IMG}/warehouse-watermark.webp`}
           alt=""
-          className="pointer-events-none absolute inset-0 size-full max-w-none object-cover opacity-20"
+          fill
+          sizes="101vw"
+          className="pointer-events-none object-cover opacity-20"
         />
       </div>
       <div className="absolute top-[calc(50%-85px)] left-[calc(16.67%+80px)] h-[499px] w-[1065px] -translate-y-1/2">
