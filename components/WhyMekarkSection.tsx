@@ -13,7 +13,7 @@ const ITEMS = [
   {
     title: "In-House BIM & Structural Engineering",
     description:
-      "Our 175+ engineering team uses Tekla and STAAD.Pro to optimize steel tonnage, reducing your warehouse building construction cost by up to 15% without compromising structural safety.",
+      "Our 250+ engineering team uses Tekla and STAAD.Pro to optimize steel tonnage, reducing your warehouse building construction cost by up to 15% without compromising structural safety.",
   },
   {
     title: "Custom Foundation & Heavy-Load Flooring",
