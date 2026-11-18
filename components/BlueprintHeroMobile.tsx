@@ -1,4 +1,5 @@
 import Image, { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import EnquiryFormButton from "@/components/EnquiryFormButton";
 import HeroMobileForm from "@/components/HeroMobileForm";
 import {
@@ -92,6 +93,18 @@ const STATS = [
 
 /** Phone-only hero, built from the 390px Figma mobile frame. */
 export default function BlueprintHeroMobile() {
+  // The <img> sits ~76KB into the HTML (after the inlined CSS) and React does
+  // not auto-preload images inside <picture>, so the phone LCP fetch would start
+  // late. This puts a <link rel="preload"> in <head>; the media query keeps
+  // tablet/desktop from downloading the phone image.
+  preload(bgProps.src ?? "", {
+    as: "image",
+    imageSrcSet: bgProps.srcSet,
+    imageSizes: bgProps.sizes,
+    fetchPriority: "high",
+    media: "(max-width: 639px)",
+  });
+
   return (
     <section
       className={`${manrope.className} relative w-full overflow-hidden bg-[#060606] text-white`}

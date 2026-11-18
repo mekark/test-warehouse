@@ -114,6 +114,8 @@ function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
         <img
           src={specAsset("icon-span.svg")}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 block max-w-none"
         />
       </div>
@@ -129,6 +131,8 @@ function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
             <img
               src={specAsset("icon-height.svg")}
               alt=""
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 block max-w-none"
             />
           </div>
@@ -147,6 +151,8 @@ function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
               <img
                 src={specAsset("icon-kg-top.svg")}
                 alt=""
+                loading="lazy"
+                decoding="async"
                 className="block max-w-none"
               />
             </div>
@@ -157,6 +163,8 @@ function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
               <img
                 src={specAsset("icon-kg-bottom.svg")}
                 alt=""
+                loading="lazy"
+                decoding="async"
                 className="block max-w-none"
               />
             </div>
@@ -175,6 +183,8 @@ function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
       <img
         src={specAsset("icon-compliance.svg")}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 block max-w-none"
       />
     </div>
@@ -372,6 +382,8 @@ function PhoneBackground() {
           <img
             src={specAsset("ellipse-glow.svg")}
             alt=""
+            loading="lazy"
+            decoding="async"
             className="block size-full max-w-none"
           />
         </div>
@@ -435,6 +447,8 @@ function DesktopBackground() {
         <img
           src={specAsset("ellipse-glow.svg")}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="absolute top-[-300px] left-[-300px] block max-w-none"
         />
       </div>
