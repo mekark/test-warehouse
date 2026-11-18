@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     path: `${ASSET_PREFIX}/_next/image`,
     // Serve AVIF where supported (smaller than WebP), WebP otherwise
     formats: ["image/avif", "image/webp"],
+    // Next 16 only serves allow-listed qualities: 75 is the default, 40 is for
+    // heavily overlaid backgrounds (e.g. the phone hero LCP image)
+    qualities: [40, 75],
     // Finer small steps than the default (640, 750, ...) so phone-sized images
     // get a srcset candidate close to their displayed width
     deviceSizes: [480, 560, 640, 680, 750, 828, 1080, 1200, 1920, 2048, 3840],

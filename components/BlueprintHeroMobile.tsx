@@ -17,12 +17,14 @@ const HIDDEN_ABOVE_PHONE = "(min-width: 640px)";
 
 // The tall background is the phone LCP element. `sizes` is ~0.65x its 505px
 // CSS width (~1.1x on a 1.75x phone): it sits under dark overlays, so the
-// slight softness is invisible and the file is much smaller.
+// slight softness is invisible and the file is much smaller. quality 40 for the
+// same reason (it is blurred and dimmed), so the LCP bytes finish sooner.
 const { props: bgProps } = getImageProps({
   src: "/Images/hero/m-bg-steel.webp",
   alt: "",
   fill: true,
   sizes: "320px",
+  quality: 40,
   loading: "eager",
   fetchPriority: "high",
   className: "object-cover blur-[2px]",
