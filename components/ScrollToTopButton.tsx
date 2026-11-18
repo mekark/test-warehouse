@@ -38,7 +38,7 @@ export default function ScrollToTopButton() {
   if (!visible) return null;
 
   return (
-    <div className="fixed right-4 bottom-[84px] z-[70] flex sm:right-6 md:bottom-6">
+    <div className="fixed right-4 bottom-[84px] z-[70] flex sm:right-6 md:bottom-[160px]">
       <button
         type="button"
         aria-label="Scroll to top"

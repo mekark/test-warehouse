@@ -4,11 +4,48 @@ import { assetUrl } from "@/lib/assetPrefix";
 import ScaledCanvas from "@/components/ScaledCanvas";
 import type { ReactNode } from "react";
 import ShowAt from "@/components/ShowAt";
+import { BLANK_GIF } from "@/lib/blankImage";
 
 const DESIGN_WIDTH = 1920;
 const IMG = "/Images/technical-specs";
 
 const specAsset = (file: string) => assetUrl(`${IMG}/${file}`);
+
+/**
+ * Plain SVG <img> used by the layouts. The server HTML holds the phone, tablet
+ * and desktop layouts at once, so on phones the tablet/desktop copies would
+ * still be downloaded: those wrap the <img> in a <picture> whose phone-width
+ * source is a blank GIF (they load normally from 640px up, with no lazy
+ * pop-in). The phone layout (`phone`) is lazy, since it sits below the fold.
+ */
+function SpecImg({
+  file,
+  className,
+  phone,
+}: {
+  file: string;
+  className: string;
+  phone?: boolean;
+}) {
+  if (phone) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={specAsset(file)}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className={className}
+      />
+    );
+  }
+  return (
+    <picture className="contents">
+      <source media="(max-width: 639px)" srcSet={BLANK_GIF} />
+      <img src={specAsset(file)} alt="" className={className} />
+    </picture>
+  );
+}
 
 type SpecCard = {
   number: string;
@@ -106,18 +143,17 @@ function SpecIllustration({ card, sizes }: { card: SpecCard; sizes: string }) {
   );
 }
 
-function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
+function DesktopSpecIcon({
+  type,
+  phone,
+}: {
+  type: SpecCard["icon"];
+  phone?: boolean;
+}) {
   if (type === "span") {
     return (
       <div className="relative size-[48px] shrink-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={specAsset("icon-span.svg")}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 block max-w-none"
-        />
+        <SpecImg file="icon-span.svg" className="absolute inset-0 block max-w-none" phone={phone} />
       </div>
     );
   }
@@ -127,14 +163,7 @@ function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
       <div className="relative size-[48px] shrink-0 [container-type:size]">
         <div className="flex size-full min-h-px items-center justify-center">
           <div className="relative h-[100cqw] w-[100cqh] rotate-90">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={specAsset("icon-height.svg")}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 block max-w-none"
-            />
+            <SpecImg file="icon-height.svg" className="absolute inset-0 block max-w-none" phone={phone} />
           </div>
         </div>
       </div>
@@ -147,26 +176,12 @@ function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
         <div className="relative size-full">
           <div className="absolute inset-[10.94%_40.63%_70.31%_40.63%]">
             <div className="absolute inset-[-20%]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={specAsset("icon-kg-top.svg")}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="block max-w-none"
-              />
+              <SpecImg file="icon-kg-top.svg" className="block max-w-none" phone={phone} />
             </div>
           </div>
           <div className="absolute inset-[32.81%_12.5%_12.5%_12.5%]">
             <div className="absolute inset-[-6.86%_-5%]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={specAsset("icon-kg-bottom.svg")}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="block max-w-none"
-              />
+              <SpecImg file="icon-kg-bottom.svg" className="block max-w-none" phone={phone} />
             </div>
           </div>
           <p className="absolute inset-[44.37%_30.73%_18.13%_29.69%] text-center text-[13.5px] leading-normal font-bold whitespace-nowrap text-[#ED2024]">
@@ -179,14 +194,7 @@ function DesktopSpecIcon({ type }: { type: SpecCard["icon"] }) {
 
   return (
     <div className="relative size-[48px] shrink-0">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={specAsset("icon-compliance.svg")}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 block max-w-none"
-      />
+      <SpecImg file="icon-compliance.svg" className="absolute inset-0 block max-w-none" phone={phone} />
     </div>
   );
 }
@@ -339,7 +347,7 @@ function PhoneSpecCard({ card }: { card: SpecCard }) {
           {/* The 48px desktop icon, scaled to the 24px phone size */}
           <div className="size-[24px]">
             <div className="origin-top-left scale-50">
-              <DesktopSpecIcon type={card.icon} />
+              <DesktopSpecIcon type={card.icon} phone />
             </div>
           </div>
         </div>
@@ -378,14 +386,7 @@ function PhoneBackground() {
       </div>
       <div className="absolute top-[-66px] left-[calc(50%-439px)] h-[425px] w-[733px]">
         <div className="absolute inset-[-70.59%_-40.93%]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={specAsset("ellipse-glow.svg")}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            className="block size-full max-w-none"
-          />
+          <SpecImg file="ellipse-glow.svg" className="block size-full max-w-none" phone />
         </div>
       </div>
       <div className="absolute top-[-90px] right-[-99px] flex h-[208px] w-[268px] items-center justify-center">
@@ -443,14 +444,7 @@ function DesktopBackground() {
         />
       </div>
       <div className="absolute top-[calc(50%-85px)] left-[calc(16.67%+80px)] h-[499px] w-[1065px] -translate-y-1/2">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={specAsset("ellipse-glow.svg")}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="absolute top-[-300px] left-[-300px] block max-w-none"
-        />
+        <SpecImg file="ellipse-glow.svg" className="absolute top-[-300px] left-[-300px] block max-w-none" />
       </div>
       <div className="absolute top-[-279.16px] left-[calc(66.67%+69.33px)] flex h-[541.879px] w-[700.721px] items-center justify-center">
         <div

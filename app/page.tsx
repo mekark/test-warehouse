@@ -8,11 +8,13 @@ import ManufacturingCapabilitiesSection from "@/components/ManufacturingCapabili
 import FaqAccordionSection from "@/components/FaqAccordionSection";
 import LeadBlueprintSection from "@/components/LeadBlueprintSection";
 import MobileActionBar from "@/components/MobileActionBar";
+import FloatingContact from "@/components/FloatingContact";
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden">
       <MobileActionBar />
+      <FloatingContact />
       <BlueprintHeroSection />
       <ProcessSection />
       <TechnicalSpecificationsSection />
