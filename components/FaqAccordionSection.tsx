@@ -5,6 +5,7 @@ import { manrope } from "@/lib/fonts";
 import { useState } from "react";
 import { FAQ_ITEMS } from "@/components/faqData";
 import ScaledCanvas from "@/components/ScaledCanvas";
+import ShowAt from "@/components/ShowAt";
 
 const DESIGN_WIDTH = 1920;
 // Rebar question mark with workers (transparent background)
@@ -139,7 +140,7 @@ export default function FaqAccordionSection() {
   return (
     <section className={`${manrope.className} w-full bg-white`}>
       {/* DESKTOP: exact Figma frame, scaled to the viewport */}
-      <div className="hidden min-[1024px]:block">
+      <ShowAt show="desktop" className="hidden min-[1024px]:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
           {/* Height follows the content; the left column is top-aligned with the first question */}
           <div className="flex w-[1920px] items-start justify-center gap-[88px] bg-white px-[112px] py-[50px]">
@@ -167,10 +168,10 @@ export default function FaqAccordionSection() {
             </div>
           </div>
         </ScaledCanvas>
-      </div>
+      </ShowAt>
 
       {/* MOBILE (below 640px) */}
-      <div className="flex flex-col gap-[24px] bg-[#F9F6F7] px-[20px] py-[32px] sm:hidden">
+      <ShowAt show="phone" className="flex flex-col gap-[24px] bg-[#F9F6F7] px-[20px] py-[32px] sm:hidden">
         <div className="flex w-full flex-col">
           <div className="flex flex-col items-start gap-[12px] py-[6px]">
             <FaqPill compact />
@@ -252,10 +253,10 @@ export default function FaqAccordionSection() {
             );
           })}
         </div>
-      </div>
+      </ShowAt>
 
       {/* TABLET (640px - 1023px) */}
-      <div className="hidden sm:max-[1023px]:block">
+      <ShowAt show="tablet" className="hidden sm:max-[1023px]:block">
         <div className="relative mx-auto mt-10 aspect-[463/464] w-full max-w-[320px]">
           <Image
             src={FAQ_IMAGE}
@@ -275,7 +276,7 @@ export default function FaqAccordionSection() {
             fixedLayout={false}
           />
         </div>
-      </div>
+      </ShowAt>
     </section>
   );
 }

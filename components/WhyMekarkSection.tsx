@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { manrope } from "@/lib/fonts";
 import ScaledCanvas from "@/components/ScaledCanvas";
+import ShowAt from "@/components/ShowAt";
 
 const DESIGN_WIDTH = 1920;
 
@@ -50,7 +51,7 @@ export default function WhyMekarkSection() {
   return (
     <section className={`${manrope.className} w-full bg-white`}>
       {/* DESKTOP: Figma frame, scaled to the viewport */}
-      <div className="hidden min-[1024px]:block">
+      <ShowAt show="desktop" className="hidden min-[1024px]:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
           <div className="flex w-[1920px] flex-col items-center bg-white pb-[60px]">
             {/* HERO BAND */}
@@ -118,10 +119,10 @@ export default function WhyMekarkSection() {
             </ol>
           </div>
         </ScaledCanvas>
-      </div>
+      </ShowAt>
 
       {/* MOBILE + TABLET (below 1024px): Figma mobile frame, scaled with the width */}
-      <div className="flex flex-col items-center gap-[9px] pb-[33px] min-[1024px]:hidden">
+      <ShowAt show="belowDesktop" className="flex flex-col items-center gap-[9px] pb-[33px] min-[1024px]:hidden">
         <div className="relative aspect-[390/177] w-full">
           <div className="absolute inset-0 overflow-hidden">
             <Image
@@ -169,7 +170,7 @@ export default function WhyMekarkSection() {
             ))}
           </ol>
         </div>
-      </div>
+      </ShowAt>
     </section>
   );
 }

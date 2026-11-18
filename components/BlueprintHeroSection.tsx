@@ -11,6 +11,7 @@ import {
   WHATSAPP_NUMBER,
 } from "@/components/heroData";
 import { assetUrl } from "@/lib/assetPrefix";
+import ShowAt from "@/components/ShowAt";
 
 // Client logos (each sits in a 90x40 chip): `scale` zooms logos whose artwork has
 // extra padding inside the file; the rest use the default 34px height.
@@ -83,12 +84,12 @@ export default function BlueprintHeroSection() {
   return (
     <>
       {/* PHONE (below 640px): Figma mobile frame */}
-      <div className="sm:hidden">
+      <ShowAt show="phone" className="sm:hidden">
         <BlueprintHeroMobile />
-      </div>
+      </ShowAt>
 
       {/* TABLET + DESKTOP */}
-      <div className="hidden sm:block">
+      <ShowAt show="fromTablet" className="hidden sm:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
           <section
             className={`${manrope.className} relative w-full overflow-hidden bg-[#060606] min-[1024px]:h-[1018px]`}
@@ -138,9 +139,10 @@ export default function BlueprintHeroSection() {
 
                 {/* HEADING */}
                 <div className="flex w-full flex-col items-start gap-[10px]">
-                  <h2 className="w-full text-[32px] leading-[1.1] font-bold text-white sm:text-[48px] sm:leading-[48px] min-[1024px]:w-[891px] min-[1024px]:max-w-full">
+                  <h1
+                    className="w-full text-[32px] leading-[1.1] font-bold text-white sm:text-[48px] sm:leading-[48px] min-[1024px]:w-[891px] min-[1024px]:max-w-full">
                   Turnkey Industrial Warehouse Construction Company in India
-                  </h2>
+                  </h1>
                 </div>
 
                 {/* DESCRIPTION */}
@@ -266,7 +268,7 @@ export default function BlueprintHeroSection() {
             </div>
           </section>
         </ScaledCanvas>
-      </div>
+      </ShowAt>
     </>
   );
 }

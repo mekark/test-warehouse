@@ -9,6 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import ScaledCanvas from "@/components/ScaledCanvas";
+import ShowAt from "@/components/ShowAt";
 
 // Figma frame is 1707px of content + 80px padding on each side
 const DESIGN_WIDTH = 1867;
@@ -136,7 +137,7 @@ export default function ProcessSection() {
   return (
     <section className={`${manrope.className} w-full bg-[#F9F6F7]`}>
       {/* DESKTOP: exact Figma frame, scaled to the viewport */}
-      <div className="hidden min-[1024px]:block">
+      <ShowAt show="desktop" className="hidden min-[1024px]:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
           <div className="flex flex-col items-start p-[80px]">
             <div className="flex w-[1707px] flex-col gap-[50px]">
@@ -174,10 +175,10 @@ export default function ProcessSection() {
             </div>
           </div>
         </ScaledCanvas>
-      </div>
+      </ShowAt>
 
       {/* TABLET (640px - 1023px) */}
-      <div className="hidden px-10 py-16 sm:max-[1023px]:block">
+      <ShowAt show="tablet" className="hidden px-10 py-16 sm:max-[1023px]:block">
         <Heading />
 
         <ol className="mt-10 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
@@ -198,10 +199,10 @@ export default function ProcessSection() {
             </li>
           ))}
         </ol>
-      </div>
+      </ShowAt>
 
       {/* MOBILE (below 640px): vertical timeline */}
-      <div className="px-5 pt-8 pb-10 sm:hidden">
+      <ShowAt show="phone" className="px-5 pt-8 pb-10 sm:hidden">
         <div className="mx-auto flex w-full max-w-[350px] flex-col items-center gap-[24px]">
           <div className="flex w-full flex-col gap-[8px]">
             <h2 className="[font-variant-ligatures:none] text-[27px] leading-[34px] font-bold text-[#0F172A]">
@@ -260,7 +261,7 @@ export default function ProcessSection() {
           </ol>
 
         </div>
-      </div>
+      </ShowAt>
     </section>
   );
 }

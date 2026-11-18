@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { manrope } from "@/lib/fonts";
 import ScaledCanvas from "@/components/ScaledCanvas";
+import ShowAt from "@/components/ShowAt";
 
 const DESIGN_WIDTH = 1920;
 
@@ -32,7 +33,7 @@ export default function ManufacturingCapabilitiesSection() {
   return (
     <section className={`${manrope.className} w-full bg-[#F9F6F7]`}>
       {/* DESKTOP: exact Figma frame, scaled to the viewport */}
-      <div className="hidden min-[1024px]:block">
+      <ShowAt show="desktop" className="hidden min-[1024px]:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
           <div className="flex w-[1920px] flex-col items-start gap-[50px] bg-[#F9F6F7] px-[80px] py-[52px]">
             <div className="flex flex-col items-start gap-[14px]">
@@ -59,10 +60,10 @@ export default function ManufacturingCapabilitiesSection() {
             </div>
           </div>
         </ScaledCanvas>
-      </div>
+      </ShowAt>
 
       {/* MOBILE + TABLET (below 1024px) */}
-      <div className="flex flex-col gap-[24px] px-[20px] py-[32px] sm:px-10 sm:py-16 min-[1024px]:hidden">
+      <ShowAt show="belowDesktop" className="flex flex-col gap-[24px] px-[20px] py-[32px] sm:px-10 sm:py-16 min-[1024px]:hidden">
         <div className="flex flex-col gap-[8px]">
           <h2 className="text-[28px] leading-[32px] font-bold text-[#0F172A] sm:text-[40px] sm:leading-[44px]">
             {TITLE}
@@ -85,7 +86,7 @@ export default function ManufacturingCapabilitiesSection() {
             </div>
           ))}
         </div>
-      </div>
+      </ShowAt>
     </section>
   );
 }

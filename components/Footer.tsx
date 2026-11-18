@@ -8,7 +8,7 @@ const LEGAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black py-6 pl-5 pr-20 text-white sm:pl-10 sm:pr-28">
+    <footer className="border-t border-white/10 bg-black py-6 pl-5 pr-20 text-white max-md:pb-[88px] sm:pl-10 sm:pr-28">
       <div className="mx-auto flex max-w-[1920px] flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-5 sm:text-center tracking-wide text-white/40 sm:text-sm">
           © {new Date().getFullYear()} Mekark Structure India Private Limited. All rights reserved.

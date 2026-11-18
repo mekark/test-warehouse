@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { manrope } from "@/lib/fonts";
 import ScaledCanvas from "@/components/ScaledCanvas";
+import ShowAt from "@/components/ShowAt";
 
 const DESIGN_WIDTH = 1920;
 
@@ -92,7 +93,7 @@ export default function ProjectsGallerySection() {
   return (
     <section className={`${manrope.className} w-full bg-[#F9F6F7]`}>
       {/* DESKTOP: exact Figma frame, scaled to the viewport */}
-      <div className="hidden min-[1024px]:block">
+      <ShowAt show="desktop" className="hidden min-[1024px]:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
           <div className="flex w-[1920px] flex-col items-start gap-[52px] bg-[#F9F6F7] px-[80px] py-[52px]">
             <Heading />
@@ -116,10 +117,10 @@ export default function ProjectsGallerySection() {
             </div>
           </div>
         </ScaledCanvas>
-      </div>
+      </ShowAt>
 
       {/* MOBILE (below 640px) */}
-      <div className="flex flex-col gap-[16px] px-[20px] py-[32px] sm:hidden">
+      <ShowAt show="phone" className="flex flex-col gap-[16px] px-[20px] py-[32px] sm:hidden">
         <div className="flex w-full flex-col gap-[12px]">
           <div className="flex w-full flex-col gap-[8px] font-bold">
             <p className="text-[12px] leading-[18px] tracking-[1.5978px] text-[#ED1D23] uppercase">
@@ -162,10 +163,10 @@ export default function ProjectsGallerySection() {
             </div>
           ))}
         </div>
-      </div>
+      </ShowAt>
 
       {/* TABLET (640px - 1023px) */}
-      <div className="hidden px-10 py-16 sm:max-[1023px]:block">
+      <ShowAt show="tablet" className="hidden px-10 py-16 sm:max-[1023px]:block">
         <Heading />
 
         <div className="mt-8 grid grid-cols-2 gap-4">
@@ -188,7 +189,7 @@ export default function ProjectsGallerySection() {
         <div className="mt-10 flex justify-center">
           <ViewAllButton className="rounded-[8.809px] px-10 py-4 text-[20px]" />
         </div>
-      </div>
+      </ShowAt>
     </section>
   );
 }

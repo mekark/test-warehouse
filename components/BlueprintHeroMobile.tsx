@@ -158,9 +158,9 @@ export default function BlueprintHeroMobile() {
             <div className="absolute inset-x-0 -top-px h-[105px] bg-[linear-gradient(175.242deg,#060606_21.88%,rgba(32,32,32,0.83)_53.892%,rgba(6,6,6,0)_89.049%)]" />
             <div className="absolute inset-x-0 bottom-px h-[32px] bg-[linear-gradient(180.821deg,rgba(30,30,30,0)_1.0095%,#1E1E1E_99.312%)]" />
 
-            <h2 className="absolute top-[2px] left-5 w-[338px] max-w-[calc(100%-40px)] text-[22px] leading-[24px] font-semibold">
+            <h1 className="absolute top-[2px] left-5 w-[338px] max-w-[calc(100%-40px)] text-[22px] leading-[24px] font-semibold">
             Turnkey Industrial Warehouse Construction Company in India
-            </h2>
+            </h1>
           </div>
         </div>
 

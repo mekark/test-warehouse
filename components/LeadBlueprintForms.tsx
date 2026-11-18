@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { SQFT_OPTIONS, useBlueprintForm } from "@/hooks/useBlueprintForm";
 import SqftSelect from "@/components/SqftSelect";
 
@@ -9,6 +10,7 @@ const fieldBase =
 const labelClass = "text-[14px] font-bold leading-[normal] text-[#5A5A5A]";
 
 export function BlueprintForm() {
+  const uid = useId();
   const {
     values,
     errors,
@@ -55,13 +57,14 @@ export function BlueprintForm() {
           {/* ROW 1 */}
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35px]">
             <div className="flex w-full flex-col items-start gap-[7px] sm:w-[262.202px]">
-              <label htmlFor="lb-name" className={labelClass}>
+              <label htmlFor={`${uid}-name`} className={labelClass}>
                 Full Name<span className="text-[#C4161C]">*</span>
               </label>
               <input
-                id="lb-name"
+                id={`${uid}-name`}
                 type="text"
                 name="name"
+                autoComplete="name"
                 placeholder="Your name"
                 value={values.name}
                 onChange={handleChange}
@@ -71,11 +74,11 @@ export function BlueprintForm() {
             </div>
 
             <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
-              <label htmlFor="lb-location" className={labelClass}>
+              <label htmlFor={`${uid}-location`} className={labelClass}>
                 Project Location<span className="text-[#C4161C]">*</span>
               </label>
               <input
-                id="lb-location"
+                id={`${uid}-location`}
                 type="text"
                 name="location"
                 placeholder="Enter Project Location"
@@ -90,13 +93,14 @@ export function BlueprintForm() {
           {/* ROW 2 */}
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35.237px]">
             <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
-              <label htmlFor="lb-phone" className={labelClass}>
+              <label htmlFor={`${uid}-phone`} className={labelClass}>
                 Mobile Number<span className="text-[#C4161C]">*</span>
               </label>
               <input
-                id="lb-phone"
+                id={`${uid}-phone`}
                 type="tel"
                 name="phoneNumber"
+                autoComplete="tel-national"
                 maxLength={10}
                 inputMode="numeric"
                 placeholder="9876543210"
@@ -108,13 +112,14 @@ export function BlueprintForm() {
             </div>
 
             <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
-              <label htmlFor="lb-email" className={labelClass}>
+              <label htmlFor={`${uid}-email`} className={labelClass}>
                 Email Address<span className="text-[#C4161C]">*</span>
               </label>
               <input
-                id="lb-email"
+                id={`${uid}-email`}
                 type="email"
                 name="email"
+                autoComplete="email"
                 placeholder="abcd@gmail.com"
                 value={values.email}
                 onChange={handleChange}
@@ -127,11 +132,11 @@ export function BlueprintForm() {
           {/* ROW 3 */}
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[37px]">
             <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
-              <label htmlFor="lb-industry" className={labelClass}>
+              <label htmlFor={`${uid}-industry`} className={labelClass}>
                 Industry Type<span className="text-[#C4161C]">*</span>
               </label>
               <input
-                id="lb-industry"
+                id={`${uid}-industry`}
                 type="text"
                 name="industry"
                 placeholder="Enter your Industry type"
@@ -143,11 +148,11 @@ export function BlueprintForm() {
             </div>
 
             <div className="flex w-full flex-col items-start gap-[7px] pt-[14px] sm:w-[261.339px] sm:pt-0">
-              <label htmlFor="lb-sqft" className={labelClass}>
+              <label htmlFor={`${uid}-sqft`} className={labelClass}>
                 Project Sq. Ft<span className="text-[#C4161C]">*</span>
               </label>
               <SqftSelect
-                id="lb-sqft"
+                id={`${uid}-sqft`}
                 name="sqft"
                 value={values.sqft}
                 options={SQFT_OPTIONS}
@@ -161,11 +166,11 @@ export function BlueprintForm() {
 
           {/* ROW 4 */}
           <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px]">
-            <label htmlFor="lb-details" className={labelClass}>
+            <label htmlFor={`${uid}-details`} className={labelClass}>
               Requirement Details<span className="text-[#C4161C]">*</span>
             </label>
             <textarea
-              id="lb-details"
+              id={`${uid}-details`}
               name="details"
               placeholder="Enter Requirement Details"
               value={values.details}
@@ -188,7 +193,7 @@ export function BlueprintForm() {
             disabled={isSubmitting}
             className="flex h-[63.867px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[40px] py-[20px] text-center text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70 transition-colors enabled:hover:bg-[#A31217]"
           >
-            {isSubmitting ? "Submitting..." : "Request an Estimate"}
+            {isSubmitting ? "Submitting Request..." : "Request an Estimate"}
           </button>
 
           <p className="py-px text-center text-[12px] leading-[normal] font-medium tracking-[0.3303px] text-[#5A5A5A]">
@@ -247,6 +252,7 @@ export function MobileBlueprintForm() {
             <input
               type="text"
               name="name"
+              autoComplete="name"
               aria-label="Full name"
               placeholder="Enter Your name"
               value={values.name}
@@ -285,6 +291,7 @@ export function MobileBlueprintForm() {
             <input
               type="tel"
               name="phoneNumber"
+              autoComplete="tel-national"
               maxLength={10}
               inputMode="numeric"
               aria-label="Mobile number"
@@ -306,6 +313,7 @@ export function MobileBlueprintForm() {
             <input
               type="email"
               name="email"
+              autoComplete="email"
               aria-label="Email address"
               placeholder="Enter Email Address"
               value={values.email}
@@ -393,7 +401,7 @@ export function MobileBlueprintForm() {
             disabled={isSubmitting}
             className="flex w-full items-center justify-center rounded-[8px] bg-[#C4161C] px-[36px] py-[14px] text-center text-[14px] leading-[normal] font-semibold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8px_16px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70 transition-colors enabled:hover:bg-[#A31217]"
           >
-            {isSubmitting ? "Submitting..." : "Request an Estimate"}
+            {isSubmitting ? "Submitting Request..." : "Request an Estimate"}
           </button>
 
           <p className="w-full text-center text-[12px] leading-[normal] font-medium text-[#5A5A5A]">

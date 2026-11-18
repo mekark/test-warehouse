@@ -1,7 +1,8 @@
 export const WHATSAPP_NUMBER = "919790924754";
 export const WHATSAPP_MESSAGE =
   "Hello Mekark, I would like to discuss about my warehouse construction project.";
-export const PHONE_NUMBER = "9790924754";
+// E.164 format so tel: links dial correctly on every phone/region
+export const PHONE_NUMBER = "+919790924754";
 
 export const HIGHLIGHTS = [
   "On-Time Delivery Rate: 98%",

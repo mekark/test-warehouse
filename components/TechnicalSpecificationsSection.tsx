@@ -3,6 +3,7 @@ import { manrope } from "@/lib/fonts";
 import { assetUrl } from "@/lib/assetPrefix";
 import ScaledCanvas from "@/components/ScaledCanvas";
 import type { ReactNode } from "react";
+import ShowAt from "@/components/ShowAt";
 
 const DESIGN_WIDTH = 1920;
 const IMG = "/Images/technical-specs";
@@ -458,7 +459,7 @@ export default function TechnicalSpecificationsSection() {
     <section
       className={`${manrope.className} relative w-full overflow-hidden bg-[#F2F6F9]`}
     >
-      <div className="hidden min-[1024px]:block">
+      <ShowAt show="desktop" className="hidden min-[1024px]:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH}>
           <div className="relative flex min-h-[595px] w-[1920px] flex-col items-center gap-[13.333px] overflow-visible px-[80px] py-[60px]">
             <DesktopBackground />
@@ -472,9 +473,9 @@ export default function TechnicalSpecificationsSection() {
             </div>
           </div>
         </ScaledCanvas>
-      </div>
+      </ShowAt>
 
-      <div className="relative hidden overflow-hidden px-10 py-16 sm:max-[1023px]:block">
+      <ShowAt show="tablet" className="relative hidden overflow-hidden px-10 py-16 sm:max-[1023px]:block">
         <div className="pointer-events-none absolute inset-0 opacity-20">
           <Image
             src={`${IMG}/warehouse-watermark.webp`}
@@ -492,10 +493,10 @@ export default function TechnicalSpecificationsSection() {
             ))}
           </div>
         </div>
-      </div>
+      </ShowAt>
 
       {/* PHONE (below 640px): Figma mobile frame */}
-      <div className="relative overflow-hidden bg-[#EEF5F9] px-5 py-6 sm:hidden">
+      <ShowAt show="phone" className="relative overflow-hidden bg-[#EEF5F9] px-5 py-6 sm:hidden">
         <PhoneBackground />
         <div className="relative mx-auto flex w-full max-w-[350px] flex-col items-center gap-5">
           <div className="flex w-full flex-col items-center gap-2 text-center">
@@ -516,7 +517,7 @@ export default function TechnicalSpecificationsSection() {
             ))}
           </div>
         </div>
-      </div>
+      </ShowAt>
     </section>
   );
 }

@@ -7,12 +7,12 @@ import ProjectsGallerySection from "@/components/ProjectsGallerySection";
 import ManufacturingCapabilitiesSection from "@/components/ManufacturingCapabilitiesSection";
 import FaqAccordionSection from "@/components/FaqAccordionSection";
 import LeadBlueprintSection from "@/components/LeadBlueprintSection";
-import FloatingContact from "@/components/FloatingContact";
+import MobileActionBar from "@/components/MobileActionBar";
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden">
-      <FloatingContact />
+      <MobileActionBar />
       <BlueprintHeroSection />
       <ProcessSection />
       <TechnicalSpecificationsSection />

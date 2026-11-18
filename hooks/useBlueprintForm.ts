@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { ASSET_PREFIX } from "@/lib/assetPrefix";
 import { getPageSourceUrl } from "@/lib/sourceUrl";
 
@@ -57,6 +57,8 @@ export function useBlueprintForm() {
   const [errors, setErrors] = useState<BlueprintFormErrors>({});
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Synchronous guard: state updates are async, so two quick taps could both pass `isSubmitting`
+  const submittingRef = useRef(false);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -108,12 +110,17 @@ export function useBlueprintForm() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (submittingRef.current) return;
+
     if (!validate()) {
       setStatusMessage("Please correct the highlighted fields.");
       return;
     }
 
+    let redirecting = false;
+
     try {
+      submittingRef.current = true;
       setIsSubmitting(true);
       setStatusMessage(null);
 
@@ -142,6 +149,7 @@ export function useBlueprintForm() {
         throw new Error(payload?.message || "Unable to submit form.");
       }
 
+      redirecting = true;
       setValues(INITIAL_VALUES);
       try {
         sessionStorage.setItem("thankYouAccess:warehouse", "1");
@@ -153,7 +161,12 @@ export function useBlueprintForm() {
         error instanceof Error ? error.message : "Something went wrong.",
       );
     } finally {
-      setIsSubmitting(false);
+      // Keep the form locked after a successful send: the page is navigating away,
+      // and re-enabling the button would allow a duplicate lead/conversion.
+      if (!redirecting) {
+        submittingRef.current = false;
+        setIsSubmitting(false);
+      }
     }
   };
 
